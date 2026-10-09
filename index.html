@@ -59,7 +59,6 @@
 
         .read-only-val { background-color: #F8FAFC !important; color: #334155 !important; font-weight: 700; font-family: monospace; text-align: center; border: 1px solid var(--border-color) !important; cursor: default; }
 
-        /* GRID DE RESUMO (2 Linhas x 4 Colunas) */
         .card-summary-box {
             background: #FFF7ED;
             border: 1px solid #FFEDD5;
@@ -78,9 +77,7 @@
             padding: 0 8px;
         }
 
-        .summary-item:nth-child(4n) {
-            border-right: none;
-        }
+        .summary-item:nth-child(4n) { border-right: none; }
 
         .summary-label {
             font-size: 0.70rem;
@@ -100,6 +97,15 @@
             font-family: monospace;
         }
 
+        .nota-tecnica {
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #F8FAFC;
+            border-left: 3px solid var(--copel-orange);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
         .btn { background-color: var(--copel-orange); color: white; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
         .btn:hover { background-color: var(--copel-orange-dark); }
         .btn-secondary { background-color: #64748B; }
@@ -117,12 +123,6 @@
             .card-summary-box { grid-template-columns: repeat(2, 1fr); }
             .summary-item:nth-child(4n) { border-right: 1px solid #FED7AA; }
             .summary-item:nth-child(2n) { border-right: none; }
-        }
-
-        @media print {
-            .nav-tabs, .btn-group, footer, .badge-sistema, .btn-add, .btn-remove { display: none !important; }
-            .tab-content { display: block !important; }
-            body { background: white; font-size: 9pt; }
         }
     </style>
 </head>
@@ -163,7 +163,7 @@
                             <tr><td>I. Base (A) =</td><td class="val" id="outIBase">4183,70</td></tr>
                             <tr><td>Z. Base (Ohms) =</td><td class="val" id="outZBase">1,9044</td></tr>
                             <tr><td>Resist. terra (ohms) =</td><td><input type="number" class="read-only-val" id="rTerra" value="13.33" step="0.01" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
-                            <tr><td>3 x Resist. terra (pu) =</td><td class="val" id="out3RTerra">21,00</td></tr>
+                            <tr><td>3 x Resist. terra (pu) =</td><td class="val" id="out3RTerra">21,0000</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -185,13 +185,13 @@
                         <tbody>
                             <tr>
                                 <td style="text-align:center; font-weight:bold;">( + )</td>
-                                <td><input type="number" class="in-yellow" id="rPosA" value="0" step="0.0001" oninput="recalcular()"></td>
-                                <td><input type="number" class="in-yellow" id="xPosA" value="0" step="0.0001" oninput="recalcular()"></td>
+                                <td><input type="number" class="in-yellow" id="rPosA" value="0.3767" step="0.0001" oninput="recalcular()"></td>
+                                <td><input type="number" class="in-yellow" id="xPosA" value="0.9838" step="0.0001" oninput="recalcular()"></td>
                             </tr>
                             <tr>
                                 <td style="text-align:center; font-weight:bold;">( 0 )</td>
-                                <td><input type="number" class="in-yellow" id="rZeroA" value="0" step="0.0001" oninput="recalcular()"></td>
-                                <td><input type="number" class="in-yellow" id="xZeroA" value="0" step="0.0001" oninput="recalcular()"></td>
+                                <td><input type="number" class="in-yellow" id="rZeroA" value="0.9541" step="0.0001" oninput="recalcular()"></td>
+                                <td><input type="number" class="in-yellow" id="xZeroA" value="6.2917" step="0.0001" oninput="recalcular()"></td>
                             </tr>
                         </tbody>
                     </table>
@@ -206,13 +206,13 @@
                         <tbody>
                             <tr>
                                 <td style="text-align:center; font-weight:bold;">( + )</td>
-                                <td class="val" id="modPosA">0,00000</td>
-                                <td class="val" id="angPosA">0,00000</td>
+                                <td class="val" id="modPosA">1,05345</td>
+                                <td class="val" id="angPosA">69,04801</td>
                             </tr>
                             <tr>
                                 <td style="text-align:center; font-weight:bold;">( 0 )</td>
-                                <td class="val" id="modZeroA">0,00000</td>
-                                <td class="val" id="angZeroA">0,00000</td>
+                                <td class="val" id="modZeroA">6,36363</td>
+                                <td class="val" id="angZeroA">81,37712</td>
                             </tr>
                         </tbody>
                     </table>
@@ -226,12 +226,12 @@
                     </div>
                     <table class="tbl-clean">
                         <tbody>
-                            <tr><td>MAIOR TR (kVA)</td><td><input type="number" class="read-only-val" id="maiorTR" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
+                            <tr><td>MAIOR TR (kVA)</td><td><input type="number" class="read-only-val" id="maiorTR" value="1250" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
                             <tr><td>OUTROS TRS (kVA)</td><td><input type="number" class="read-only-val" id="outrosTRS" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
-                            <tr><td>DEMANDA CONTRATO (kW)</td><td><input type="number" class="in-yellow" id="demandaContratada" value="0" oninput="recalcular()"></td></tr>
-                            <tr><td>In (A)</td><td class="val" id="cardInTotal">0,00</td></tr>
-                            <tr><td>I inrush (A)</td><td class="val" id="cardInrush">0,00</td></tr>
-                            <tr><td>1,3 x I demanda / 0,92 (A)</td><td class="val" id="card13IDemanda">0,00</td></tr>
+                            <tr><td>DEMANDA CONTRATO (kW)</td><td><input type="number" class="in-yellow" id="demandaContratada" value="1550" oninput="recalcular()"></td></tr>
+                            <tr><td>In (A)</td><td class="val" id="cardInTotal">54,67</td></tr>
+                            <tr><td>I inrush (A)</td><td class="val" id="cardInrush">437,39</td></tr>
+                            <tr><td>1,3 x I demanda / 0,92 (A)</td><td class="val" id="card13IDemanda">95,80</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -278,6 +278,7 @@
                                 <th>TR Seq.</th>
                                 <th>Potência (kVA)</th>
                                 <th>Tensão AT (kV)</th>
+                                <th>Tensão BT (V)</th>
                                 <th>Imped. (%) base TR</th>
                                 <th style="width: 50px;">Ação</th>
                             </tr>
@@ -295,9 +296,7 @@
 
         <!-- ABA 2: MEMÓRIA DE CÁLCULO -->
         <div id="tabSaida" class="tab-content">
-            <!-- BLOCO DE RESUMO ORGANIZADO EM 2 LINHAS X 4 COLUNAS -->
             <div class="card-summary-box">
-                <!-- LINHA 1: PARÂMETROS DA CARGA E DEMANDA DA UC -->
                 <div class="summary-item">
                     <span class="summary-label">Demanda Corrigida (1,3·I / 0,92)</span>
                     <span id="sum13IDemanda" class="summary-val">- A</span>
@@ -315,10 +314,9 @@
                     <span id="sumMinRelacaoTC" class="summary-val">-</span>
                 </div>
 
-                <!-- LINHA 2: NÍVEIS DE CURTO-CIRCUITO DA REDE -->
                 <div class="summary-item">
-                    <span class="summary-label">Icc 3Ф Ref. Primário (Ponto A)</span>
-                    <span id="sumIcc3fRefPrimario" class="summary-val">- A</span>
+                    <span class="summary-label">Ic3f Secundário (A)</span>
+                    <span id="sumIc3fSecundario" class="summary-val">- A</span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Icc 3Ф Max (Ponto A)</span>
@@ -334,6 +332,7 @@
                 </div>
             </div>
 
+            <!-- Tabela Primária -->
             <div class="card">
                 <div class="card-header">
                     <div class="category-accent"></div>
@@ -345,12 +344,44 @@
                             <tr>
                                 <th>Ponto</th>
                                 <th>Icc 3Ф Simétrico (A)</th>
+                                <th>Icc 3Ф Assimétrico (A)</th>
                                 <th>Icc FT Simétrico (A)</th>
+                                <th>Icc FT Assimétrico (A)</th>
                                 <th>Icc FT Mínimo (A)</th>
                             </tr>
                         </thead>
                         <tbody id="tbSaidaPrimario"></tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Tabela Secundária (Baixa Tensão) -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="category-accent"></div>
+                    <h2 class="card-title">Circuito Secundário - Baixa Tensão</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="tbl-dados">
+                        <thead>
+                            <tr>
+                                <th>Ponto</th>
+                                <th>TR Seq.</th>
+                                <th>Potência (kVA)</th>
+                                <th>Tensão BT (V)</th>
+                                <th>Ic3f (A)</th>
+                                <th>Ic3fass. (A)</th>
+                                <th>Icft (A)</th>
+                                <th>Icftass. (A)</th>
+                                <th style="background:#FFE6D5;">Ic3f Secundário (A)</th>
+                                <th style="background:#FFE6D5;">Ic3fass. Secundário (A)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbSaidaSecundario"></tbody>
+                    </table>
+                </div>
+                <div class="nota-tecnica">
+                    <strong>Nota:</strong> Quando o enrolamento primário for triângulo (13,8kV) as correntes de curto fase-terra do secundário refletidas para o primário serão curto fase-fase.
                 </div>
             </div>
 
@@ -366,118 +397,113 @@
 
     <script>
         const dbCabos = {
-            "8AWG-Cu": { r1_km: 0.02102, x1_km: 0.00840, r0_km: 0.02400, x0_km: 0.03500 },
-            "6AWG-Cu": { r1_km: 0.01321, x1_km: 0.00810, r0_km: 0.01600, x0_km: 0.03450 },
-            "4AWG-Cu": { r1_km: 0.00831, x1_km: 0.00780, r0_km: 0.01100, x0_km: 0.03380 },
-            "2AWG-Cu": { r1_km: 0.00523, x1_km: 0.00750, r0_km: 0.00820, x0_km: 0.03300 },
-            "1/0AWG-Cu": { r1_km: 0.00329, x1_km: 0.00730, r0_km: 0.00620, x0_km: 0.03260 },
-            "2/0AWG-Cu": { r1_km: 0.00502, x1_km: 0.00718, r0_km: 0.00800, x0_km: 0.03248 },
-            "3/0AWG-Cu": { r1_km: 0.00207, x1_km: 0.00700, r0_km: 0.00480, x0_km: 0.03220 },
-            "4/0AWG-Cu": { r1_km: 0.00164, x1_km: 0.00680, r0_km: 0.00420, x0_km: 0.03200 },
-            "266MCM-Cu": { r1_km: 0.00130, x1_km: 0.00660, r0_km: 0.00380, x0_km: 0.03180 },
-            "366,4MCM-Cu": { r1_km: 0.00095, x1_km: 0.00640, r0_km: 0.00330, x0_km: 0.03150 },
-            "397MCM-Cu": { r1_km: 0.00088, x1_km: 0.00630, r0_km: 0.00310, x0_km: 0.03130 },
-            "477MCM-Cu": { r1_km: 0.00073, x1_km: 0.00620, r0_km: 0.00280, x0_km: 0.03100 },
-
-            "8AWG-CA": { r1_km: 0.03450, x1_km: 0.00850, r0_km: 0.03800, x0_km: 0.03550 },
-            "6AWG-CA": { r1_km: 0.02170, x1_km: 0.00820, r0_km: 0.02500, x0_km: 0.03480 },
-            "4AWG-CA": { r1_km: 0.01360, x1_km: 0.00790, r0_km: 0.01700, x0_km: 0.03400 },
-            "2AWG-CA": { r1_km: 0.00860, x1_km: 0.00760, r0_km: 0.01200, x0_km: 0.03320 },
-            "1/0AWG-CA": { r1_km: 0.00540, x1_km: 0.00740, r0_km: 0.00880, x0_km: 0.03280 },
-            "2/0AWG-CA": { r1_km: 0.00430, x1_km: 0.00720, r0_km: 0.00750, x0_km: 0.03250 },
-            "3/0AWG-CA": { r1_km: 0.00340, x1_km: 0.00710, r0_km: 0.00640, x0_km: 0.03230 },
-            "4/0AWG-CA": { r1_km: 0.00270, x1_km: 0.00690, r0_km: 0.00550, x0_km: 0.03210 },
-            "266MCM-CA": { r1_km: 0.00210, x1_km: 0.00670, r0_km: 0.00480, x0_km: 0.03190 },
-            "366,4MCM-CA": { r1_km: 0.00150, x1_km: 0.00650, r0_km: 0.00400, x0_km: 0.03160 },
-            "397MCM-CA": { r1_km: 0.00140, x1_km: 0.00640, r0_km: 0.00380, x0_km: 0.03140 },
-            "477MCM-CA": { r1_km: 0.00120, x1_km: 0.00630, r0_km: 0.00350, x0_km: 0.03110 },
-
-            "8AWG-CAA": { r1_km: 0.03500, x1_km: 0.00860, r0_km: 0.03900, x0_km: 0.03600 },
-            "6AWG-CAA": { r1_km: 0.02210, x1_km: 0.00830, r0_km: 0.02600, x0_km: 0.03500 },
-            "4AWG-CAA": { r1_km: 0.01390, x1_km: 0.00800, r0_km: 0.01800, x0_km: 0.03420 },
-            "2AWG-CAA": { r1_km: 0.00880, x1_km: 0.00770, r0_km: 0.01300, x0_km: 0.03350 },
-            "1/0AWG-CAA": { r1_km: 0.00550, x1_km: 0.00750, r0_km: 0.00920, x0_km: 0.03300 },
-            "2/0AWG-CAA": { r1_km: 0.00820, x1_km: 0.00750, r0_km: 0.01200, x0_km: 0.03400 },
-            "3/0AWG-CAA": { r1_km: 0.00350, x1_km: 0.00720, r0_km: 0.00680, x0_km: 0.03250 },
-            "4/0AWG-CAA": { r1_km: 0.00280, x1_km: 0.00700, r0_km: 0.00580, x0_km: 0.03220 },
-            "266MCM-CAA": { r1_km: 0.00220, x1_km: 0.00680, r0_km: 0.00500, x0_km: 0.03200 },
-            "366,4MCM-CAA": { r1_km: 0.00160, x1_km: 0.00660, r0_km: 0.00420, x0_km: 0.03180 },
-            "397MCM-CAA": { r1_km: 0.00150, x1_km: 0.00650, r0_km: 0.00400, x0_km: 0.03150 },
-            "477MCM-CAA": { r1_km: 0.00130, x1_km: 0.00640, r0_km: 0.00370, x0_km: 0.03120 },
-
-            "16mm²-Cu12/20kV": { r1_km: 0.04230, x1_km: 0.00550, r0_km: 0.04230, x0_km: 0.00550 },
-            "25mm²-Cu12/20kV": { r1_km: 0.02707, x1_km: 0.00493, r0_km: 0.02707, x0_km: 0.00493 },
-            "35mm²-Cu12/20kV": { r1_km: 0.01950, x1_km: 0.00460, r0_km: 0.01950, x0_km: 0.00460 },
-            "50mm²-Cu12/20kV": { r1_km: 0.01443, x1_km: 0.00434, r0_km: 0.01443, x0_km: 0.00434 },
-            "70mm²-Cu12/20kV": { r1_km: 0.01010, x1_km: 0.00410, r0_km: 0.01010, x0_km: 0.00410 },
-            "95mm²-Cu12/20kV": { r1_km: 0.00723, x1_km: 0.00390, r0_km: 0.00723, x0_km: 0.00390 },
-            "120mm²-Cu12/20kV": { r1_km: 0.00570, x1_km: 0.00370, r0_km: 0.00570, x0_km: 0.00370 },
-            "150mm²-Cu12/20kV": { r1_km: 0.00460, x1_km: 0.00360, r0_km: 0.00460, x0_km: 0.00360 },
-            "185mm²-Cu12/20kV": { r1_km: 0.00370, x1_km: 0.00350, r0_km: 0.00370, x0_km: 0.00350 },
-            "240mm²-Cu12/20kV": { r1_km: 0.00280, x1_km: 0.00340, r0_km: 0.00280, x0_km: 0.00340 },
-
-            "16mm²-Al12/20kV": { r1_km: 0.06940, x1_km: 0.00550, r0_km: 0.06940, x0_km: 0.00550 },
-            "25mm²-Al12/20kV": { r1_km: 0.04440, x1_km: 0.00493, r0_km: 0.04440, x0_km: 0.00493 },
-            "35mm²-Al12/20kV": { r1_km: 0.03200, x1_km: 0.00460, r0_km: 0.03200, x0_km: 0.00460 },
-            "50mm²-Al12/20kV": { r1_km: 0.02360, x1_km: 0.00434, r0_km: 0.02360, x0_km: 0.00434 },
-            "70mm²-Al12/20kV": { r1_km: 0.01650, x1_km: 0.00410, r0_km: 0.01650, x0_km: 0.00410 },
-            "95mm²-Al12/20kV": { r1_km: 0.01180, x1_km: 0.00390, r0_km: 0.01180, x0_km: 0.00390 },
-            "120mm²-Al12/20kV": { r1_km: 0.00930, x1_km: 0.00370, r0_km: 0.00930, x0_km: 0.00370 },
-            "150mm²-Al12/20kV": { r1_km: 0.00750, x1_km: 0.00360, r0_km: 0.00750, x0_km: 0.00360 },
-            "185mm²-Al12/20kV": { r1_km: 0.00600, x1_km: 0.00350, r0_km: 0.00600, x0_km: 0.00350 },
-            "240mm²-Al12/20kV": { r1_km: 0.00460, x1_km: 0.00340, r0_km: 0.00460, x0_km: 0.00340 },
-
-            "16mm²-Cu20/35kV": { r1_km: 0.04230, x1_km: 0.00620, r0_km: 0.04230, x0_km: 0.00620 },
-            "25mm²-Cu20/35kV": { r1_km: 0.02707, x1_km: 0.00560, r0_km: 0.02707, x0_km: 0.00560 },
-            "35mm²-Cu20/35kV": { r1_km: 0.01950, x1_km: 0.00520, r0_km: 0.01950, x0_km: 0.00520 },
-            "50mm²-Cu20/35kV": { r1_km: 0.01443, x1_km: 0.00490, r0_km: 0.01443, x0_km: 0.00490 },
-            "70mm²-Cu20/35kV": { r1_km: 0.01010, x1_km: 0.00460, r0_km: 0.01010, x0_km: 0.00460 },
-            "95mm²-Cu20/35kV": { r1_km: 0.00723, x1_km: 0.00440, r0_km: 0.00723, x0_km: 0.00440 },
-            "120mm²-Cu20/35kV": { r1_km: 0.00570, x1_km: 0.00420, r0_km: 0.00570, x0_km: 0.00420 },
-            "150mm²-Cu20/35kV": { r1_km: 0.00460, x1_km: 0.00400, r0_km: 0.00460, x0_km: 0.00400 },
-            "185mm²-Cu20/35kV": { r1_km: 0.00370, x1_km: 0.00390, r0_km: 0.00370, x0_km: 0.00390 },
-            "240mm²-Cu20/35kV": { r1_km: 0.00280, x1_km: 0.00370, r0_km: 0.00280, x0_km: 0.00370 },
-
-            "16mm²-Al20/35kV": { r1_km: 0.06940, x1_km: 0.00620, r0_km: 0.06940, x0_km: 0.00620 },
-            "25mm²-Al20/35kV": { r1_km: 0.04440, x1_km: 0.00560, r0_km: 0.04440, x0_km: 0.00560 },
-            "35mm²-Al20/35kV": { r1_km: 0.03200, x1_km: 0.00520, r0_km: 0.03200, x0_km: 0.00520 },
-            "50mm²-Al20/35kV": { r1_km: 0.02360, x1_km: 0.00490, r0_km: 0.02360, x0_km: 0.00490 },
-            "70mm²-Al20/35kV": { r1_km: 0.01650, x1_km: 0.00460, r0_km: 0.01650, x0_km: 0.00460 },
-            "95mm²-Al20/35kV": { r1_km: 0.01180, x1_km: 0.00440, r0_km: 0.01180, x0_km: 0.00440 },
-            "120mm²-Al20/35kV": { r1_km: 0.00930, x1_km: 0.00420, r0_km: 0.00930, x0_km: 0.00420 },
-            "150mm²-Al20/35kV": { r1_km: 0.00750, x1_km: 0.00400, r0_km: 0.00750, x0_km: 0.00400 },
-            "185mm²-Al20/35kV": { r1_km: 0.00600, x1_km: 0.00390, r0_km: 0.00600, x0_km: 0.00390 },
-            "240mm²-Al20/35kV": { r1_km: 0.00460, x1_km: 0.00370, r0_km: 0.00460, x0_km: 0.00370 }
-        };
-
-        const listaCabosPorTensao = {
-            "13.8": [
-                "8AWG-Cu", "6AWG-Cu", "4AWG-Cu", "2AWG-Cu", "1/0AWG-Cu", "2/0AWG-Cu", "3/0AWG-Cu", "4/0AWG-Cu", "266MCM-Cu", "366,4MCM-Cu", "397MCM-Cu", "477MCM-Cu",
-                "8AWG-CA", "6AWG-CA", "4AWG-CA", "2AWG-CA", "1/0AWG-CA", "2/0AWG-CA", "3/0AWG-CA", "4/0AWG-CA", "266MCM-CA", "366,4MCM-CA", "397MCM-CA", "477MCM-CA",
-                "8AWG-CAA", "6AWG-CAA", "4AWG-CAA", "2AWG-CAA", "1/0AWG-CAA", "2/0AWG-CAA", "3/0AWG-CAA", "4/0AWG-CAA", "266MCM-CAA", "366,4MCM-CAA", "397MCM-CAA", "477MCM-CAA",
-                "16mm²-Cu12/20kV", "25mm²-Cu12/20kV", "35mm²-Cu12/20kV", "50mm²-Cu12/20kV", "70mm²-Cu12/20kV", "95mm²-Cu12/20kV", "120mm²-Cu12/20kV", "150mm²-Cu12/20kV", "185mm²-Cu12/20kV", "240mm²-Cu12/20kV",
-                "16mm²-Al12/20kV", "25mm²-Al12/20kV", "35mm²-Al12/20kV", "50mm²-Al12/20kV", "70mm²-Al12/20kV", "95mm²-Al12/20kV", "120mm²-Al12/20kV", "150mm²-Al12/20kV", "185mm²-Al12/20kV", "240mm²-Al12/20kV"
-            ],
-            "34.5": [
-                "8AWG-Cu", "6AWG-Cu", "4AWG-Cu", "2AWG-Cu", "1/0AWG-Cu", "2/0AWG-Cu", "3/0AWG-Cu", "4/0AWG-Cu", "266MCM-Cu", "366,4MCM-Cu", "397MCM-Cu", "477MCM-Cu",
-                "8AWG-CA", "6AWG-CA", "4AWG-CA", "2AWG-CA", "1/0AWG-CA", "2/0AWG-CA", "3/0AWG-CA", "4/0AWG-CA", "266MCM-CA", "366,4MCM-CA", "397MCM-CA", "477MCM-CA",
-                "8AWG-CAA", "6AWG-CAA", "4AWG-CAA", "2AWG-CAA", "1/0AWG-CAA", "2/0AWG-CAA", "3/0AWG-CAA", "4/0AWG-CAA", "266MCM-CAA", "366,4MCM-CAA", "397MCM-CAA", "477MCM-CAA",
-                "16mm²-Cu20/35kV", "25mm²-Cu20/35kV", "35mm²-Cu20/35kV", "50mm²-Cu20/35kV", "70mm²-Cu20/35kV", "95mm²-Cu20/35kV", "120mm²-Cu20/35kV", "150mm²-Cu20/35kV", "185mm²-Cu20/35kV", "240mm²-Cu20/35kV",
-                "16mm²-Al20/35kV", "25mm²-Al20/35kV", "35mm²-Al20/35kV", "50mm²-Al20/35kV", "70mm²-Al20/35kV", "95mm²-Al20/35kV", "120mm²-Al20/35kV", "150mm²-Al20/35kV", "185mm²-Al20/35kV", "240mm²-Al20/35kV"
-            ]
+            "13.8": {
+                "8AWG-Cu": { r1: 1.2401, x1: 0.2575, r0: 1.3334, x0: 1.0588 },
+                "6AWG-Cu": { r1: 0.7800, x1: 0.2584, r0: 0.8733, x0: 1.0496 },
+                "4AWG-Cu": { r1: 0.4905, x1: 0.2492, r0: 0.5838, x0: 1.0405 },
+                "2AWG-Cu": { r1: 0.3146, x1: 0.2378, r0: 0.4079, x0: 1.0291 },
+                "1/0AWG-Cu": { r1: 0.1981, x1: 0.2287, r0: 0.2914, x0: 1.0199 },
+                "2/0AWG-Cu": { r1: 0.1570, x1: 0.2241, r0: 0.2503, x0: 1.0153 },
+                "4/0AWG-Cu": { r1: 0.0989, x1: 0.2146, r0: 0.1922, x0: 1.0059 },
+                "6AWG-CA": { r1: 1.2761, x1: 0.2561, r0: 1.3693, x0: 1.0474 },
+                "4AWG-CA": { r1: 0.8028, x1: 0.2528, r0: 0.8961, x0: 1.0441 },
+                "2AWG-CA": { r1: 0.5059, x1: 0.2378, r0: 0.5991, x0: 1.0290 },
+                "1/0AWG-CA": { r1: 0.3176, x1: 0.2278, r0: 0.4109, x0: 1.0191 },
+                "2/0AWG-CA": { r1: 0.2516, x1: 0.2240, r0: 0.3449, x0: 1.0152 },
+                "3/0AWG-CA": { r1: 0.2001, x1: 0.2194, r0: 0.2934, x0: 1.0107 },
+                "4/0AWG-CA": { r1: 0.1586, x1: 0.2148, r0: 0.2519, x0: 1.0061 },
+                "266MCM-CA": { r1: 0.1260, x1: 0.2102, r0: 0.2192, x0: 1.0015 },
+                "366,4MCM-CA": { r1: 0.1002, x1: 0.2035, r0: 0.1935, x0: 0.9947 },
+                "397MCM-CA": { r1: 0.0845, x1: 0.2002, r0: 0.1778, x0: 0.9914 },
+                "477MCM-CA": { r1: 0.0705, x1: 0.1965, r0: 0.1638, x0: 0.9878 },
+                "6AWG-CAA": { r1: 1.2989, x1: 0.2701, r0: 1.3922, x0: 1.0614 },
+                "4AWG-CAA": { r1: 0.8387, x1: 0.2655, r0: 0.9320, x0: 1.0568 },
+                "2AWG-CAA": { r1: 0.5516, x1: 0.2675, r0: 0.6448, x0: 1.0588 },
+                "1/0AWG-CAA": { r1: 0.3655, x1: 0.2646, r0: 0.4588, x0: 1.0558 },
+                "2/0AWG-CAA": { r1: 0.2921, x1: 0.2597, r0: 0.3854, x0: 1.0509 },
+                "3/0AWG-CAA": { r1: 0.2359, x1: 0.2531, r0: 0.3293, x0: 1.0444 },
+                "4/0AWG-CAA": { r1: 0.1932, x1: 0.2401, r0: 0.2865, x0: 1.0313 },
+                "266MCM-CAA": { r1: 0.1256, x1: 0.2022, r0: 0.2189, x0: 0.9935 },
+                "366,4MCM-CAA": { r1: 0.0999, x1: 0.1977, r0: 0.1932, x0: 0.9889 },
+                "397MCM-CAA": { r1: 0.0845, x1: 0.1944, r0: 0.1778, x0: 0.9856 },
+                "477MCM-CAA": { r1: 0.0705, x1: 0.1908, r0: 0.1638, x0: 0.9821 },
+                "16mm²-Cu12/20kV": { r1: 0.7705, x1: 0.0975, r0: 0.7705, x0: 0.0975 },
+                "25mm²-Cu12/20kV": { r1: 0.4873, x1: 0.0888, r0: 0.4873, x0: 0.0888 },
+                "35mm²-Cu12/20kV": { r1: 0.3514, x1: 0.0817, r0: 0.3514, x0: 0.0817 },
+                "50mm²-Cu12/20kV": { r1: 0.2598, x1: 0.0782, r0: 0.2598, x0: 0.0782 },
+                "70mm²-Cu12/20kV": { r1: 0.1802, x1: 0.0737, r0: 0.1802, x0: 0.0737 },
+                "95mm²-Cu12/20kV": { r1: 0.1302, x1: 0.0702, r0: 0.1302, x0: 0.0702 },
+                "120mm²-Cu12/20kV": { r1: 0.1035, x1: 0.0677, r0: 0.1035, x0: 0.0677 },
+                "150mm²-Cu12/20kV": { r1: 0.0843, x1: 0.0658, r0: 0.0843, x0: 0.0658 },
+                "185mm²-Cu12/20kV": { r1: 0.0679, x1: 0.0636, r0: 0.0679, x0: 0.0636 },
+                "240mm²-Cu12/20kV": { r1: 0.0524, x1: 0.0625, r0: 0.0524, x0: 0.0625 },
+                "35mm²-Al12/20kV": { r1: 0.5730, x1: 0.1290, r0: 0.5730, x0: 0.1290 },
+                "50mm²-Al12/20kV": { r1: 0.4229, x1: 0.1246, r0: 0.4229, x0: 0.1246 },
+                "70mm²-Al12/20kV": { r1: 0.2930, x1: 0.1197, r0: 0.2930, x0: 0.1197 },
+                "95mm²-Al12/20kV": { r1: 0.2109, x1: 0.1159, r0: 0.2109, x0: 0.1159 },
+                "120mm²-Al12/20kV": { r1: 0.1672, x1: 0.1134, r0: 0.1672, x0: 0.1134 },
+                "150mm²-Al12/20kV": { r1: 0.1364, x1: 0.1105, r0: 0.1364, x0: 0.1105 },
+                "185mm²-Al12/20kV": { r1: 0.1089, x1: 0.1086, r0: 0.1089, x0: 0.1086 },
+                "240mm²-Al12/20kV": { r1: 0.0829, x1: 0.1061, r0: 0.0829, x0: 0.1061 }
+            },
+            "34.5": {
+                "8AWG-Cu": { r1: 0.1983, x1: 0.0412, r0: 0.2132, x0: 0.1693 },
+                "6AWG-Cu": { r1: 0.1247, x1: 0.0413, r0: 0.1396, x0: 0.1678 },
+                "4AWG-Cu": { r1: 0.0784, x1: 0.0398, r0: 0.0933, x0: 0.1664 },
+                "2AWG-Cu": { r1: 0.0503, x1: 0.0380, r0: 0.0652, x0: 0.1645 },
+                "1/0AWG-Cu": { r1: 0.0317, x1: 0.0366, r0: 0.0466, x0: 0.1631 },
+                "2/0AWG-Cu": { r1: 0.0251, x1: 0.0358, r0: 0.0400, x0: 0.1623 },
+                "4/0AWG-Cu": { r1: 0.0158, x1: 0.0343, r0: 0.0307, x0: 0.1608 },
+                "6AWG-CA": { r1: 0.2041, x1: 0.0409, r0: 0.2189, x0: 0.1675 },
+                "4AWG-CA": { r1: 0.1284, x1: 0.0404, r0: 0.1433, x0: 0.1669 },
+                "2AWG-CA": { r1: 0.0809, x1: 0.0380, r0: 0.0958, x0: 0.1645 },
+                "1/0AWG-CA": { r1: 0.0508, x1: 0.0364, r0: 0.0657, x0: 0.1629 },
+                "2/0AWG-CA": { r1: 0.0402, x1: 0.0358, r0: 0.0551, x0: 0.1623 },
+                "3/0AWG-CA": { r1: 0.0320, x1: 0.0351, r0: 0.0469, x0: 0.1616 },
+                "4/0AWG-CA": { r1: 0.0254, x1: 0.0343, r0: 0.0403, x0: 0.1609 },
+                "266MCM-CA": { r1: 0.0201, x1: 0.0336, r0: 0.0350, x0: 0.1601 },
+                "366,4MCM-CA": { r1: 0.0160, x1: 0.0325, r0: 0.0309, x0: 0.1590 },
+                "397MCM-CA": { r1: 0.0135, x1: 0.0320, r0: 0.0284, x0: 0.1585 },
+                "477MCM-CA": { r1: 0.0113, x1: 0.0314, r0: 0.0262, x0: 0.1579 },
+                "6AWG-CAA": { r1: 0.2077, x1: 0.0432, r0: 0.2226, x0: 0.1697 },
+                "4AWG-CAA": { r1: 0.1341, x1: 0.0425, r0: 0.1490, x0: 0.1690 },
+                "2AWG-CAA": { r1: 0.0882, x1: 0.0428, r0: 0.1031, x0: 0.1693 },
+                "1/0AWG-CAA": { r1: 0.0584, x1: 0.0423, r0: 0.0733, x0: 0.1688 },
+                "2/0AWG-CAA": { r1: 0.0467, x1: 0.0415, r0: 0.0616, x0: 0.1680 },
+                "3/0AWG-CAA": { r1: 0.0377, x1: 0.0405, r0: 0.0526, x0: 0.1670 },
+                "4/0AWG-CAA": { r1: 0.0309, x1: 0.0384, r0: 0.0458, x0: 0.1649 },
+                "266MCM-CAA": { r1: 0.0201, x1: 0.0323, r0: 0.0350, x0: 0.1588 },
+                "366,4MCM-CAA": { r1: 0.0160, x1: 0.0316, r0: 0.0309, x0: 0.1581 },
+                "397MCM-CAA": { r1: 0.0135, x1: 0.0311, r0: 0.0284, x0: 0.1576 },
+                "477MCM-CAA": { r1: 0.0113, x1: 0.0305, r0: 0.0262, x0: 0.1570 },
+                "16mm²-Cu20/35kV": { r1: 0.1232, x1: 0.0156, r0: 0.1232, x0: 0.0156 },
+                "25mm²-Cu20/35kV": { r1: 0.0779, x1: 0.0142, r0: 0.0779, x0: 0.0142 },
+                "35mm²-Cu20/35kV": { r1: 0.0562, x1: 0.0131, r0: 0.0562, x0: 0.0131 },
+                "50mm²-Cu20/35kV": { r1: 0.0415, x1: 0.0125, r0: 0.0415, x0: 0.0125 },
+                "70mm²-Cu20/35kV": { r1: 0.0288, x1: 0.0118, r0: 0.0288, x0: 0.0118 },
+                "95mm²-Cu20/35kV": { r1: 0.0208, x1: 0.0112, r0: 0.0208, x0: 0.0112 },
+                "120mm²-Cu20/35kV": { r1: 0.0165, x1: 0.0108, r0: 0.0165, x0: 0.0108 },
+                "150mm²-Cu20/35kV": { r1: 0.0135, x1: 0.0105, r0: 0.0135, x0: 0.0105 },
+                "185mm²-Cu20/35kV": { r1: 0.0109, x1: 0.0102, r0: 0.0109, x0: 0.0102 },
+                "240mm²-Cu20/35kV": { r1: 0.0084, x1: 0.0100, r0: 0.0084, x0: 0.0100 },
+                "35mm²-Al20/35kV": { r1: 0.0916, x1: 0.0206, r0: 0.0916, x0: 0.0206 },
+                "50mm²-Al20/35kV": { r1: 0.0676, x1: 0.0199, r0: 0.0676, x0: 0.0199 },
+                "70mm²-Al20/35kV": { r1: 0.0468, x1: 0.0191, r0: 0.0468, x0: 0.0191 },
+                "95mm²-Al20/35kV": { r1: 0.0337, x1: 0.0185, r0: 0.0337, x0: 0.0185 },
+                "120mm²-Al20/35kV": { r1: 0.0267, x1: 0.0181, r0: 0.0267, x0: 0.0181 },
+                "150mm²-Al20/35kV": { r1: 0.0218, x1: 0.0177, r0: 0.0218, x0: 0.0177 },
+                "185mm²-Al20/35kV": { r1: 0.0174, x1: 0.0174, r0: 0.0174, x0: 0.0174 },
+                "240mm²-Al20/35kV": { r1: 0.0132, x1: 0.0170, r0: 0.0132, x0: 0.0170 }
+            }
         };
 
         let trechosPadrao = [
-            { ini: 'A', fin: 'B', dist: 0.00, mat: 'cu', cabo: '95mm²-Cu12/20kV', r1: 0, x1: 0, r0: 0, x0: 0 }
+            { ini: 'A', fin: 'B', dist: 0.13, mat: 'cu', cabo: '2AWG-Cu', r1: 0, x1: 0, r0: 0, x0: 0 }
         ];
 
         let trafosPadrao = [
-            { ponto: 'A', kva: 0, z: 5.00 }
+            { ponto: 'B', kva: 1250, vbt: 380, z: 6.00 }
         ];
-
-        let maxIcc3fVal = 0;
-        let minIccftVal = 0;
-        let valorInrush = 0;
 
         const getVal = id => parseFloat(document.getElementById(id)?.value) || 0;
         const setTxt = (id, txt) => { const el = document.getElementById(id); if (el) el.innerText = txt; };
@@ -491,18 +517,24 @@
 
         function getOpcoesCabos(mat) {
             const vBase = document.getElementById('tBase') ? document.getElementById('tBase').value : "13.8";
-            let lista = listaCabosPorTensao[vBase] || listaCabosPorTensao["13.8"];
-            if (mat === 'cu') lista = lista.filter(c => c.includes('-Cu'));
-            else if (mat === 'al') lista = lista.filter(c => c.includes('-CA') || c.includes('-CAA') || c.includes('-Al'));
-            return lista.map(c => `<option value="${c}">${c}</option>`).join('');
+            const listaObj = dbCabos[vBase] || dbCabos["13.8"];
+            let nomes = Object.keys(listaObj);
+
+            if (mat === 'cu') {
+                nomes = nomes.filter(c => c.includes('Cu') || c.includes('AWG-Cu') || c.includes('MCM-Cu'));
+            } else if (mat === 'al') {
+                nomes = nomes.filter(c => c.includes('Al') || c.includes('-CA') || c.includes('-CAA') || c.includes('MCM-CA'));
+            }
+
+            return nomes.map(c => `<option value="${c}">${c}</option>`).join('');
         }
 
         function renderizarEntradas() {
             const tbT = document.getElementById('tbEntradaTrechos');
             tbT.innerHTML = trechosPadrao.map((t, i) => `
                 <tr>
-                    <td><input type="text" class="in-yellow" id="ini_${i}" value="${t.ini}" style="width:50px; text-align:center;" oninput="recalcular()"></td>
-                    <td><input type="text" class="in-yellow" id="fin_${i}" value="${t.fin}" style="width:50px; text-align:center;" oninput="recalcular()"></td>
+                    <td><input type="text" class="in-yellow" id="ini_${i}" value="${t.ini}" style="width:50px; text-align:center;" oninput="trechosPadrao[${i}].ini = this.value; recalcular();"></td>
+                    <td><input type="text" class="in-yellow" id="fin_${i}" value="${t.fin}" style="width:50px; text-align:center;" oninput="trechosPadrao[${i}].fin = this.value; recalcular();"></td>
                     <td><input type="number" class="in-yellow" id="dist_${i}" value="${t.dist}" step="0.01" style="width:70px; text-align:center;" oninput="atualizarImpedanciaTrecho(${i}); recalcular();"></td>
                     <td>
                         <select class="in-yellow" id="mat_${i}" onchange="atualizarOpcoesMaterialTrecho(${i}); recalcular();" style="font-size:0.75rem;">
@@ -531,6 +563,7 @@
             trechosPadrao.forEach((t, i) => {
                 const el = document.getElementById(`cabo_${i}`);
                 if (el && Array.from(el.options).some(o => o.value === t.cabo)) el.value = t.cabo;
+                atualizarImpedanciaTrecho(i);
             });
 
             renderizarTrafos();
@@ -548,23 +581,27 @@
         }
 
         function atualizarImpedanciaTrecho(i) {
-            const vBase = getVal('tBase') || 13.8;
-            const zBase = Math.pow(vBase, 2) / 100;
+            const vBase = document.getElementById('tBase') ? document.getElementById('tBase').value : "13.8";
             const dist = getVal(`dist_${i}`);
-            const caboSel = document.getElementById(`cabo_${i}`).value;
-            const p = dbCabos[caboSel] || { r1_km: 0.00723, x1_km: 0.0039, r0_km: 0.00723, x0_km: 0.0039 };
+            const caboSel = document.getElementById(`cabo_${i}`)?.value || trechosPadrao[i].cabo;
+
+            const tCabos = dbCabos[vBase] || dbCabos["13.8"];
+            const p = tCabos[caboSel] || { r1: 0, x1: 0, r0: 0, x0: 0 };
 
             trechosPadrao[i].dist = dist;
             trechosPadrao[i].cabo = caboSel;
-            trechosPadrao[i].r1 = (p.r1_km * dist) / zBase;
-            trechosPadrao[i].x1 = (p.x1_km * dist) / zBase;
-            trechosPadrao[i].r0 = (p.r0_km * dist) / zBase;
-            trechosPadrao[i].x0 = (p.x0_km * dist) / zBase;
 
-            document.getElementById(`r1_${i}`).value = trechosPadrao[i].r1.toFixed(5);
-            document.getElementById(`x1_${i}`).value = trechosPadrao[i].x1.toFixed(5);
-            document.getElementById(`r0_${i}`).value = trechosPadrao[i].r0.toFixed(5);
-            document.getElementById(`x0_${i}`).value = trechosPadrao[i].x0.toFixed(5);
+            trechosPadrao[i].r1 = p.r1 * dist;
+            trechosPadrao[i].x1 = p.x1 * dist;
+            trechosPadrao[i].r0 = p.r0 * dist;
+            trechosPadrao[i].x0 = p.x0 * dist;
+
+            if (document.getElementById(`r1_${i}`)) {
+                document.getElementById(`r1_${i}`).value = trechosPadrao[i].r1.toFixed(5);
+                document.getElementById(`x1_${i}`).value = trechosPadrao[i].x1.toFixed(5);
+                document.getElementById(`r0_${i}`).value = trechosPadrao[i].r0.toFixed(5);
+                document.getElementById(`x0_${i}`).value = trechosPadrao[i].x0.toFixed(5);
+            }
         }
 
         function renderizarTrafos() {
@@ -584,7 +621,10 @@
                         <input type="text" class="read-only-val" id="vat_${i}" value="${vBase}" style="width:70px;" readonly>
                     </td>
                     <td>
-                        <input type="number" class="in-yellow" id="ztr_${i}" value="${tr.z}" step="0.01" style="width:70px; text-align:center;" oninput="recalcular()">
+                        <input type="number" class="in-yellow" id="vbt_${i}" value="${tr.vbt || 380}" style="width:70px; text-align:center;" oninput="trafosPadrao[${i}].vbt = parseFloat(this.value)||380; recalcular();">
+                    </td>
+                    <td>
+                        <input type="number" class="in-yellow" id="ztr_${i}" value="${tr.z}" step="0.01" style="width:70px; text-align:center;" oninput="trafosPadrao[${i}].z = parseFloat(this.value)||0; recalcular();">
                     </td>
                     <td>
                         <button type="button" class="btn-remove" onclick="removerTrafo(${i})">X</button>
@@ -617,16 +657,13 @@
             const num = trechosPadrao.length;
             const ultFin = num > 0 ? trechosPadrao[num - 1].fin : 'A';
             const proxFin = String.fromCharCode(ultFin.charCodeAt(0) + 1);
-            const caboP = getOpcoesCabos('cu').includes("95mm²-Cu12/20kV") ? "95mm²-Cu12/20kV" : Object.keys(dbCabos)[0];
 
             const vBase = getVal('tBase') || 13.8;
-            const zBase = Math.pow(vBase, 2) / 100;
-            const p = dbCabos[caboP];
+            const caboP = Object.keys(dbCabos[vBase])[0];
 
             trechosPadrao.push({
                 ini: ultFin, fin: proxFin, dist: 0.00, mat: 'cu', cabo: caboP,
-                r1: (p.r1_km * 0.00) / zBase, x1: (p.x1_km * 0.00) / zBase,
-                r0: (p.r0_km * 0.00) / zBase, x0: (p.x0_km * 0.00) / zBase
+                r1: 0, x1: 0, r0: 0, x0: 0
             });
 
             renderizarEntradas();
@@ -646,9 +683,8 @@
         function adicionarTrafo() {
             const num = trafosPadrao.length;
             const ultPonto = num > 0 ? trafosPadrao[num - 1].ponto : 'A';
-            const proxPonto = String.fromCharCode(ultPonto.charCodeAt(0) + 1);
 
-            trafosPadrao.push({ ponto: proxPonto, kva: 0, z: 5.00 });
+            trafosPadrao.push({ ponto: ultPonto, kva: 500, vbt: 380, z: 5.00 });
             renderizarTrafos();
             recalcular();
         }
@@ -667,24 +703,31 @@
             trechosPadrao.forEach((t, i) => {
                 const el = document.getElementById(`cabo_${i}`);
                 if (el) {
-                    const vA = el.value;
                     el.innerHTML = getOpcoesCabos(t.mat);
-                    if (Array.from(el.options).some(o => o.value === vA)) el.value = vA;
-                    else el.selectedIndex = 0;
+                    el.selectedIndex = 0;
                     atualizarImpedanciaTrecho(i);
                 }
             });
+        }
+
+        // Função de cálculo de Fator de Assimetria
+        function calcularAssimetrico(iSim, r, x) {
+            if (!iSim || !x) return iSim;
+            const xr = x / r;
+            const fator = Math.sqrt(1 + 2 * Math.exp((-2 * Math.PI) / xr));
+            return iSim * fator;
         }
 
         function recalcular() {
             const vBase = getVal('tBase') || 13.8;
             const pBase = 100;
             const zBase = Math.pow(vBase, 2) / pBase;
-            const iBase = (pBase * 1000) / (Math.sqrt(3) * vBase);
+            const iBase = (pBase * 1000) / (vBase * Math.sqrt(3));
+
             const vOp = (vBase === 13.8) ? 13.2 : 33.0;
 
             const rTerra = getVal('rTerra') || 13.33;
-            const resTerraPu = (3 * rTerra) / zBase;
+            const resTerra3Pu = (3 * rTerra) / zBase;
 
             const rA_pos = getVal('rPosA'), xA_pos = getVal('xPosA');
             const rA_zero = getVal('rZeroA'), xA_zero = getVal('xZeroA');
@@ -697,12 +740,12 @@
             const mTR = getVal('maiorTR'), oTR = getVal('outrosTRS'), dKW = getVal('demandaContratada');
 
             const iNomTotal = (mTR + oTR) / (vOp * Math.sqrt(3));
-            valorInrush = (8 * mTR + 4 * oTR) / (vOp * Math.sqrt(3));
-            const iDemandaCorr = (1.3 * (dKW / (vOp * Math.sqrt(3)))) / 0.92;
+            const valorInrush = (8 * mTR + 4 * oTR) / (vOp * Math.sqrt(3));
+            const iDemandaCorr = (dKW / (vOp * Math.sqrt(3))) * 1.3 / 0.92;
 
             setTxt('outIBase', iBase.toFixed(2).replace('.', ','));
             setTxt('outZBase', zBase.toFixed(4).replace('.', ','));
-            setTxt('out3RTerra', resTerraPu.toFixed(2).replace('.', ','));
+            setTxt('out3RTerra', resTerra3Pu.toFixed(4).replace('.', ','));
 
             setTxt('cardInTotal', iNomTotal.toFixed(2).replace('.', ','));
             setTxt('cardInrush', valorInrush.toFixed(2).replace('.', ','));
@@ -712,65 +755,148 @@
             setTxt('sumInTotal', `${iNomTotal.toFixed(1)} A`);
             setTxt('sumInrush', `${valorInrush.toFixed(1)} A`);
 
-            let rPosAcum = rA_pos, xPosAcum = xA_pos, rZeroAcum = rA_zero, xZeroAcum = xA_zero;
-            const curtosPonto = {};
+            // Ponto A
+            const z1A = Math.sqrt(rA_pos**2 + xA_pos**2);
+            const ic3fA = z1A ? (iBase / z1A) : 0;
+            const ic3fA_ass = calcularAssimetrico(ic3fA, rA_pos, xA_pos);
+
+            const z2z1z0_R = 2 * rA_pos + rA_zero;
+            const z2z1z0_X = 2 * xA_pos + xA_zero;
+            const zFT_A = Math.sqrt(z2z1z0_R**2 + z2z1z0_X**2);
+            const icftA = zFT_A ? ((3 * iBase) / zFT_A) : 0;
+            const icftA_ass = calcularAssimetrico(icftA, z2z1z0_R, z2z1z0_X);
+
+            const zFTmin_R = 2 * rA_pos + resTerra3Pu + rA_zero;
+            const zFTmin_A = Math.sqrt(zFTmin_R**2 + z2z1z0_X**2);
+            const icftMinA = zFTmin_A ? ((3 * iBase) / zFTmin_A) : 0;
+
+            const maxIcc3fVal = ic3fA;
             const tbSaidaP = document.getElementById('tbSaidaPrimario');
             tbSaidaP.innerHTML = '';
 
-            const pInicialA = document.getElementById('ini_0')?.value || 'A';
-            const z1A = Math.sqrt(rA_pos**2 + xA_pos**2);
-            const ic3fA = z1A ? (iBase / z1A) : 0;
-            const z0A = Math.sqrt((2*rA_pos + rA_zero)**2 + (2*xA_pos + xA_zero)**2);
-            const icftA = z0A ? ((3 * iBase) / z0A) : 0;
-            const icftMinA = icftA * 0.6016;
+            const pInicialA = trechosPadrao[0]?.ini || 'A';
 
-            maxIcc3fVal = ic3fA;
-            curtosPonto[pInicialA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero, ic3f: ic3fA };
+            // Mapa de impedâncias acumuladas nos pontos
+            let mapImpedanciasPontos = {};
+            mapImpedanciasPontos[pInicialA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
 
             tbSaidaP.innerHTML += `
                 <tr style="background:#F8FAFC; font-weight:bold;">
                     <td>Ponto ${pInicialA} (Subestação)</td>
                     <td>${ic3fA.toFixed(1)}</td>
+                    <td>${ic3fA_ass.toFixed(1)}</td>
                     <td>${icftA.toFixed(1)}</td>
+                    <td>${icftA_ass.toFixed(1)}</td>
                     <td>${icftMinA.toFixed(1)}</td>
                 </tr>
             `;
 
+            let rPosAcum = rA_pos, xPosAcum = xA_pos, rZeroAcum = rA_zero, xZeroAcum = xA_zero;
             let ultIccftMin = icftMinA;
 
             trechosPadrao.forEach((t, i) => {
-                const finNome = document.getElementById(`fin_${i}`)?.value || `Ponto ${i+1}`;
-                rPosAcum += t.r1; xPosAcum += t.x1; rZeroAcum += t.r0; xZeroAcum += t.x0;
+                atualizarImpedanciaTrecho(i);
+                rPosAcum += t.r1;
+                xPosAcum += t.x1;
+                rZeroAcum += t.r0;
+                xZeroAcum += t.x0;
+
+                mapImpedanciasPontos[t.fin] = { r1: rPosAcum, x1: xPosAcum, r0: rZeroAcum, x0: xZeroAcum };
 
                 const z1_m = Math.sqrt(rPosAcum**2 + xPosAcum**2);
                 const ic3f = z1_m ? (iBase / z1_m) : 0;
-                const z0_m = Math.sqrt((2*rPosAcum + rZeroAcum)**2 + (2*xPosAcum + xZeroAcum)**2);
-                const icft = z0_m ? ((3 * iBase) / z0_m) : 0;
-                const icftmin = icft * 0.6017;
+                const ic3f_ass = calcularAssimetrico(ic3f, rPosAcum, xPosAcum);
+
+                const zFT_R = 2 * rPosAcum + rZeroAcum;
+                const zFT_X = 2 * xPosAcum + xZeroAcum;
+                const zFT_mod = Math.sqrt(zFT_R**2 + zFT_X**2);
+                const icft = zFT_mod ? ((3 * iBase) / zFT_mod) : 0;
+                const icft_ass = calcularAssimetrico(icft, zFT_R, zFT_X);
+
+                const zFTmin_R_m = 2 * rPosAcum + resTerra3Pu + rZeroAcum;
+                const zFTmin_mod = Math.sqrt(zFTmin_R_m**2 + zFT_X**2);
+                const icftmin = zFTmin_mod ? ((3 * iBase) / zFTmin_mod) : 0;
 
                 ultIccftMin = icftmin;
-                curtosPonto[finNome] = { r1: rPosAcum, x1: xPosAcum, r0: rZeroAcum, x0: xZeroAcum, ic3f: ic3f };
 
                 tbSaidaP.innerHTML += `
                     <tr>
-                        <td>Ponto ${finNome}</td>
+                        <td>Ponto ${t.fin}</td>
                         <td>${ic3f.toFixed(1)}</td>
+                        <td>${ic3f_ass.toFixed(1)}</td>
                         <td>${icft.toFixed(1)}</td>
+                        <td>${icft_ass.toFixed(1)}</td>
                         <td>${icftmin.toFixed(1)}</td>
                     </tr>
                 `;
             });
 
-            minIccftVal = ultIccftMin;
             setTxt('sumIcc3fMax', `${maxIcc3fVal.toFixed(1)} A`);
-            setTxt('sumIccftMin', `${minIccftVal.toFixed(1)} A`);
-
+            setTxt('sumIccftMin', `${ultIccftMin.toFixed(1)} A`);
             setTxt('sumIccftSimetrico', `${icftA.toFixed(1)} A`);
-            setTxt('sumIcc3fRefPrimario', `${ic3fA.toFixed(1)} A`);
 
-            const iccDiv20 = ic3fA / 20;
-            const minTcRatio = Math.max(iNomTotal, iccDiv20);
+            // Mínimo Relação TC Proteção (Maior entre Corrente Nom. Total ou Icc3fA / 20)
+            const minTcRatio = Math.max(iNomTotal, ic3fA / 20);
             setTxt('sumMinRelacaoTC', `${minTcRatio.toFixed(2)}`);
+
+            // CÁLCULO E RENDERIZAÇÃO DA TABELA SECUNDÁRIA (BAIXA TENSÃO)
+            const tbSaidaS = document.getElementById('tbSaidaSecundario');
+            tbSaidaS.innerHTML = '';
+
+            let primeiroIc3fSec = null;
+
+            trafosPadrao.forEach((tr, idx) => {
+                const pt = tr.ponto || 'A';
+                const pntImp = mapImpedanciasPontos[pt] || mapImpedanciasPontos['A'] || { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
+
+                const kva = tr.kva || 0;
+                const vbt = tr.vbt || 380;
+                const zpercent = tr.z || 0;
+
+                // Resistência e reatância do Trafo na base do sistema (100 MVA)
+                // z_pu_base = (zpercent / 100) * (100.000 kVA / S_trafo_kVA)
+                const z_trafo_pu = kva ? (zpercent / 100) * (100000 / kva) : 0;
+                const r_trafo_pu = z_trafo_pu * 0.10; // ~10% de R típica em Trafo de Distribuição
+                const x_trafo_pu = Math.sqrt(Math.max(0, z_trafo_pu**2 - r_trafo_pu**2));
+
+                const r1_tot = pntImp.r1 + r_trafo_pu;
+                const x1_tot = pntImp.x1 + x_trafo_pu;
+                const z1_tot = Math.sqrt(r1_tot**2 + x1_tot**2);
+
+                const ic3f_sec_prim = z1_tot ? (iBase / z1_tot) : 0;
+                const ic3fass_sec_prim = calcularAssimetrico(ic3f_sec_prim, r1_tot, x1_tot);
+
+                // Circuito FT Secundário na AT (13.8kV Delta/Wye)
+                const zFT_R_sec = 2 * r1_tot + r_trafo_pu;
+                const zFT_X_sec = 2 * x1_tot + x_trafo_pu;
+                const zFT_mod_sec = Math.sqrt(zFT_R_sec**2 + zFT_X_sec**2);
+                const icft_sec_prim = zFT_mod_sec ? (3 * iBase / zFT_mod_sec) : 0;
+                const icftass_sec_prim = calcularAssimetrico(icft_sec_prim, zFT_R_sec, zFT_X_sec);
+
+                // Correntes no Lado do Secundário em Baixa Tensão (BT)
+                const iBase_BT = (100000 * 1000) / (vbt * Math.sqrt(3));
+                const ic3f_sec = z1_tot ? (iBase_BT / z1_tot) : 0;
+                const ic3fass_sec = calcularAssimetrico(ic3f_sec, r1_tot, x1_tot);
+
+                if (primeiroIc3fSec === null) primeiroIc3fSec = ic3f_sec;
+
+                tbSaidaS.innerHTML += `
+                    <tr>
+                        <td>${pt}</td>
+                        <td style="font-weight:bold;">${idx + 1}</td>
+                        <td>${kva}</td>
+                        <td>${vbt}</td>
+                        <td>${ic3f_sec_prim.toFixed(1)}</td>
+                        <td>${ic3fass_sec_prim.toFixed(1)}</td>
+                        <td>${icft_sec_prim.toFixed(1)}</td>
+                        <td>${icftass_sec_prim.toFixed(1)}</td>
+                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${ic3f_sec.toFixed(1)}</td>
+                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${ic3fass_sec.toFixed(1)}</td>
+                    </tr>
+                `;
+            });
+
+            setTxt('sumIc3fSecundario', primeiroIc3fSec ? `${primeiroIc3fSec.toFixed(1)} A` : '- A');
         }
 
         window.onload = function() {
