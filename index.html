@@ -23,6 +23,17 @@
             --yellow-input: #FFFDE7;
             --yellow-border: #FBC02D;
             --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+
+            /* Cores de Rastreamento/Origem dos Dados */
+            --c-demanda: #2563EB;   /* Azul */
+            --c-inom: #7C3AED;      /* Roxo */
+            --c-inrush: #D97706;    /* Âmbar/Laranja */
+            --c-tc: #059669;        /* Esmeralda */
+            --c-icc3fmax: #DC2626;  /* Vermelho */
+            --c-iccftsim: #EA580C;  /* Laranja Escuro */
+            --c-iccftmin: #2563EB;  /* Azul */
+            --c-ic3ftrafo: #0284C7; /* Azul Marinho */
+            --c-icfttrafo: #4F46E5; /* Índigo */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -65,43 +76,91 @@
 
         .read-only-val { background-color: #F8FAFC !important; color: #334155 !important; font-weight: 700; font-family: monospace; text-align: center; border: 1px solid var(--border-color) !important; cursor: default; }
 
+        /* SUMMARY BOX & RASTREAMENTO VISUAL */
         .card-summary-box {
-            background: #FFF7ED;
-            border: 1px solid #FFEDD5;
+            background: #FAFAFA;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 16px;
             margin-bottom: 1rem;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px 12px;
+            gap: 12px;
             box-shadow: var(--shadow-sm);
         }
 
         .summary-item {
             text-align: center;
-            border-right: 1px solid #FED7AA;
-            padding: 0 8px;
+            padding: 10px 8px;
+            border-radius: 6px;
+            border: 1px solid #E2E8F0;
+            background: #FFFFFF;
+            position: relative;
         }
 
-        .summary-item:nth-child(3n) { border-right: none; }
-
         .summary-label {
-            font-size: 0.70rem;
+            font-size: 0.68rem;
             font-weight: 700;
             color: #64748B;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             line-height: 1.2;
         }
 
         .summary-val {
             display: block;
-            font-size: 1.10rem;
+            font-size: 1.15rem;
             font-weight: 800;
-            color: var(--copel-orange-dark);
             font-family: monospace;
         }
+
+        /* Estilos de badges e destaque para sincronização de origem */
+        .track-badge {
+            display: inline-block;
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            margin-left: 4px;
+            color: white;
+            vertical-align: middle;
+        }
+
+        .highlight-src {
+            position: relative;
+            font-weight: 800 !important;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        /* Cores específicas para cada item do resumo */
+        .item-demanda { border-left: 4px solid var(--c-demanda); }
+        .item-demanda .summary-val { color: var(--c-demanda); }
+
+        .item-inom { border-left: 4px solid var(--c-inom); }
+        .item-inom .summary-val { color: var(--c-inom); }
+
+        .item-inrush { border-left: 4px solid var(--c-inrush); }
+        .item-inrush .summary-val { color: var(--c-inrush); }
+
+        .item-tc { border-left: 4px solid var(--c-tc); }
+        .item-tc .summary-val { color: var(--c-tc); }
+
+        .item-icc3fmax { border-left: 4px solid var(--c-icc3fmax); }
+        .item-icc3fmax .summary-val { color: var(--c-icc3fmax); }
+
+        .item-iccftsim { border-left: 4px solid var(--c-iccftsim); }
+        .item-iccftsim .summary-val { color: var(--c-iccftsim); }
+
+        .item-iccftmin { border-left: 4px solid var(--c-iccftmin); }
+        .item-iccftmin .summary-val { color: var(--c-iccftmin); }
+
+        .item-ic3ftrafo { border-left: 4px solid var(--c-ic3ftrafo); }
+        .item-ic3ftrafo .summary-val { color: var(--c-ic3ftrafo); }
+
+        .item-icfttrafo { border-left: 4px solid var(--c-icfttrafo); }
+        .item-icfttrafo .summary-val { color: var(--c-icfttrafo); }
 
         .btn { background-color: var(--copel-orange); color: white; border: none; padding: 9px 16px; border-radius: 6px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
         .btn:hover { background-color: var(--copel-orange-dark); }
@@ -118,8 +177,6 @@
         @media (max-width: 1024px) {
             .grid-top-layout { grid-template-columns: 1fr; }
             .card-summary-box { grid-template-columns: repeat(2, 1fr); }
-            .summary-item:nth-child(3n) { border-right: 1px solid #FED7AA; }
-            .summary-item:nth-child(2n) { border-right: none; }
         }
     </style>
 </head>
@@ -154,7 +211,7 @@
                             <tr>
                                 <td>T. Base (kV) =</td>
                                 <td>
-                                    <select class="in-yellow" id="tBase" onchange="atualizarListaCabos(); recalcular();">
+                                    <select class="in-yellow" id="tBase" onchange="atualizarListaCabos(); renderizarTrafos(); recalcular();">
                                         <option value="13.8" selected>13,8</option>
                                         <option value="34.5">34,5</option>
                                     </select>
@@ -218,7 +275,7 @@
                     </table>
                 </div>
 
-                <!-- Bloco 3: Cargas e Demandas -->
+                <!-- Bloco 3: Cargas e Demandas (Com marcadores de origem) -->
                 <div class="card" style="margin-bottom:0;">
                     <div class="card-header">
                         <div class="category-accent"></div>
@@ -229,9 +286,27 @@
                             <tr><td>MAIOR TR (kVA)</td><td><input type="number" class="read-only-val" id="maiorTR" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
                             <tr><td>OUTROS TRS (kVA)</td><td><input type="number" class="read-only-val" id="outrosTRS" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
                             <tr><td>DEMANDA CONTRATO (kW)</td><td><input type="number" class="in-yellow" id="demandaContratada" value="0" oninput="recalcular()"></td></tr>
-                            <tr><td>In (A)</td><td class="val" id="cardInTotal">0,00</td></tr>
-                            <tr><td>I inrush (A)</td><td class="val" id="cardInrush">0,00</td></tr>
-                            <tr><td>1,3 x I demanda / 0,92 (A)</td><td class="val" id="card13IDemanda">0,00</td></tr>
+                            <tr>
+                                <td>In Total (A)</td>
+                                <td class="val highlight-src" style="background:#F3E8FF; color:var(--c-inom);" title="Origem do valor 'Corrente Nom. Total'">
+                                    <span id="cardInTotal">0,00</span>
+                                    <span class="track-badge" style="background:var(--c-inom);">In</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>I inrush (A)</td>
+                                <td class="val highlight-src" style="background:#FEF3C7; color:var(--c-inrush);" title="Origem do valor 'Ponto de Inrush'">
+                                    <span id="cardInrush">0,00</span>
+                                    <span class="track-badge" style="background:var(--c-inrush);">Iinr</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1,3 x I demanda / 0,92 (A)</td>
+                                <td class="val highlight-src" style="background:#DBEAFE; color:var(--c-demanda);" title="Origem do valor 'Demanda Corrigida'">
+                                    <span id="card13IDemanda">0,00</span>
+                                    <span class="track-badge" style="background:var(--c-demanda);">Idem</span>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -296,46 +371,47 @@
 
         <!-- ABA 2: MEMÓRIA DE CÁLCULO -->
         <div id="tabSaida" class="tab-content">
+            <!-- CARDS DE RESUMO DESTAQUE COM RASTREAMENTO VISUAL DE ORIGEM -->
             <div class="card-summary-box">
                 <!-- Linha 1 -->
-                <div class="summary-item">
-                    <span class="summary-label">Demanda Corrigida (1,3·I / 0,92)</span>
+                <div class="summary-item item-demanda" title="Retirado da tabela 'Cargas e Demandas' (Aba 1)">
+                    <span class="summary-label">Demanda Corrigida (1,3·I / 0,92) <span class="track-badge" style="background:var(--c-demanda);">Aba 1</span></span>
                     <span id="sum13IDemanda" class="summary-val">- A</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Corrente Nom. Total (I_ns)</span>
+                <div class="summary-item item-inom" title="Retirado da tabela 'Cargas e Demandas' (Aba 1)">
+                    <span class="summary-label">Corrente Nom. Total (I_ns) <span class="track-badge" style="background:var(--c-inom);">Aba 1</span></span>
                     <span id="sumInTotal" class="summary-val">- A</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Ponto de Inrush (I_inrush)</span>
+                <div class="summary-item item-inrush" title="Retirado da tabela 'Cargas e Demandas' (Aba 1)">
+                    <span class="summary-label">Ponto de Inrush (I_inrush) <span class="track-badge" style="background:var(--c-inrush);">Aba 1</span></span>
                     <span id="sumInrush" class="summary-val">- A</span>
                 </div>
 
                 <!-- Linha 2 -->
-                <div class="summary-item">
-                    <span class="summary-label">Mínimo Relação TC Proteção</span>
+                <div class="summary-item item-tc" title="Calculado por: max(I_nom, Icc_3f_PontoA / 20)">
+                    <span class="summary-label">Mínimo Relação TC Proteção <span class="track-badge" style="background:var(--c-tc);">Fórmula</span></span>
                     <span id="sumMinRelacaoTC" class="summary-val">-</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Icc 3Ф Max (Ponto A)</span>
+                <div class="summary-item item-icc3fmax" title="Retirado de: Circuito Primário (Subestação / Ponto A - Icc 3Ф Simétrico)">
+                    <span class="summary-label">Icc 3Ф Max (Ponto A) <span class="track-badge" style="background:var(--c-icc3fmax);">Ponto A</span></span>
                     <span id="sumIcc3fMax" class="summary-val">- A</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Icc FT Simétrico (Ponto A)</span>
+                <div class="summary-item item-iccftsim" title="Retirado de: Circuito Primário (Subestação / Ponto A - Icc FT Simétrico)">
+                    <span class="summary-label">Icc FT Simétrico (Ponto A) <span class="track-badge" style="background:var(--c-iccftsim);">Ponto A</span></span>
                     <span id="sumIccftSimetrico" class="summary-val">- A</span>
                 </div>
 
                 <!-- Linha 3 -->
-                <div class="summary-item">
-                    <span class="summary-label">Icc FT Min (Fim de Linha)</span>
+                <div class="summary-item item-iccftmin" title="Retirado de: Circuito Primário (Fim de Linha - Icc FT Mínimo)">
+                    <span class="summary-label">Icc FT Min (Fim de Linha) <span class="track-badge" style="background:var(--c-iccftmin);">Fim Linha</span></span>
                     <span id="sumIccftMin" class="summary-val">- A</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Maior Ic3f Trafo AT (A)</span>
+                <div class="summary-item item-ic3ftrafo" title="Retirado de: Maior valor de Ic3f (A) dos transformadores no Circuito Secundário">
+                    <span class="summary-label">Maior Ic3f Trafo AT (A) <span class="track-badge" style="background:var(--c-ic3ftrafo);">Max Trafo</span></span>
                     <span id="sumMaxIc3fTrafo" class="summary-val">- A</span>
                 </div>
-                <div class="summary-item">
-                    <span class="summary-label">Maior Icft Trafo AT (A)</span>
+                <div class="summary-item item-icfttrafo" title="Retirado de: Maior valor de Icft (A) dos transformadores no Circuito Secundário">
+                    <span class="summary-label">Maior Icft Trafo AT (A) <span class="track-badge" style="background:var(--c-icfttrafo);">Max Trafo</span></span>
                     <span id="sumMaxIcftTrafo" class="summary-val">- A</span>
                 </div>
             </div>
@@ -496,7 +572,6 @@
             }
         };
 
-        // Estado Inicial Zerado
         let trechosPadrao = [
             { ini: 'A', fin: 'B', dist: 0, mat: 'cu', cabo: '16mm²-Cu12/20kV', r1: 0, x1: 0, r0: 0, x0: 0 }
         ];
@@ -582,8 +657,8 @@
 
         function atualizarImpedanciaTrecho(i) {
             const vBase = document.getElementById('tBase') ? document.getElementById('tBase').value : "13.8";
-            const distM = getVal(`dist_${i}`); // Distância em Metros
-            const distKm = distM / 1000.0;     // Conversão para KM para a fórmula da impedância
+            const distM = getVal(`dist_${i}`);
+            const distKm = distM / 1000.0;
             const caboSel = document.getElementById(`cabo_${i}`)?.value || trechosPadrao[i].cabo;
 
             const tCabos = dbCabos[vBase] || dbCabos["13.8"];
@@ -717,7 +792,6 @@
             });
         }
 
-        // Função para calcular Fator de Assimetria
         function calcularAssimetrico(iSim, r, x) {
             if (!iSim || !x || r <= 0) return iSim;
             const xr = x / r;
@@ -786,12 +860,19 @@
             let mapImpedanciasPontos = {};
             mapImpedanciasPontos[pInicialA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
 
+            // Ponto A (Subestação) com Destaques Visuais de Origem
             tbSaidaP.innerHTML += `
                 <tr style="background:#F8FAFC; font-weight:bold;">
                     <td>Ponto ${pInicialA} (Subestação)</td>
-                    <td>${ic3fA.toFixed(1)}</td>
+                    <td class="highlight-src" style="background:#FEE2E2; color:var(--c-icc3fmax);" title="Fonte do 'Icc 3Ф Max (Ponto A)'">
+                        ${ic3fA.toFixed(1)}
+                        <span class="track-badge" style="background:var(--c-icc3fmax);">Max 3Ф</span>
+                    </td>
                     <td>${ic3fA_ass.toFixed(1)}</td>
-                    <td>${icftA.toFixed(1)}</td>
+                    <td class="highlight-src" style="background:#FFEDD5; color:var(--c-iccftsim);" title="Fonte do 'Icc FT Simétrico (Ponto A)'">
+                        ${icftA.toFixed(1)}
+                        <span class="track-badge" style="background:var(--c-iccftsim);">FT A</span>
+                    </td>
                     <td>${icftA_ass.toFixed(1)}</td>
                     <td>${icftMinA.toFixed(1)}</td>
                 </tr>
@@ -799,6 +880,7 @@
 
             let rPosAcum = rA_pos, xPosAcum = xA_pos, rZeroAcum = rA_zero, xZeroAcum = xA_zero;
             let ultIccftMin = icftMinA;
+            let totalTrechos = trechosPadrao.length;
 
             trechosPadrao.forEach((t, i) => {
                 atualizarImpedanciaTrecho(i);
@@ -824,6 +906,7 @@
                 const icftmin = zFTmin_mod ? ((3 * iBase) / zFTmin_mod) : 0;
 
                 ultIccftMin = icftmin;
+                const isFimDeLinha = (i === totalTrechos - 1);
 
                 tbSaidaP.innerHTML += `
                     <tr>
@@ -832,7 +915,10 @@
                         <td>${ic3f_ass.toFixed(1)}</td>
                         <td>${icft.toFixed(1)}</td>
                         <td>${icft_ass.toFixed(1)}</td>
-                        <td>${icftmin.toFixed(1)}</td>
+                        <td ${isFimDeLinha ? `class="highlight-src" style="background:#DBEAFE; color:var(--c-iccftmin);" title="Fonte do 'Icc FT Min (Fim de Linha)'"` : ''}>
+                            ${icftmin.toFixed(1)}
+                            ${isFimDeLinha ? `<span class="track-badge" style="background:var(--c-iccftmin);">Min FT</span>` : ''}
+                        </td>
                     </tr>
                 `;
             });
@@ -844,14 +930,15 @@
             const minTcRatio = Math.max(iNomTotal, ic3fA / 20);
             setTxt('sumMinRelacaoTC', `${minTcRatio.toFixed(2)}`);
 
-            // TABELA SECUNDÁRIA - BAIXA TENSÃO (Sincronizada com o Excel)
+            // TABELA SECUNDÁRIA - BAIXA TENSÃO
             const tbSaidaS = document.getElementById('tbSaidaSecundario');
             tbSaidaS.innerHTML = '';
 
             let maxIc3fTrafo = 0;
             let maxIcftTrafo = 0;
 
-            trafosPadrao.forEach((tr, idx) => {
+            // Primeiro passo: identificar os valores máximos de Ic3f e Icft nos trafos
+            let trafoCalculos = trafosPadrao.map((tr, idx) => {
                 const pt = tr.ponto || 'A';
                 const pntImp = mapImpedanciasPontos[pt] || mapImpedanciasPontos['A'] || { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
 
@@ -859,7 +946,6 @@
                 const vbt = tr.vbt || 380;
                 const zpercent = tr.z || 0;
 
-                // Impedância do Transformador na Base do Sistema (100 MVA = 100.000 kVA)
                 const z_trafo_pu = kva ? (zpercent / 100) * (100000 / kva) : 0;
                 const r_trafo_pu = 0;
                 const x_trafo_pu = z_trafo_pu;
@@ -871,32 +957,60 @@
                 const ic3f_sec_prim = z1_tot ? (iBase / z1_tot) : 0;
                 const ic3fass_sec_prim = calcularAssimetrico(ic3f_sec_prim, r1_tot, x1_tot);
 
-                const zFT_R_sec = 2 * r1_tot + pntImp.r0;
-                const zFT_X_sec = 2 * x1_tot + pntImp.x0;
-                const zFT_mod_sec = Math.sqrt(zFT_R_sec**2 + zFT_X_sec**2);
-                const icft_sec_prim = zFT_mod_sec ? (3 * iBase / zFT_mod_sec) : 0;
+                let zFT_R_sec, zFT_X_sec, icft_sec_prim;
+
+                if (vBase === 13.8) {
+                    zFT_R_sec = 2 * r1_tot + r_trafo_pu;
+                    zFT_X_sec = 2 * x1_tot + x_trafo_pu;
+                    const zFT_mod_sec = Math.sqrt(zFT_R_sec**2 + zFT_X_sec**2);
+                    icft_sec_prim = zFT_mod_sec ? (3 * iBase / zFT_mod_sec) : 0;
+                } else {
+                    zFT_R_sec = 2 * r1_tot + pntImp.r0 + r_trafo_pu;
+                    zFT_X_sec = 2 * x1_tot + pntImp.x0 + x_trafo_pu;
+                    const zFT_mod_sec = Math.sqrt(zFT_R_sec**2 + zFT_X_sec**2);
+                    icft_sec_prim = zFT_mod_sec ? (3 * iBase / zFT_mod_sec) : 0;
+                }
+
                 const icftass_sec_prim = calcularAssimetrico(icft_sec_prim, zFT_R_sec, zFT_X_sec);
 
                 if (ic3f_sec_prim > maxIc3fTrafo) maxIc3fTrafo = ic3f_sec_prim;
                 if (icft_sec_prim > maxIcftTrafo) maxIcftTrafo = icft_sec_prim;
 
-                // Corrente de Curto-Circuito no Lado Secundário (BT em Volts)
                 const iBase_BT = (100000 * 1000) / (vbt * Math.sqrt(3));
                 const ic3f_sec = z1_tot ? (iBase_BT / z1_tot) : 0;
                 const ic3fass_sec = calcularAssimetrico(ic3f_sec, r1_tot, x1_tot);
 
+                return {
+                    pt, idx, kva, vbt,
+                    ic3f_sec_prim, ic3fass_sec_prim,
+                    icft_sec_prim, icftass_sec_prim,
+                    ic3f_sec, ic3fass_sec
+                };
+            });
+
+            // Segundo passo: renderizar destacando o maior valor (se houver)
+            trafoCalculos.forEach(c => {
+                const isMaxIc3f = (c.ic3f_sec_prim === maxIc3fTrafo && maxIc3fTrafo > 0);
+                const isMaxIcft = (c.icft_sec_prim === maxIcftTrafo && maxIcftTrafo > 0);
+
                 tbSaidaS.innerHTML += `
                     <tr>
-                        <td>${pt}</td>
-                        <td style="font-weight:bold;">${idx + 1}</td>
-                        <td>${kva}</td>
-                        <td>${vbt}</td>
-                        <td style="font-weight:bold; color:#0369A1;">${ic3f_sec_prim.toFixed(1)}</td>
-                        <td>${ic3fass_sec_prim.toFixed(1)}</td>
-                        <td style="font-weight:bold; color:#0369A1;">${icft_sec_prim.toFixed(1)}</td>
-                        <td>${icftass_sec_prim.toFixed(1)}</td>
-                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${ic3f_sec.toFixed(1)}</td>
-                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${ic3fass_sec.toFixed(1)}</td>
+                        <td>${c.pt}</td>
+                        <td style="font-weight:bold;">${c.idx + 1}</td>
+                        <td>${c.kva}</td>
+                        <td>${c.vbt}</td>
+                        <td ${isMaxIc3f ? `class="highlight-src" style="background:#E0F2FE; color:var(--c-ic3ftrafo);" title="Maior valor para 'Maior Ic3f Trafo AT'"` : 'style="font-weight:bold; color:#0369A1;"'}>
+                            ${c.ic3f_sec_prim.toFixed(1)}
+                            ${isMaxIc3f ? `<span class="track-badge" style="background:var(--c-ic3ftrafo);">Max</span>` : ''}
+                        </td>
+                        <td>${c.ic3fass_sec_prim.toFixed(1)}</td>
+                        <td ${isMaxIcft ? `class="highlight-src" style="background:#E0E7FF; color:var(--c-icfttrafo);" title="Maior valor para 'Maior Icft Trafo AT'"` : 'style="font-weight:bold; color:#0369A1;"'}>
+                            ${c.icft_sec_prim.toFixed(1)}
+                            ${isMaxIcft ? `<span class="track-badge" style="background:var(--c-icfttrafo);">Max</span>` : ''}
+                        </td>
+                        <td>${c.icftass_sec_prim.toFixed(1)}</td>
+                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${c.ic3f_sec.toFixed(1)}</td>
+                        <td style="background:#FFF3EB; font-weight:bold; color:var(--copel-orange-dark);">${c.ic3fass_sec.toFixed(1)}</td>
                     </tr>
                 `;
             });
