@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordenação e Seletividade</title>
+    
+    <!-- Fontes, Tailwind CSS CDN, Chart.js & Lucide Icons para a Aba 3 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/insights/script.js"></script>
+
     <style>
         :root {
             --copel-orange: #FF6B00;
@@ -178,6 +185,77 @@
             .grid-top-layout { grid-template-columns: 1fr; }
             .card-summary-box { grid-template-columns: repeat(2, 1fr); }
         }
+    .leg-item{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border:1px solid transparent;border-radius:6px;background:transparent;cursor:pointer;font-size:11px;line-height:16px;color:#334155;white-space:nowrap}
+        .leg-item:hover{background:#F1F5F9;border-color:#CBD5E1}
+        .leg-item.off{opacity:.4;text-decoration:line-through}
+        .btn-importar{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:10px;padding:10px 14px;border:none;border-radius:10px;background:linear-gradient(135deg,#FF7A1A,#FF6B00);color:#fff;font-weight:800;font-size:13px;letter-spacing:.2px;cursor:pointer;box-shadow:0 4px 12px rgba(255,107,0,.3);transition:transform .15s,box-shadow .15s}
+        .btn-importar:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(255,107,0,.4)}
+        .btn-importar:active{transform:none;box-shadow:0 2px 6px rgba(255,107,0,.3)}
+        .leg-faixa{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;font-size:11px;color:#64748B}
+        .leg-faixa i{width:12px;height:12px;border-radius:3px;display:inline-block}
+
+        /* ===== TEMA MODERNO COPEL (laranja e branco) ===== */
+        :root { --copel-orange:#FF6B00; --copel-orange-dark:#E05D00; --bg-gray:#F6F7F9; --border-color:#E5E8EE; --yellow-input:#FFF8F2; --yellow-border:#FFD3B3; --radius:14px; --shadow-sm:0 1px 2px rgba(16,24,40,.04),0 4px 14px rgba(16,24,40,.05); --ring:0 0 0 3px rgba(255,107,0,.18); }
+        body { font-family:'Inter','Open Sans',system-ui,sans-serif; background:var(--bg-gray); color:#1F2937; }
+        header { background:linear-gradient(135deg,#FF7A1A 0%,#FF6B00 55%,#F25C00 100%); height:60px; box-shadow:0 4px 18px rgba(255,107,0,.28); }
+        .header-title { font-size:1.05rem; letter-spacing:.2px; }
+        .badge-sistema { background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); }
+        .nav-tabs { background:transparent; border:none; box-shadow:none; max-width:1450px; margin:0 auto; padding:14px 1rem 0; gap:8px; }
+        .tab-btn { padding:9px 18px; border-radius:999px; background:#fff; border:1px solid var(--border-color); color:#64748B; font-size:.82rem; }
+        .tab-btn:hover { color:var(--copel-orange); border-color:#FFC9A1; }
+        .tab-btn.active { background:var(--copel-orange); color:#fff; border-color:var(--copel-orange); box-shadow:0 4px 12px rgba(255,107,0,.3); }
+        .card { border-radius:var(--radius); border:1px solid var(--border-color); box-shadow:var(--shadow-sm); padding:1.1rem 1.2rem; }
+        .card-header { border-bottom:1px solid #F1F3F7; padding-bottom:.6rem; }
+        .category-accent { width:4px; height:18px; border-radius:4px; background:linear-gradient(180deg,#FF8A3D,#FF6B00); }
+        .card-title { font-size:.8rem; letter-spacing:.06em; color:#111827; }
+        .tbl-clean td:first-child { white-space:nowrap; }
+        .tbl-clean th { background:#FFF4EB; color:#7C3A0A; border-bottom:1px solid #FFE0CC; }
+        table.tbl-dados { border-collapse:separate; border-spacing:0; border:1px solid var(--border-color); border-radius:12px; overflow:hidden; }
+        table.tbl-dados th { background:#FFF4EB; color:#7C3A0A; border:none; border-bottom:1px solid #FFE0CC; border-right:1px solid #FFE9DA; }
+        table.tbl-dados td { border:none; border-bottom:1px solid #F1F3F7; border-right:1px solid #F5F6F9; }
+        table.tbl-dados tbody tr:hover td { background:#FFFAF6; }
+        input.in-yellow, select.in-yellow { background:var(--yellow-input); border:1px solid var(--yellow-border); border-radius:8px; padding:5px 9px; }
+        input.in-yellow:focus, select.in-yellow:focus { border-color:var(--copel-orange); box-shadow:var(--ring); background:#fff; }
+        .read-only-val { background:#F3F4F6 !important; border-radius:8px; }
+        .card-summary-box { background:transparent; border:none; padding:0; gap:14px; box-shadow:none; }
+        .summary-item { border-radius:12px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+        .btn { border-radius:10px; background:linear-gradient(135deg,#FF7A1A,#FF6B00); box-shadow:0 4px 12px rgba(255,107,0,.25); padding:10px 18px; }
+        .btn:hover { background:linear-gradient(135deg,#FF6B00,#E05D00); transform:translateY(-1px); }
+        .btn-secondary { background:#fff; color:#475569; border:1px solid var(--border-color); box-shadow:none; }
+        .btn-secondary:hover { background:#F8FAFC; transform:none; }
+        .btn-add { border-radius:8px; background:#FFF1E6; color:#C2410C; border:1px solid #FFD3B3; }
+        .btn-add:hover { background:#FFE4CF; }
+        .btn-remove { border-radius:8px; }
+        footer { color:#94A3B8; }
+        #tabGrafico aside, #tabGrafico main { border-radius:16px; border-color:var(--border-color); box-shadow:var(--shadow-sm); }
+        #tabGrafico aside input, #tabGrafico aside select { border-radius:8px; }
+        #tabGrafico aside input:focus, #tabGrafico aside select:focus { outline:none; border-color:var(--copel-orange); box-shadow:var(--ring); }
+
+        /* identidade por equipamento (mesma cor da curva no gráfico) */
+        .eq-card { background:#fff; border:1px solid var(--border-color); border-left:5px solid var(--id); border-radius:12px; padding:10px 12px; margin-bottom:12px; box-shadow:0 1px 2px rgba(16,24,40,.04); }
+        .eq-nome { color:var(--id-txt); font-weight:700; }
+        .eq-dot { background:var(--id); }
+        .eq-btn { background:var(--id-bg); color:var(--id-txt); border:1px solid var(--id-bd); border-radius:8px; padding:4px 10px; font-size:11px; font-weight:700; transition:all .15s; }
+        .eq-btn:hover { background:var(--id); color:#fff; border-color:var(--id); }
+        .eq-select { border:1px solid var(--id) !important; border-radius:8px; padding:5px 8px; background:var(--id-bg); color:var(--id-txt); }
+        #tabGrafico aside .eq-select:focus { border-color:var(--id) !important; box-shadow:0 0 0 3px var(--id-bd); }
+
+        /* janelas de ajuste: cor do equipamento */
+        .modal-id .m-head { background:var(--id-bg) !important; border-bottom:2px solid var(--id) !important; }
+        .modal-id .m-title, .modal-id .id-txt { color:var(--id-txt) !important; }
+        .modal-id .id-border { border-color:var(--id) !important; }
+        .modal-id .m-apply { background:var(--id); transition:filter .15s; }
+        .modal-id .m-apply:hover { filter:brightness(.9); }
+        .modal-id input[type=checkbox] { accent-color:var(--id); }
+        .modal-id input:focus, .modal-id select:focus { outline:2px solid var(--id); outline-offset:0; }
+        .curva-btn { display:inline-flex; align-items:center; gap:8px; width:100%; min-width:150px; padding:6px 10px; border:1px solid var(--id-bd); background:var(--id-bg); color:var(--id-txt); border-radius:8px; font-weight:700; cursor:pointer; transition:all .15s; }
+        .curva-btn:hover { border-color:var(--id); box-shadow:0 0 0 3px var(--id-bd); }
+        .curva-lbl { flex:1; text-align:left; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .curva-ver { font-size:10px; font-weight:700; opacity:.75; }
+        .curva-grp { position:sticky; top:0; background:var(--id-bg); color:var(--id-txt); font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; padding:4px 10px; border-bottom:1px solid var(--id-bd); }
+        .curva-item { display:block; width:100%; text-align:left; padding:6px 12px; font-size:12px; color:#334155; border:none; border-bottom:1px solid #F1F3F7; background:#fff; cursor:pointer; }
+        .curva-item:hover { background:var(--id-bg); }
+        .curva-item.sel { background:var(--id); color:#fff; font-weight:700; }
     </style>
 </head>
 <body>
@@ -193,11 +271,13 @@
     <div class="nav-tabs">
         <button class="tab-btn active" onclick="trocarAba('tabEntrada', this)">1. Rede e Curto-Circuito</button>
         <button class="tab-btn" onclick="trocarAba('tabSaida', this)">2. Memória de Cálculo</button>
+        <button class="tab-btn" onclick="trocarAba('tabGrafico', this); carregarDadosParaGrafico();">3. Coordenograma TCC</button>
     </div>
 
     <main>
         <!-- ABA 1: REDE E CURTO-CIRCUITO -->
         <div id="tabEntrada" class="tab-content active">
+            <div class="avisos-pontos"></div>
             <div class="grid-top-layout">
                 <!-- Bloco 1: Valores de Base -->
                 <div class="card" style="margin-bottom:0;">
@@ -371,6 +451,7 @@
 
         <!-- ABA 2: MEMÓRIA DE CÁLCULO -->
         <div id="tabSaida" class="tab-content">
+            <div class="avisos-pontos"></div>
             <!-- CARDS DE RESUMO DESTAQUE COM RASTREAMENTO VISUAL DE ORIGEM -->
             <div class="card-summary-box">
                 <!-- Linha 1 -->
@@ -468,15 +549,450 @@
 
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary" onclick="trocarAba('tabEntrada', document.querySelectorAll('.tab-btn')[0])">&larr; Ajustar Rede</button>
+                <button type="button" class="btn" onclick="trocarAba('tabGrafico', document.querySelectorAll('.tab-btn')[2]); carregarDadosParaGrafico();">Ir para Coordenograma TCC &rarr;</button>
+            </div>
+        </div>
+
+        <!-- ABA 3: COORDENOGRAMA TCC -->
+        <div id="tabGrafico" class="tab-content">
+            <div class="flex flex-col lg:flex-row gap-4 h-[calc(100vh-140px)] min-h-[650px]">
+                <!-- Barra Lateral Esquerda -->
+                <aside class="w-full lg:w-96 bg-white border border-slate-200 rounded-lg flex flex-col shrink-0 overflow-y-auto shadow-sm">
+                    <!-- Níveis de Curto-Circuito -->
+                    <div class="p-3 border-b border-slate-200 bg-slate-50">
+                        <h2 class="font-bold text-slate-700 mb-2 flex items-center text-xs uppercase tracking-wider">
+                            <i data-lucide="zap" class="w-4 h-4 mr-1 text-amber-500"></i> Níveis de Curto-Circuito (A)
+                        </h2>
+                        <div class="grid grid-cols-2 gap-2 text-xs">
+                            <div >
+                                <label class="block text-slate-500 mb-0.5">Icc 3Ф Máx (A)</label>
+                                <input type="number" id="icc3fSim" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
+                            </div>
+                            <div >
+                                <label class="block text-slate-500 mb-0.5">Icc FT Máx (A)</label>
+                                <input type="number" id="iccftMax" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
+                            </div>
+                            <div >
+                                <label class="block text-slate-500 mb-0.5">Icc FT Mín (A)</label>
+                                <input type="number" id="iccftMin" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
+                            </div>
+                            <div >
+                                <label class="block text-slate-500 mb-0.5">I_Inrush Trafo (A)</label>
+                                <input type="number" id="inrushVal" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
+                            </div>
+                            </div>
+                        <p class="text-[10px] text-slate-500 mt-2">Icc 3Φ e FT máximas: Ponto A. Icc FT mín.: menor valor do alimentador. Inrush: da aba 2. Se o relé/elo estiver em outro ponto, edite os campos.</p>
+                        <button type="button" onclick="carregarDadosParaGrafico(true)" class="btn-importar" title="Atualiza os níveis de curto-circuito e o inrush com os valores calculados na aba 2 (substitui o que foi digitado)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Importar da aba 2</button>
+                    </div>
+
+                    <!-- Equipamentos de Proteção -->
+                    <div class="p-3">
+                        <div class="flex justify-between items-center mb-2">
+                            <h2 class="font-bold text-slate-700 text-xs uppercase tracking-wider flex items-center">
+                                <i data-lucide="layers" class="w-4 h-4 mr-1 text-blue-500"></i> Equipamentos de Proteção
+                            </h2>
+                        </div>
+
+                        <!-- 1. Religador -->
+                        <div class="eq-card" style="--id:#1d4ed8;--id-txt:#1d4ed8;--id-bg:#EFF4FF;--id-bd:#BFD1FF">
+                            <div class="flex items-center justify-between">
+                                <span class="eq-nome text-xs flex items-center">
+                                    <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Religador
+                                </span>
+                                <button type="button" onclick="abrirModalReligador()" class="eq-btn flex items-center gap-1">
+                                    <i data-lucide="sliders" class="w-3 h-3"></i> Ajustes do Religador
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 2. Relé Consumidor -->
+                        <div class="eq-card" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC">
+                            <div class="flex items-center justify-between">
+                                <span class="eq-nome text-xs flex items-center">
+                                    <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Relé Entrada UC
+                                </span>
+                                <button type="button" onclick="abrirModalAjustes()" class="eq-btn flex items-center gap-1">
+                                    <i data-lucide="sliders" class="w-3 h-3"></i> Ajustes do Relé
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- 3. Elo Fusível -->
+                        <div class="eq-card" style="--id:#059669;--id-txt:#047857;--id-bg:#ECFDF5;--id-bd:#A7F3D0">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="eq-nome text-xs flex items-center">
+                                    <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Elo Fusível
+                                </span>
+                            </div>
+                            <div class="text-xs">
+                                <label class="text-slate-500 block mb-0.5">Elo Fusível</label>
+                                <select id="eloFusivelSel" onchange="atualizarEstudo()" class="eq-select w-full text-xs font-semibold">
+                                    <option value="10K">10 K</option>
+                                    <option value="15K">15 K</option>
+                                    <option value="25K">25 K</option>
+                                    <option value="40K">40 K</option>
+                                    <option value="65K" selected>65 K</option>
+                                    <option value="100K">100 K</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- Área do Gráfico Principal -->
+                <main class="flex-1 bg-white border border-slate-200 rounded-lg p-4 flex flex-col relative overflow-hidden shadow-sm">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="font-bold text-slate-700 text-base">Coordenograma Tempo x Corrente (TCC)</span>
+                        </div>
+                        <div class="flex items-center space-x-4 text-xs font-medium text-slate-600">
+                            <select id="modoFN" onchange="atualizarEstudo()" class="border border-slate-300 rounded px-2 py-1 bg-white font-bold text-slate-700">
+                                <option value="F" selected>Elementos de FASE</option>
+                                <option value="N">Elementos de NEUTRO</option>
+                            </select>
+                            <label class="flex items-center space-x-1 cursor-pointer">
+                                <input type="checkbox" id="chkShowArea" checked onchange="atualizarEstudo()" class="rounded text-red-600 focus:ring-0">
+                                <span>Destacar Área Descoordenada</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="legendaTCC" class="flex flex-wrap justify-center gap-x-1 gap-y-1 mb-2 shrink-0"></div>
+                    <div class="flex-1 w-full relative min-h-0">
+                        <canvas id="tccCanvas"></canvas>
+                    </div>
+                </main>
             </div>
         </div>
     </main>
 
+    <!-- MODAL / JANELA AJUSTES DO RELÉ ENTRADA UC -->
+    <div id="modalAjustesRele" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden p-4" style="z-index:1000">
+        <div class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-xl text-slate-800 font-sans text-xs overflow-hidden flex flex-col" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC;max-height:calc(100vh - 2rem)">
+            <div class="m-head shrink-0 px-4 py-3 flex justify-between items-center">
+                <span class="font-extrabold id-txt text-sm tracking-wide flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-4 h-4 id-txt"></i> Ajustes do Relé Entrada UC
+                </span>
+                <button type="button" onclick="fecharModalAjustes()" class="text-slate-400 hover:text-slate-700 font-bold text-lg px-2 rounded leading-none transition">&times;</button>
+            </div>
+
+            <div class="p-4 space-y-4 overflow-y-auto flex-1 min-h-0">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Modelo de Relé</label>
+                    <select id="modalModeloRele" class="w-full border-2 id-border bg-white font-bold id-txt text-sm px-3 py-1.5 rounded-lg shadow-sm text-center uppercase tracking-wide focus:outline-none">
+                        <option value="GENERICO_50_51" selected>GENÉRICO 50/51</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+                    <label class="font-bold text-slate-700">Relação do TC</label>
+                    <select id="modalRelacaoTC" class="border border-slate-300 rounded-md px-3 py-1 bg-white font-mono font-bold text-slate-800 focus:outline-none">
+                        <option value="50:5">50:5</option>
+                        <option value="100:5">100:5</option>
+                        <option value="150:5">150:5</option>
+                        <option value="200:5">200:5</option>
+                        <option value="250:5" selected>250:5</option>
+                        <option value="300:5">300:5</option>
+                        <option value="400:5">400:5</option>
+                        <option value="500:5">500:5</option>
+                    </select>
+                </div>
+
+                <label class="flex items-center gap-1.5 font-bold text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer">
+                    <input type="checkbox" id="modalSecundario" class="rounded id-txt"> Ajustes de corrente informados no secundário do TC (converte para primário no gráfico)
+                </label>
+
+                <div class="border border-slate-200 rounded-lg p-3 bg-slate-50">
+                    <div class="flex border-b border-slate-300 gap-2 mb-3">
+                        <button type="button" id="btnTabFase" onclick="alternarAbaModal('fase')" class="px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md">Ajustes de Fase</button>
+                        <button type="button" id="btnTabNeutro" onclick="alternarAbaModal('neutro')" class="px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800">Ajustes de Neutro</button>
+                    </div>
+
+                    <div id="contentFase" class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T F)</label>
+                            <div class="flex flex-col items-end">
+                                <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
+                                <input type="number" id="modalIatf" value="68.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white space-y-2">
+                            <div class="flex justify-between items-center">
+                                <label class="font-bold text-slate-700">Corrente de Atuação Instantânea (I A I F)</label>
+                                <input type="number" id="modalIaif" value="640.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
+                            </div>
+                            <div class="flex justify-between items-center text-slate-700 pt-1">
+                                <label class="flex items-center gap-1.5 cursor-pointer font-bold text-slate-700">
+                                    <input type="checkbox" id="modalBloqueadoInst" class="rounded id-txt"> Bloqueado
+                                </label>
+                                <div class="flex items-center gap-1">
+                                    <span class="text-slate-600 font-semibold">Temporização Instantânea:</span>
+                                    <input type="number" id="modalTempInst" value="0.00" step="0.01" class="border border-slate-300 rounded-md w-16 text-right px-1.5 py-0.5 font-mono bg-white">
+                                    <span class="text-slate-600 font-semibold">s</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white">
+                            <label class="flex items-center gap-1.5 font-bold text-slate-700 mb-1.5">
+                                <input type="checkbox" id="modalChkTempDef" class="rounded id-txt"> Tempo Definido
+                            </label>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">I Def</span>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <input type="number" id="modalIdef" value="12.50" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono bg-white">
+                                        <span class="font-bold text-slate-600">A</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">T Def</span>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <input type="number" id="modalTdef" value="0.00" step="0.01" class="border border-slate-300 rounded-md w-16 text-right px-2 py-1 font-mono bg-white">
+                                        <span class="font-bold text-slate-600">segundos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white">
+                            <span class="font-bold text-slate-700 block mb-1.5">Curvas de Fase</span>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-slate-700">Lenta:</span>
+                                <div class="flex-1">
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Tipo de Curva</span>
+                                    <select id="modalTipoCurva" class="hidden">
+                                        <option value="EI" selected>EI / EI (Extremely Inverse)</option>
+                                        <option value="MI">MI / VI (Very Inverse)</option>
+                                        <option value="NI">NI / SI (Normal Inverse)</option>
+                                    </select><button type="button" onclick="abrirPickerCurva('modalTipoCurva')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_modalTipoCurva" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Curva (TMS)</span>
+                                    <input type="number" id="modalTmsFase" value="0.13" step="0.01" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="contentNeutro" class="space-y-3 hidden">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T N)</label>
+                            <div class="flex flex-col items-end">
+                                <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
+                                <input type="number" id="modalIatn" value="20.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white space-y-2">
+                            <div class="flex justify-between items-center">
+                                <label class="font-bold text-slate-700">Corrente de Atuação Instantânea (I A I N)</label>
+                                <input type="number" id="modalIain" value="200.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
+                            </div>
+                            <div class="flex justify-between items-center text-slate-700 pt-1">
+                                <label class="flex items-center gap-1.5 cursor-pointer font-bold text-slate-700">
+                                    <input type="checkbox" id="modalBloqueadoInstNeutro" class="rounded id-txt"> Bloqueado
+                                </label>
+                                <div class="flex items-center gap-1">
+                                    <span class="text-slate-600 font-semibold">Temporização Instantânea:</span>
+                                    <input type="number" id="modalTempInstNeutro" value="0.00" step="0.01" class="border border-slate-300 rounded-md w-16 text-right px-1.5 py-0.5 font-mono bg-white">
+                                    <span class="text-slate-600 font-semibold">s</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white">
+                            <label class="flex items-center gap-1.5 font-bold text-slate-700 mb-1.5">
+                                <input type="checkbox" id="modalChkTempDefNeutro" class="rounded id-txt"> Tempo Definido
+                            </label>
+                            <div class="grid grid-cols-2 gap-4 text-center">
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">I Def</span>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <input type="number" id="modalIdefNeutro" value="5.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono bg-white">
+                                        <span class="font-bold text-slate-600">A</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">T Def</span>
+                                    <div class="flex items-center justify-center gap-1">
+                                        <input type="number" id="modalTdefNeutro" value="0.00" step="0.01" class="border border-slate-300 rounded-md w-16 text-right px-2 py-1 font-mono bg-white">
+                                        <span class="font-bold text-slate-600">segundos</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 p-2.5 rounded-lg bg-white">
+                            <span class="font-bold text-slate-700 block mb-1.5">Curvas de Neutro</span>
+                            <div class="flex items-center gap-4">
+                                <span class="font-bold text-slate-700">Lenta:</span>
+                                <div class="flex-1">
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Tipo de Curva</span>
+                                    <select id="modalTipoCurvaNeutro" class="hidden">
+                                        <option value="EI" selected>EI / EI (Extremely Inverse)</option>
+                                        <option value="MI">MI / VI (Very Inverse)</option>
+                                        <option value="NI">NI / SI (Normal Inverse)</option>
+                                    </select><button type="button" onclick="abrirPickerCurva('modalTipoCurvaNeutro')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_modalTipoCurvaNeutro" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                </div>
+                                <div>
+                                    <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Curva (TMS)</span>
+                                    <input type="number" id="modalTmsNeutro" value="0.10" step="0.01" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shrink-0 bg-slate-50 px-4 py-3 border-t border-slate-200 flex justify-end">
+                <button type="button" onclick="aplicarAjustesRele()" class="m-apply text-white font-bold px-5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-1 text-xs">
+                    <i data-lucide="check" class="w-4 h-4 text-white"></i> Aplicar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL / JANELA AJUSTES DO RELIGADOR COPEL -->
+    <div id="modalAjustesReligador" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden p-4" style="z-index:1000">
+        <div class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-xl text-slate-800 font-sans text-xs overflow-hidden flex flex-col" style="--id:#1d4ed8;--id-txt:#1d4ed8;--id-bg:#EFF4FF;--id-bd:#BFD1FF;max-height:calc(100vh - 2rem)">
+            <div class="m-head shrink-0 px-4 py-3 flex justify-between items-center">
+                <span class="font-extrabold id-txt text-sm tracking-wide flex items-center gap-2">
+                    <i data-lucide="sliders" class="w-4 h-4 id-txt"></i> Ajustes do Religador
+                </span>
+                <button type="button" onclick="fecharModalReligador()" class="text-slate-400 hover:text-slate-700 font-bold text-lg px-2 rounded leading-none transition">&times;</button>
+            </div>
+
+            <div class="p-4 space-y-4 overflow-y-auto flex-1 min-h-0">
+                <div>
+                    <label class="block font-bold text-slate-700 mb-1">Modelo de Religador</label>
+                    <select id="modalModeloReligador" class="w-full border-2 id-border bg-white font-extrabold id-txt text-sm px-3 py-1.5 rounded-lg shadow-sm text-center uppercase tracking-wide focus:outline-none">
+                        <option value="RELIGADOR_COPEL" selected>RELIGADOR COPEL</option>
+                    </select>
+                </div>
+
+                <div class="border border-slate-200 rounded-lg p-3 bg-slate-50">
+                    <div class="flex border-b border-slate-300 gap-2 mb-3">
+                        <button type="button" id="btnTabReligadorFase" onclick="alternarAbaReligador('fase')" class="px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md">Ajustes de FASE</button>
+                        <button type="button" id="btnTabReligadorNeutro" onclick="alternarAbaReligador('neutro')" class="px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800">Ajustes de NEUTRO</button>
+                    </div>
+
+                    <div id="contentReligadorFase" class="space-y-4 py-2">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5 px-2">
+                            <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T F)</label>
+                            <div class="flex flex-col items-end">
+                                <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
+                                <input type="number" id="religadorIatf" value="280" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center space-y-2">
+                            <span class="font-bold text-slate-700">Ajuste de Curva</span>
+                            <table class="border-collapse border border-slate-200 bg-white text-center rounded-lg overflow-hidden shadow-sm">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                                        <th class="px-4 py-1.5 border-r border-slate-200">Curva</th>
+                                        <th class="px-4 py-1.5 border-r border-slate-200">FMult</th>
+                                        <th class="px-4 py-1.5">Add</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-r border-slate-200 px-2 py-1">
+                                            <select id="religadorCurvaFase" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1">C1</option><option value="C2" selected>C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–107"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option></optgroup><optgroup label="Curvas 111–122"><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option></optgroup><optgroup label="Curvas 131–142"><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option></optgroup><optgroup label="Curvas 151–165"><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option></optgroup><optgroup label="Curvas 200–202"><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaFase')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaFase" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                        </td>
+                                        <td class="border-r border-slate-200 px-2 py-1 id-txt font-mono">
+                                            <input type="number" step="0.01" id="religadorFmultFase" value="0.28" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                        </td>
+                                        <td class="px-2 py-1 id-txt font-mono">
+                                            <input type="number" step="0.001" id="religadorAddFase" value="0.000" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div id="contentReligadorNeutro" class="space-y-4 py-2 hidden">
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5 px-2">
+                            <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T N)</label>
+                            <div class="flex flex-col items-end">
+                                <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
+                                <input type="number" id="religadorIatn" value="100" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800">
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col items-center justify-center space-y-2">
+                            <span class="font-bold text-slate-700">Ajuste de Curva</span>
+                            <table class="border-collapse border border-slate-200 bg-white text-center rounded-lg overflow-hidden shadow-sm">
+                                <thead>
+                                    <tr class="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
+                                        <th class="px-4 py-1.5 border-r border-slate-200">Curva</th>
+                                        <th class="px-4 py-1.5 border-r border-slate-200">FMult</th>
+                                        <th class="px-4 py-1.5">Add</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border-r border-slate-200 px-2 py-1">
+                                            <select id="religadorCurvaNeutro" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1">C1</option><option value="C2" selected>C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–107"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option></optgroup><optgroup label="Curvas 111–122"><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option></optgroup><optgroup label="Curvas 131–142"><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option></optgroup><optgroup label="Curvas 151–165"><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option></optgroup><optgroup label="Curvas 200–202"><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaNeutro')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaNeutro" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                        </td>
+                                        <td class="border-r border-slate-200 px-2 py-1 id-txt font-mono">
+                                            <input type="number" step="0.01" id="religadorFmultNeutro" value="0.20" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                        </td>
+                                        <td class="px-2 py-1 id-txt font-mono">
+                                            <input type="number" step="0.001" id="religadorAddNeutro" value="0.000" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shrink-0 bg-slate-50 px-4 py-3 border-t border-slate-200 flex justify-end">
+                <button type="button" onclick="aplicarAjustesReligador()" class="m-apply text-white font-bold px-5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-1 text-xs">
+                    <i data-lucide="check" class="w-4 h-4 text-white"></i> Aplicar
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SELEÇÃO DE CURVA COM PRÉVIA -->
+    <div id="modalCurvas" class="hidden fixed inset-0 flex items-center justify-center p-4" style="z-index:1100;background:rgba(15,23,42,.55);backdrop-filter:blur(3px)">
+        <div id="boxCurvas" class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-3xl flex flex-col text-xs overflow-hidden" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC;max-height:calc(100vh - 2rem)">
+            <div class="m-head shrink-0 px-5 py-3 flex justify-between items-center">
+                <span id="tituloPicker" class="m-title font-extrabold text-sm">Selecionar curva</span>
+                <button type="button" onclick="fecharPickerCurva()" class="text-slate-400 hover:text-slate-700 font-bold text-lg px-2 leading-none">&times;</button>
+            </div>
+            <div class="p-4 flex flex-col md:flex-row gap-4 overflow-y-auto flex-1 min-h-0">
+                <div class="md:w-1/2">
+                    <div id="nomePrevia" class="font-bold mb-1.5 id-txt text-sm">—</div>
+                    <canvas id="canvasPrevia" style="width:100%;aspect-ratio:4/3;border:1px solid #E5E8EE;border-radius:12px;background:#fff"></canvas>
+                    <div id="infoPrevia" class="text-[11px] text-slate-500 mt-2"></div>
+                </div>
+                <div class="md:w-1/2 flex flex-col min-h-0">
+                    <div class="font-bold text-slate-700 mb-1.5">Curvas disponíveis</div>
+                    <div id="listaCurvas" class="border border-slate-200 rounded-xl overflow-y-auto" style="max-height:340px"></div>
+                </div>
+            </div>
+            <div class="shrink-0 bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end gap-2">
+                <button type="button" onclick="fecharPickerCurva()" class="px-4 py-1.5 rounded-lg border border-slate-300 bg-white text-slate-700 font-bold hover:bg-slate-50">Cancelar</button>
+                <button type="button" onclick="confirmarCurva()" class="m-apply text-white font-bold px-5 py-1.5 rounded-lg shadow-sm">Selecionar</button>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p>COPEL — Análise de Projetos da Medição | Módulo de Cálculo de Curto-Circuito</p>
+        <p>COPEL — Análise de Projetos da Medição | Módulo de Cálculo de Curto-Circuito & Coordenograma TCC</p>
     </footer>
 
     <script>
+        // Banco de Dados de Cabos
         const dbCabos = {
             "13.8": {
                 "8AWG-Cu": { r1: 1.2401, x1: 0.2575, r0: 1.3334, x0: 1.0588 },
@@ -569,6 +1085,34 @@
                 "120mm²-Al20/35kV": { r1: 0.0268, x1: 0.0194, r0: 0.0268, x0: 0.0194 },
                 "150mm²-Al20/35kV": { r1: 0.0218, x1: 0.0189, r0: 0.0218, x0: 0.0189 },
                 "185mm²-Al20/35kV": { r1: 0.0174, x1: 0.0185, r0: 0.0174, x0: 0.0185 }
+            }
+        };
+
+        // Banco de Dados de Elos Fusíveis (MMT e MCT)
+        const dbElos = {
+            '10K': {
+                mmt: [{x: 15, y: 300}, {x: 25, y: 10}, {x: 52, y: 1}, {x: 130, y: 0.1}, {x: 380, y: 0.01}],
+                mct: [{x: 18, y: 300}, {x: 30, y: 10}, {x: 65, y: 1}, {x: 160, y: 0.1}, {x: 460, y: 0.01}]
+            },
+            '15K': {
+                mmt: [{x: 22, y: 300}, {x: 38, y: 10}, {x: 80, y: 1}, {x: 210, y: 0.1}, {x: 600, y: 0.01}],
+                mct: [{x: 27, y: 300}, {x: 46, y: 10}, {x: 100, y: 1}, {x: 260, y: 0.1}, {x: 730, y: 0.01}]
+            },
+            '25K': {
+                mmt: [{x: 38, y: 300}, {x: 65, y: 10}, {x: 135, y: 1}, {x: 360, y: 0.1}, {x: 1050, y: 0.01}],
+                mct: [{x: 46, y: 300}, {x: 80, y: 10}, {x: 170, y: 1}, {x: 440, y: 0.1}, {x: 1300, y: 0.01}]
+            },
+            '40K': {
+                mmt: [{x: 60, y: 300}, {x: 105, y: 10}, {x: 220, y: 1}, {x: 580, y: 0.1}, {x: 1700, y: 0.01}],
+                mct: [{x: 75, y: 300}, {x: 130, y: 10}, {x: 270, y: 1}, {x: 710, y: 0.1}, {x: 2100, y: 0.01}]
+            },
+            '65K': {
+                mmt: [{x: 100, y: 300}, {x: 175, y: 10}, {x: 370, y: 1}, {x: 980, y: 0.1}, {x: 2900, y: 0.01}],
+                mct: [{x: 125, y: 300}, {x: 220, y: 10}, {x: 460, y: 1}, {x: 1200, y: 0.1}, {x: 3600, y: 0.01}]
+            },
+            '100K': {
+                mmt: [{x: 150, y: 300}, {x: 270, y: 10}, {x: 580, y: 1}, {x: 1550, y: 0.1}, {x: 4600, y: 0.01}],
+                mct: [{x: 190, y: 300}, {x: 340, y: 10}, {x: 720, y: 1}, {x: 1900, y: 0.1}, {x: 5700, y: 0.01}]
             }
         };
 
@@ -799,6 +1343,15 @@
             return iSim * fator;
         }
 
+        // Normaliza nome de ponto: ignora espaços nas pontas e diferença entre maiúsculas/minúsculas
+        const normPonto = s => String(s ?? '').trim().toUpperCase();
+
+        function renderAvisosPontos(avisos) {
+            const html = avisos.length ? `<div style="background:#FFFBEB;border:1px solid #F59E0B;color:#92400E;border-radius:6px;padding:8px 12px;margin-bottom:10px;font-size:0.8rem;">
+                <strong>&#9888; Revise os nomes dos pontos:</strong><ul style="margin:4px 0 0 18px;">${avisos.map(a => `<li>${a}</li>`).join('')}</ul></div>` : '';
+            document.querySelectorAll('.avisos-pontos').forEach(el => { el.innerHTML = html; });
+        }
+
         function recalcular() {
             const vBase = getVal('tBase') || 13.8;
             const pBase = 100;
@@ -858,7 +1411,9 @@
             const pInicialA = trechosPadrao[0]?.ini || 'A';
 
             let mapImpedanciasPontos = {};
-            mapImpedanciasPontos[pInicialA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
+            const keyA = normPonto(pInicialA);
+            const avisos = [];
+            mapImpedanciasPontos[keyA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
 
             // Ponto A (Subestação) com Destaques Visuais de Origem
             tbSaidaP.innerHTML += `
@@ -878,18 +1433,31 @@
                 </tr>
             `;
 
-            let rPosAcum = rA_pos, xPosAcum = xA_pos, rZeroAcum = rA_zero, xZeroAcum = xA_zero;
             let ultIccftMin = icftMinA;
-            let totalTrechos = trechosPadrao.length;
+            const linhasTrecho = [];
+            let prevKey = keyA;
 
             trechosPadrao.forEach((t, i) => {
                 atualizarImpedanciaTrecho(i);
-                rPosAcum += t.r1;
-                xPosAcum += t.x1;
-                rZeroAcum += t.r0;
-                xZeroAcum += t.x0;
+                const kIni = normPonto(t.ini), kFin = normPonto(t.fin);
+                const nome = `Trecho ${i + 1} (${String(t.ini ?? '').trim()} → ${String(t.fin ?? '').trim()})`;
 
-                mapImpedanciasPontos[t.fin] = { r1: rPosAcum, x1: xPosAcum, r0: rZeroAcum, x0: xZeroAcum };
+                // O trecho parte do ponto inicial informado (permite ramais/derivações)
+                let base = mapImpedanciasPontos[kIni];
+                if (!base) {
+                    avisos.push(`${nome}: o ponto inicial "${t.ini}" não é o fim de nenhum trecho anterior. Foi usado o fim do trecho anterior.`);
+                    base = mapImpedanciasPontos[prevKey] || mapImpedanciasPontos[keyA];
+                }
+                if (!kFin) avisos.push(`${nome}: ponto final em branco.`);
+                else if (mapImpedanciasPontos[kFin]) avisos.push(`${nome}: o ponto final "${t.fin}" já existe em outro trecho; prevalece o último.`);
+
+                const rPosAcum = base.r1 + t.r1;
+                const xPosAcum = base.x1 + t.x1;
+                const rZeroAcum = base.r0 + t.r0;
+                const xZeroAcum = base.x0 + t.x0;
+
+                mapImpedanciasPontos[kFin] = { r1: rPosAcum, x1: xPosAcum, r0: rZeroAcum, x0: xZeroAcum };
+                prevKey = kFin;
 
                 const z1_m = Math.sqrt(rPosAcum**2 + xPosAcum**2);
                 const ic3f = z1_m ? (iBase / z1_m) : 0;
@@ -905,19 +1473,26 @@
                 const zFTmin_mod = Math.sqrt(zFTmin_R_m**2 + zFT_X**2);
                 const icftmin = zFTmin_mod ? ((3 * iBase) / zFTmin_mod) : 0;
 
-                ultIccftMin = icftmin;
-                const isFimDeLinha = (i === totalTrechos - 1);
+                linhasTrecho.push({ fin: t.fin, ic3f, ic3f_ass, icft, icft_ass, icftmin });
+            });
 
+            // Icc FT mínima = menor valor entre todos os pontos do alimentador (em empate, o último)
+            let idxMin = -1, minVal = Infinity;
+            linhasTrecho.forEach((l, i) => { if (l.icftmin <= minVal) { minVal = l.icftmin; idxMin = i; } });
+            if (idxMin >= 0) ultIccftMin = minVal;
+
+            linhasTrecho.forEach((l, i) => {
+                const isMin = (i === idxMin);
                 tbSaidaP.innerHTML += `
                     <tr>
-                        <td>Ponto ${t.fin}</td>
-                        <td>${ic3f.toFixed(1)}</td>
-                        <td>${ic3f_ass.toFixed(1)}</td>
-                        <td>${icft.toFixed(1)}</td>
-                        <td>${icft_ass.toFixed(1)}</td>
-                        <td ${isFimDeLinha ? `class="highlight-src" style="background:#DBEAFE; color:var(--c-iccftmin);" title="Fonte do 'Icc FT Min (Fim de Linha)'"` : ''}>
-                            ${icftmin.toFixed(1)}
-                            ${isFimDeLinha ? `<span class="track-badge" style="background:var(--c-iccftmin);">Min FT</span>` : ''}
+                        <td>Ponto ${l.fin}</td>
+                        <td>${l.ic3f.toFixed(1)}</td>
+                        <td>${l.ic3f_ass.toFixed(1)}</td>
+                        <td>${l.icft.toFixed(1)}</td>
+                        <td>${l.icft_ass.toFixed(1)}</td>
+                        <td ${isMin ? `class="highlight-src" style="background:#DBEAFE; color:var(--c-iccftmin);" title="Fonte do 'Icc FT Min' (menor valor do alimentador)"` : ''}>
+                            ${l.icftmin.toFixed(1)}
+                            ${isMin ? `<span class="track-badge" style="background:var(--c-iccftmin);">Min FT</span>` : ''}
                         </td>
                     </tr>
                 `;
@@ -937,10 +1512,13 @@
             let maxIc3fTrafo = 0;
             let maxIcftTrafo = 0;
 
-            // Primeiro passo: identificar os valores máximos de Ic3f e Icft nos trafos
             let trafoCalculos = trafosPadrao.map((tr, idx) => {
-                const pt = tr.ponto || 'A';
-                const pntImp = mapImpedanciasPontos[pt] || mapImpedanciasPontos['A'] || { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
+                const pt = (tr.ponto && String(tr.ponto).trim()) ? tr.ponto : pInicialA;
+                let pntImp = mapImpedanciasPontos[normPonto(pt)];
+                if (!pntImp) {
+                    avisos.push(`Trafo ${idx + 1}: o ponto "${tr.ponto}" não existe nos trechos. Foi calculado como se estivesse no ponto ${pInicialA}.`);
+                    pntImp = mapImpedanciasPontos[keyA] || { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
+                }
 
                 const kva = tr.kva || 0;
                 const vbt = tr.vbt || 380;
@@ -988,7 +1566,6 @@
                 };
             });
 
-            // Segundo passo: renderizar destacando o maior valor (se houver)
             trafoCalculos.forEach(c => {
                 const isMaxIc3f = (c.ic3f_sec_prim === maxIc3fTrafo && maxIc3fTrafo > 0);
                 const isMaxIcft = (c.icft_sec_prim === maxIcftTrafo && maxIcftTrafo > 0);
@@ -1017,11 +1594,636 @@
 
             setTxt('sumMaxIc3fTrafo', `${maxIc3fTrafo.toFixed(1)} A`);
             setTxt('sumMaxIcftTrafo', `${maxIcftTrafo.toFixed(1)} A`);
+            renderAvisosPontos(avisos);
+        }
+
+        // --- INTEGRAÇÃO E PRÉ-PREENCHIMENTO AUTOMÁTICO DA ABA 3 ---
+        const editados = new Set();
+
+        function carregarDadosParaGrafico(forcar = false) {
+            const txt = id => { const v = parseFloat((document.getElementById(id)?.innerText || '').replace(',', '.')); return isNaN(v) ? null : v; };
+            const put = (id, v) => {
+                if (v === null || (!forcar && editados.has(id))) return;
+                document.getElementById(id).value = v.toFixed(1);
+                if (forcar) editados.delete(id);
+            };
+            put('icc3fSim', txt('sumIcc3fMax'));          // Icc 3Φ máx. no Ponto A (cartão da aba 2)
+            put('iccftMax', txt('sumIccftSimetrico'));    // Icc FT simétrica no Ponto A (cartão da aba 2)
+            put('iccftMin', txt('sumIccftMin'));
+            put('inrushVal', txt('sumInrush'));
+            const inom = txt('sumInTotal');
+            if (inom > 0) put('modalIatf', inom * 1.1);
+            atualizarEstudo();
+        }
+
+        // --- LÓGICA DO MODAL DE AJUSTES DO RELÉ ENTRADA UC ---
+        function abrirModalAjustes() {
+            document.getElementById('modalAjustesRele').classList.remove('hidden');
+        }
+
+        function fecharModalAjustes() {
+            document.getElementById('modalAjustesRele').classList.add('hidden');
+        }
+
+        function alternarAbaModal(aba) {
+            const btnFase = document.getElementById('btnTabFase');
+            const btnNeutro = document.getElementById('btnTabNeutro');
+            const contentFase = document.getElementById('contentFase');
+            const contentNeutro = document.getElementById('contentNeutro');
+
+            if (aba === 'fase') {
+                btnFase.className = "px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md";
+                btnNeutro.className = "px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800";
+                contentFase.classList.remove('hidden');
+                contentNeutro.classList.add('hidden');
+            } else {
+                btnNeutro.className = "px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md";
+                btnFase.className = "px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800";
+                contentNeutro.classList.remove('hidden');
+                contentFase.classList.add('hidden');
+            }
+        }
+
+        function aplicarAjustesRele() {
+            fecharModalAjustes();
+            atualizarEstudo();
+        }
+
+        // --- LÓGICA DO MODAL DE AJUSTES DO RELIGADOR COPEL ---
+        function abrirModalReligador() {
+            document.getElementById('modalAjustesReligador').classList.remove('hidden');
+        }
+
+        function fecharModalReligador() {
+            document.getElementById('modalAjustesReligador').classList.add('hidden');
+        }
+
+        function alternarAbaReligador(aba) {
+            const btnFase = document.getElementById('btnTabReligadorFase');
+            const btnNeutro = document.getElementById('btnTabReligadorNeutro');
+            const contentFase = document.getElementById('contentReligadorFase');
+            const contentNeutro = document.getElementById('contentReligadorNeutro');
+
+            if (aba === 'fase') {
+                btnFase.className = "px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md";
+                btnNeutro.className = "px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800";
+                contentFase.classList.remove('hidden');
+                contentNeutro.classList.add('hidden');
+            } else {
+                btnNeutro.className = "px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md";
+                btnFase.className = "px-4 py-1.5 font-semibold text-slate-500 bg-transparent rounded-t-md hover:text-slate-800";
+                contentNeutro.classList.remove('hidden');
+                contentFase.classList.add('hidden');
+            }
+        }
+
+        function aplicarAjustesReligador() {
+            fecharModalReligador();
+            atualizarEstudo();
+        }
+
+        // --- FORMULAÇÃO MATEMÁTICA PRECISA DAS 7 CURVAS TCC DO RELIGADOR ---
+        function calcTempoTCC(I, Ip, TMS, tipoCurva, Iinst, isBlockedInst, tempInst, addOffset = 0.0) {
+            if (I < Ip) return null;
+            
+            // Atuação Instantânea de Estágio Alto (50/50N)
+            if (!isBlockedInst && Iinst > 0 && I >= Iinst) {
+                return tempInst > 0 ? tempInst : 0.001;   // sem temporização: 0,001 s, como no PCP
+            }
+
+            const M = I / Ip;
+            if (M <= 1.0) return null;
+
+            let t = null;
+
+            // Coeficientes específicos para as 7 curvas permitidas: C1, C2, C3, C4, NI/SI, MI/VI, EI/EI
+            let alpha = 0.02, beta = 0.14;
+
+            switch (tipoCurva) {
+                case 'MI':
+                    // Inversa / Very Inverse / MI/VI
+                    alpha = 1.0; beta = 13.5;
+                    break;
+                case 'EI':
+                    // TEI / Extremely Inverse / EI/EI
+                    alpha = 2.0; beta = 80.0;
+                    break;
+                case 'NI':
+                    // Standard Inverse / Normal Inverse / NI/SI
+                    alpha = 0.02; beta = 0.14;
+                    break;
+                default:
+                    alpha = 0.02; beta = 0.14;
+            }
+
+            t = (TMS * (beta / (Math.pow(M, alpha) - 1))) + addOffset;
+
+            if (t === null || isNaN(t)) return null;
+            return t < 0.01 ? 0.01 : t;
+        }
+
+        // Curvas tabeladas do religador (tabelas do PCP; C1–C4 a partir do desenho do PCP): p = [[múltiplo da corrente de pickup, tempo (s) com Fmult = 1]].
+        // Curvas C1–C4 e 101–202. Tempo real = Fmult × tempo tabelado + Add. NI/MI/EI seguem a fórmula IEC.
+        // Acima do último ponto da tabela a curva mantém o último tempo (comportamento do PCP).
+        const dbCurvasTCC = {
+            'C1':{p:[[1.303,54.83],[1.351,52.15],[1.371,45.16],[1.383,41.06],[1.4,34.89],[1.403,34.23],[1.427,32.05],[1.458,28.73],[1.662,17.2],[1.828,13.43],[1.868,12.38],[1.94,11.23],[1.978,10.95],[2.05,9.968],[2.134,9.447],[2.175,9.0],[2.217,8.984],[2.26,8.559],[2.481,7.581],[2.534,7.568],[2.835,6.543],[2.902,6.509],[3.008,6.211],[3.072,6.201],[3.178,5.928],[3.26,5.887],[3.38,5.618],[3.445,5.618],[3.647,5.223],[3.718,5.214],[3.789,5.089],[3.862,5.089],[3.936,4.967],[4.012,4.967],[4.089,4.848],[4.168,4.848],[4.33,4.611],[4.498,4.611],[4.683,4.385],[4.865,4.385],[4.959,4.28],[5.054,4.28],[5.151,4.177],[5.251,4.177],[5.352,4.077],[5.443,4.077],[5.56,3.972],[5.667,3.972],[5.776,3.877],[6.0,3.877],[6.116,3.784],[6.233,3.784],[6.367,3.687],[6.475,3.687],[6.614,3.599],[6.727,3.599],[6.871,3.513],[7.018,3.5],[7.138,3.428],[7.4,3.428],[7.558,3.341],[7.72,3.335],[7.852,3.26],[8.157,3.26],[8.297,3.188],[8.474,3.182],[8.637,3.106],[8.973,3.106],[9.165,3.026],[9.501,3.026],[9.704,2.954],[10.06,2.954],[10.276,2.883],[10.473,2.878],[10.675,2.814],[11.279,2.814],[11.521,2.742],[11.767,2.737],[11.969,2.676],[12.434,2.676],[12.673,2.612],[13.165,2.612],[13.419,2.549],[13.94,2.549],[14.239,2.484],[14.792,2.484],[15.077,2.424],[15.663,2.424],[15.964,2.366],[16.904,2.366],[17.229,2.31],[17.899,2.31],[18.282,2.25],[18.952,2.25],[19.358,2.196],[20.454,2.196],[20.892,2.144],[21.658,2.144],[22.121,2.092],[23.423,2.092],[23.874,2.042],[25.766,2.039],[26.317,1.99],[27.807,1.99],[28.402,1.942],[30.653,1.942],[31.243,1.896],[32.457,1.896]]},
+            'C2':{p:[[1.303,87.24],[1.328,75.95],[1.351,65.66],[1.377,63.98],[1.403,59.49],[1.406,54.55],[1.458,47.57],[1.486,43.1],[1.518,40.7],[1.694,26.49],[1.764,23.83],[1.798,22.12],[1.828,21.18],[1.868,19.56],[2.125,14.02],[2.139,13.76],[2.175,12.88],[2.217,12.55],[2.303,11.39],[2.353,11.06],[2.393,10.57],[2.439,10.32],[2.486,9.831],[2.582,9.366],[2.632,8.922],[2.689,8.663],[2.74,8.253],[2.787,8.083],[2.841,7.7],[2.951,7.336],[3.008,6.988],[3.072,6.785],[3.138,6.453],[3.192,6.32],[3.253,6.309],[3.309,6.042],[3.33,5.979],[4.081,4.619],[4.168,4.611],[4.321,4.408],[4.413,4.184],[4.673,3.891],[4.763,3.891],[4.855,3.804],[4.959,3.618],[5.054,3.611],[5.151,3.446],[5.251,3.446],[6.0,2.913],[6.128,2.908],[6.842,2.532],[6.989,2.527],[7.671,2.25],[7.852,2.239],[7.986,2.144],[8.157,2.085],[8.456,1.997],[8.637,1.99],[8.803,1.902],[9.011,1.892],[10.039,1.656],[10.276,1.65],[11.255,1.477],[11.545,1.467],[12.835,1.29],[13.193,1.279],[14.451,1.147],[14.792,1.143],[16.514,1.004],[16.904,1.0],[18.204,0.9172],[18.555,0.9172],[19.317,0.8768],[19.689,0.8768],[21.204,0.8054],[21.658,0.804],[23.275,0.7412],[23.823,0.7386],[24.749,0.7073],[25.226,0.7073],[26.654,0.6657],[27.224,0.6645],[28.282,0.6375],[28.827,0.6375],[31.177,0.5866],[31.777,0.5866],[33.012,0.5637],[33.647,0.5637]]},
+            'C3':{p:[[1.4,95.8],[1.427,92.85],[1.537,76.61],[1.694,52.51],[1.756,47.82],[1.798,43.85],[1.828,41.99],[1.864,38.98],[2.46,18.96],[2.481,18.57],[2.528,18.09],[2.799,13.9],[2.835,13.48],[2.889,13.13],[3.178,10.27],[3.239,10.02],[3.632,7.451],[3.773,7.098],[3.92,6.431],[3.995,6.276],[4.072,5.979],[4.15,5.836],[4.23,5.56],[4.312,5.417],[4.479,4.916],[4.566,4.798],[4.653,4.571],[4.743,4.454],[4.927,4.042],[5.022,3.945],[5.217,3.58],[5.42,3.411],[5.524,3.249],[5.631,3.171],[5.849,2.878],[6.077,2.742],[6.313,2.488],[6.434,2.429],[6.558,2.318],[6.685,2.262],[6.813,2.155],[7.078,2.053],[7.353,1.866],[7.495,1.825],[7.639,1.738],[7.786,1.697],[7.936,1.619],[8.088,1.58],[8.403,1.439],[8.564,1.405],[8.748,1.336],[9.068,1.279],[9.243,1.221],[9.461,1.181],[9.787,1.087],[10.167,1.037],[10.562,0.9463],[10.789,0.9204],[11.184,0.844],[11.399,0.8252],[11.643,0.7861],[11.842,0.7713],[12.303,0.7048],[12.539,0.6891],[12.781,0.6588],[13.277,0.6309],[14.059,0.553],[14.605,0.5296],[15.173,0.4865],[15.465,0.4765],[16.066,0.4377],[16.375,0.4287],[16.69,0.4112],[17.048,0.4014],[17.635,0.3732],[18.051,0.363],[18.713,0.3363],[19.073,0.3363],[20.195,0.2995],[20.541,0.2949],[21.025,0.2824],[21.384,0.278],[21.842,0.2671],[22.215,0.263],[23.03,0.2458],[23.523,0.2407],[23.975,0.2321],[24.385,0.229],[24.907,0.2208],[25.386,0.217],[26.881,0.1966],[27.925,0.1905],[29.01,0.1793],[29.569,0.1766],[30.718,0.1665],[31.979,0.1665]]},
+            'C4':{p:[[2.398,90.0],[2.444,87.85],[2.539,79.58],[2.588,79.45],[2.643,75.42],[2.689,73.87],[2.746,70.01],[2.853,66.58],[2.908,63.53],[2.964,63.42],[3.014,60.63],[3.178,56.57],[3.26,53.43],[3.33,53.24],[3.38,52.24],[3.452,49.59],[3.518,49.51],[3.594,47.0],[4.673,33.47],[4.773,31.77],[4.875,31.66],[5.151,29.49],[5.251,28.04],[5.363,28.0],[6.116,23.58],[6.246,23.54],[6.353,23.02],[6.475,21.93],[6.6,21.89],[6.699,21.51],[6.741,21.29],[6.857,20.35],[7.018,20.25],[7.835,17.54],[8.003,17.51],[8.954,15.13],[9.165,15.06],[10.63,12.42],[10.857,12.38],[11.066,11.81],[11.303,11.77],[12.646,10.18],[12.89,10.18],[14.179,9.0],[14.451,9.0],[14.981,8.588],[15.367,8.529],[16.797,7.594],[17.156,7.568],[18.166,7.037],[18.516,7.037],[19.235,6.704],[19.689,6.669],[21.566,5.928],[22.028,5.917],[24.128,5.26],[24.749,5.223],[25.657,4.985],[26.151,4.985],[27.631,4.643],[28.223,4.635],[29.319,4.415],[29.884,4.415],[31.642,4.098],[32.872,4.098],[33.505,4.0],[34.222,4.0]]},
+            '101':{p:[[1,0.174],[1.114,0.13],[1.161,0.118],[1.192,0.11],[1.225,0.104],[1.242,0.1],[1.276,0.094],[1.329,0.087],[1.347,0.084],[1.422,0.076],[1.461,0.074],[1.481,0.072],[1.542,0.069],[1.563,0.067],[1.628,0.064],[1.65,0.064],[1.673,0.063],[1.696,0.063],[1.742,0.061],[1.766,0.061],[1.814,0.059],[1.839,0.059],[1.864,0.058],[1.915,0.058],[1.941,0.057],[1.995,0.057],[2.022,0.056],[2.106,0.056],[2.134,0.055],[2.193,0.055],[2.223,0.054],[2.378,0.054],[2.411,0.053],[2.65,0.053],[2.687,0.052],[3.076,0.052],[3.118,0.051],[3.769,0.051],[3.82,0.05],[200,0.05]]},
+            '102':{p:[[1,0.374],[1.099,0.25],[1.145,0.212],[1.176,0.192],[1.276,0.155],[1.329,0.14],[1.365,0.132],[1.422,0.118],[1.461,0.108],[1.501,0.1],[1.585,0.087],[1.673,0.079],[1.696,0.078],[1.742,0.074],[1.79,0.072],[1.814,0.07],[2.049,0.061],[2.077,0.061],[2.106,0.06],[2.163,0.06],[2.193,0.059],[2.253,0.059],[2.284,0.058],[2.378,0.058],[2.411,0.057],[2.477,0.057],[2.511,0.056],[2.65,0.056],[2.687,0.055],[2.836,0.055],[2.875,0.054],[3.035,0.054],[3.076,0.053],[3.247,0.053],[3.292,0.052],[3.668,0.052],[3.718,0.051],[200,0.051]]},
+            '103':{p:[[1,0.435],[1.114,0.325],[1.192,0.273],[1.365,0.194],[1.422,0.177],[1.65,0.142],[1.719,0.135],[1.79,0.127],[1.864,0.121],[1.889,0.118],[1.995,0.11],[2.022,0.109],[2.134,0.101],[2.193,0.099],[2.223,0.097],[2.346,0.093],[2.378,0.091],[2.836,0.078],[2.875,0.078],[3.076,0.073],[3.118,0.073],[3.204,0.071],[3.292,0.071],[3.382,0.069],[3.428,0.069],[3.475,0.068],[3.522,0.068],[3.57,0.067],[3.619,0.067],[3.718,0.065],[3.82,0.065],[3.872,0.064],[3.978,0.064],[4.033,0.063],[4.088,0.063],[4.2,0.061],[4.315,0.061],[4.374,0.06],[4.433,0.06],[4.494,0.059],[4.617,0.059],[4.68,0.058],[4.874,0.058],[4.941,0.057],[5.076,0.057],[5.145,0.056],[5.359,0.056],[5.432,0.055],[5.581,0.055],[5.657,0.054],[5.972,0.054],[6.053,0.053],[6.304,0.053],[6.39,0.052],[6.837,0.052],[6.931,0.051],[7.723,0.051],[7.829,0.05],[9.335,0.05],[9.462,0.049],[200,0.049]]},
+            '104':{p:[[1,0.571],[1.276,0.369],[1.521,0.28],[1.719,0.233],[1.915,0.201],[2.315,0.157],[2.477,0.145],[2.58,0.137],[2.615,0.133],[2.687,0.127],[2.723,0.123],[2.954,0.105],[3.076,0.098],[3.292,0.084],[3.57,0.072],[3.619,0.071],[3.668,0.069],[4.143,0.06],[4.2,0.06],[4.257,0.059],[4.315,0.059],[4.374,0.058],[4.494,0.058],[4.617,0.056],[4.744,0.056],[4.809,0.055],[4.874,0.055],[4.941,0.054],[5.076,0.054],[5.145,0.053],[5.287,0.053],[5.359,0.052],[5.657,0.052],[5.734,0.051],[5.972,0.051],[6.053,0.05],[6.39,0.05],[6.477,0.049],[6.931,0.049],[7.025,0.048],[7.517,0.048],[7.619,0.047],[8.377,0.047],[8.491,0.046],[200,0.046]]},
+            '105':{p:[[1,0.759],[1.276,0.492],[1.384,0.429],[1.79,0.306],[2.378,0.217],[3.035,0.169],[3.522,0.147],[3.57,0.146],[4.257,0.125],[4.374,0.123],[4.433,0.121],[4.874,0.114],[4.941,0.112],[5.287,0.107],[5.506,0.102],[5.657,0.1],[5.734,0.098],[5.891,0.096],[5.972,0.094],[7.025,0.082],[7.121,0.082],[7.218,0.081],[7.316,0.079],[8.607,0.067],[8.724,0.067],[9.086,0.064],[9.21,0.064],[9.591,0.061],[9.722,0.061],[9.989,0.059],[10.263,0.059],[10.403,0.058],[10.688,0.058],[10.982,0.056],[11.283,0.056],[11.437,0.055],[11.751,0.055],[11.911,0.054],[12.238,0.054],[12.405,0.053],[12.745,0.053],[12.919,0.052],[13.454,0.052],[13.638,0.051],[14.203,0.051],[14.397,0.05],[15.198,0.05],[15.405,0.049],[16.484,0.049],[16.708,0.048],[18.369,0.048],[18.62,0.047],[22.812,0.047],[23.123,0.046],[200,0.046]]},
+            '106':{p:[[1,1.515],[1.176,0.821],[1.225,0.709],[1.441,0.475],[1.606,0.367],[1.864,0.273],[2.022,0.234],[2.163,0.203],[2.378,0.168],[2.954,0.111],[3.076,0.104],[3.118,0.101],[3.161,0.099],[3.204,0.096],[3.382,0.088],[3.428,0.085],[3.522,0.081],[3.57,0.078],[3.619,0.076],[3.668,0.075],[3.82,0.069],[3.872,0.068],[3.925,0.066],[4.494,0.056],[4.617,0.056],[4.68,0.055],[4.744,0.055],[4.809,0.054],[4.941,0.054],[5.008,0.053],[5.145,0.053],[5.216,0.052],[5.359,0.052],[5.432,0.051],[5.581,0.051],[5.657,0.05],[5.972,0.05],[6.053,0.049],[6.39,0.049],[6.477,0.048],[6.745,0.048],[6.837,0.047],[7.619,0.047],[7.723,0.046],[200,0.046]]},
+            '107':{p:[[1,1.542],[1.384,0.764],[1.606,0.539],[1.995,0.329],[2.134,0.279],[2.378,0.217],[2.836,0.147],[2.954,0.135],[2.994,0.132],[3.076,0.122],[3.204,0.11],[3.475,0.091],[3.522,0.089],[3.57,0.086],[3.82,0.076],[4.033,0.068],[4.088,0.067],[4.2,0.063],[4.494,0.058],[4.555,0.058],[4.68,0.056],[4.809,0.056],[4.941,0.054],[5.076,0.054],[5.145,0.053],[5.287,0.053],[5.359,0.052],[5.657,0.052],[5.734,0.051],[5.891,0.051],[5.972,0.05],[6.304,0.05],[6.39,0.049],[6.931,0.049],[7.025,0.048],[7.935,0.048],[8.043,0.047],[9.854,0.047],[9.989,0.046],[200,0.046]]},
+            '111':{p:[[1,2.81],[1.311,1.51],[1.742,0.864],[2.284,0.551],[2.615,0.444],[3.035,0.352],[3.872,0.246],[4.2,0.221],[5.008,0.18],[6.565,0.134],[6.655,0.133],[6.931,0.127],[7.025,0.126],[7.218,0.122],[7.517,0.118],[7.829,0.113],[8.043,0.111],[8.153,0.109],[8.264,0.108],[8.491,0.104],[8.843,0.1],[8.964,0.098],[9.21,0.096],[9.335,0.094],[9.591,0.092],[9.722,0.09],[10.263,0.086],[10.403,0.084],[11.593,0.076],[12.745,0.069],[12.919,0.069],[13.273,0.067],[13.454,0.067],[14.012,0.064],[14.397,0.064],[14.593,0.063],[14.792,0.063],[14.993,0.062],[15.198,0.062],[15.405,0.061],[15.615,0.061],[15.828,0.06],[16.262,0.06],[16.484,0.059],[16.936,0.059],[17.167,0.058],[17.638,0.058],[17.879,0.057],[18.369,0.057],[18.62,0.056],[19.131,0.056],[19.391,0.055],[20.195,0.055],[20.47,0.054],[21.609,0.054],[21.904,0.053],[22.812,0.053],[23.123,0.052],[25.08,0.052],[25.421,0.051],[200,0.051]]},
+            '112':{p:[[1,2.609],[1.521,1.023],[2.134,0.527],[2.65,0.351],[3.035,0.286],[3.668,0.217],[4.143,0.183],[4.257,0.178],[4.433,0.169],[5.076,0.146],[5.145,0.143],[5.891,0.124],[6.219,0.119],[6.304,0.117],[6.565,0.114],[6.655,0.112],[7.025,0.108],[7.121,0.106],[8.491,0.093],[8.607,0.093],[8.964,0.09],[9.335,0.089],[9.722,0.086],[9.854,0.086],[10.125,0.084],[10.263,0.084],[10.545,0.082],[10.834,0.082],[11.283,0.079],[11.437,0.079],[11.593,0.078],[11.911,0.078],[12.073,0.077],[12.238,0.077],[12.405,0.076],[12.574,0.076],[12.745,0.075],[13.095,0.075],[13.273,0.074],[13.454,0.074],[13.638,0.073],[14.012,0.073],[14.203,0.072],[14.397,0.072],[14.593,0.071],[14.993,0.071],[15.198,0.07],[15.615,0.07],[15.828,0.069],[16.043,0.069],[16.262,0.068],[16.708,0.068],[16.936,0.067],[17.638,0.067],[17.879,0.066],[18.369,0.066],[18.62,0.065],[19.131,0.065],[19.391,0.064],[19.924,0.064],[20.195,0.063],[21.319,0.063],[21.609,0.062],[23.123,0.062],[23.438,0.061],[25.421,0.061],[25.768,0.06],[27.948,0.06],[28.329,0.059],[200,0.059]]},
+            '113':{p:[[1,3.29],[1.628,1.081],[1.889,0.82],[2.444,0.514],[3.035,0.387],[3.475,0.327],[4.315,0.276],[5.076,0.245],[7.025,0.218],[10.688,0.208],[18.122,0.204],[18.369,0.203],[20.47,0.203],[22.812,0.201],[200,0.201]]},
+            '114':{p:[[1,8.016],[1.13,4.859],[1.441,2.575],[1.521,2.327],[2.134,1.277],[2.954,0.754],[4.374,0.393],[5.216,0.272],[5.891,0.207],[6.219,0.185],[6.565,0.159],[7.218,0.124],[7.316,0.119],[7.619,0.107],[7.723,0.104],[7.829,0.1],[8.264,0.079],[8.377,0.075],[8.724,0.069],[8.843,0.068],[8.964,0.066],[9.21,0.064],[9.335,0.064],[9.722,0.061],[9.854,0.061],[9.989,0.06],[10.125,0.06],[10.263,0.059],[10.403,0.059],[10.545,0.058],[10.834,0.058],[11.131,0.056],[11.437,0.056],[11.593,0.055],[11.911,0.055],[12.073,0.054],[12.574,0.054],[12.745,0.053],[13.454,0.053],[13.638,0.052],[14.397,0.052],[14.593,0.051],[15.615,0.051],[15.828,0.05],[17.401,0.05],[17.638,0.049],[19.924,0.049],[20.195,0.048],[23.758,0.048],[24.081,0.047],[200,0.047]]},
+            '115':{p:[[1,6.523],[1.145,4.135],[1.384,2.386],[1.766,1.074],[2.193,0.594],[2.723,0.324],[2.994,0.254],[3.161,0.224],[3.204,0.216],[3.82,0.145],[3.872,0.14],[4.2,0.118],[4.257,0.114],[4.617,0.097],[4.941,0.087],[5.216,0.079],[5.287,0.078],[5.359,0.076],[5.432,0.075],[5.506,0.073],[5.581,0.072],[5.657,0.07],[6.219,0.063],[6.837,0.056],[7.025,0.056],[7.218,0.054],[7.316,0.054],[7.416,0.053],[7.619,0.053],[7.723,0.052],[8.153,0.052],[8.264,0.051],[8.724,0.051],[8.843,0.05],[9.462,0.05],[9.591,0.049],[200,0.049]]},
+            '116':{p:[[1,6.311],[1.384,2.789],[2.077,1.155],[2.954,0.554],[3.57,0.37],[4.033,0.289],[4.68,0.218],[5.008,0.193],[5.891,0.146],[6.304,0.131],[6.837,0.117],[6.931,0.114],[7.619,0.1],[7.723,0.099],[7.935,0.095],[8.264,0.091],[8.377,0.089],[8.724,0.086],[8.843,0.084],[9.591,0.078],[9.722,0.076],[10.125,0.073],[10.263,0.073],[10.982,0.068],[11.131,0.068],[11.283,0.067],[11.437,0.067],[11.911,0.064],[12.073,0.064],[12.238,0.063],[12.405,0.063],[12.919,0.06],[13.095,0.06],[13.273,0.059],[13.454,0.059],[13.638,0.058],[14.012,0.058],[14.397,0.056],[14.792,0.056],[14.993,0.055],[15.198,0.055],[15.405,0.054],[15.828,0.054],[16.043,0.053],[16.262,0.053],[16.484,0.052],[16.936,0.052],[17.167,0.051],[17.638,0.051],[17.879,0.05],[18.369,0.05],[18.62,0.049],[19.924,0.049],[20.195,0.048],[21.319,0.048],[21.609,0.047],[24.742,0.047],[25.08,0.046],[200,0.046]]},
+            '117':{p:[[1,6.007],[1.276,3.152],[1.293,3.066],[1.673,1.899],[2.022,1.408],[2.315,1.103],[2.76,0.794],[3.382,0.552],[4.257,0.387],[5.145,0.292],[6.053,0.232],[7.218,0.183],[7.723,0.168],[7.829,0.166],[8.153,0.157],[8.843,0.143],[8.964,0.14],[9.854,0.126],[9.989,0.125],[10.263,0.121],[10.403,0.12],[10.688,0.116],[10.834,0.115],[11.283,0.11],[11.437,0.109],[11.593,0.107],[11.751,0.106],[12.238,0.101],[12.405,0.1],[12.574,0.098],[12.745,0.097],[12.919,0.095],[13.095,0.094],[13.273,0.092],[13.638,0.09],[13.824,0.088],[14.203,0.086],[14.397,0.084],[14.593,0.083],[14.792,0.081],[14.993,0.08],[15.198,0.078],[15.615,0.076],[15.828,0.074],[16.936,0.069],[17.167,0.069],[17.638,0.067],[17.879,0.067],[18.369,0.065],[18.62,0.065],[18.873,0.064],[19.131,0.064],[19.391,0.063],[19.656,0.063],[20.195,0.061],[20.749,0.061],[21.032,0.06],[21.609,0.06],[21.904,0.059],[22.812,0.059],[23.123,0.058],[24.081,0.058],[24.41,0.057],[25.08,0.057],[25.421,0.056],[26.475,0.056],[26.836,0.055],[28.715,0.055],[29.107,0.054],[200,0.054]]},
+            '118':{p:[[1,7.959],[1.311,3.571],[1.742,1.76],[2.378,0.868],[3.035,0.545],[3.668,0.385],[4.433,0.276],[5.076,0.222],[5.972,0.174],[6.931,0.144],[7.121,0.14],[7.218,0.137],[7.829,0.125],[8.491,0.113],[8.607,0.112],[8.843,0.108],[8.964,0.107],[9.335,0.102],[9.462,0.101],[9.854,0.096],[10.125,0.094],[10.263,0.092],[10.834,0.088],[10.982,0.086],[11.911,0.08],[12.073,0.08],[13.273,0.073],[13.454,0.073],[13.824,0.071],[14.012,0.071],[14.792,0.067],[15.198,0.067],[15.828,0.064],[16.262,0.064],[16.484,0.063],[16.708,0.063],[16.936,0.062],[17.167,0.062],[17.401,0.061],[17.638,0.061],[17.879,0.06],[18.122,0.06],[18.369,0.059],[18.873,0.059],[19.131,0.058],[19.656,0.058],[19.924,0.057],[20.195,0.057],[20.47,0.056],[21.032,0.056],[21.319,0.055],[21.904,0.055],[22.203,0.054],[23.123,0.054],[23.438,0.053],[24.41,0.053],[24.742,0.052],[26.836,0.052],[27.202,0.051],[200,0.051]]},
+            '119':{p:[[1,9.035],[1.114,5.6],[1.145,5.006],[1.365,3.101],[1.65,2.083],[1.673,2.034],[2.163,1.378],[2.875,1.017],[3.161,0.923],[3.978,0.751],[5.216,0.619],[7.121,0.543],[9.462,0.494],[13.824,0.466],[22.505,0.456],[200,0.456]]},
+            '120':{p:[[1,10.04],[1.293,5.319],[1.742,2.706],[2.253,1.619],[3.076,0.916],[3.925,0.599],[4.257,0.535],[5.506,0.381],[6.565,0.312],[7.723,0.262],[10.545,0.201],[13.638,0.17],[15.405,0.161],[15.615,0.161],[17.638,0.153],[17.879,0.153],[19.131,0.148],[20.195,0.146],[21.319,0.142],[23.438,0.139],[26.119,0.133],[28.329,0.13],[29.503,0.13],[29.906,0.129],[200,0.129]]},
+            '121':{p:[[1,11.87],[1.145,7.917],[1.276,5.48],[1.293,5.184],[1.347,3.899],[1.384,3.205],[1.422,2.496],[1.441,2.195],[1.521,1.069],[1.542,0.834],[1.563,0.368],[1.585,0.22],[1.606,0.153],[1.628,0.11],[1.65,0.083],[1.673,0.067],[1.696,0.065],[1.719,0.064],[1.742,0.062],[1.814,0.059],[1.839,0.057],[1.864,0.056],[1.915,0.056],[1.941,0.055],[1.968,0.055],[1.995,0.054],[2.049,0.054],[2.077,0.053],[2.106,0.053],[2.134,0.052],[2.193,0.052],[2.223,0.051],[2.284,0.051],[2.315,0.05],[2.411,0.05],[2.444,0.049],[2.545,0.049],[2.58,0.048],[2.723,0.048],[2.76,0.047],[3.035,0.047],[3.076,0.046],[200,0.046]]},
+            '122':{p:[[1,9.984],[1.481,4.57],[2.163,2.301],[2.836,1.341],[2.875,1.294],[3.204,0.94],[3.925,0.463],[3.978,0.427],[4.315,0.221],[4.555,0.146],[4.68,0.116],[4.744,0.105],[4.809,0.094],[4.874,0.083],[5.008,0.068],[5.076,0.064],[5.145,0.063],[5.216,0.061],[5.581,0.056],[5.657,0.056],[5.812,0.054],[5.891,0.054],[5.972,0.053],[6.136,0.053],[6.219,0.052],[6.477,0.052],[6.565,0.051],[6.837,0.051],[6.931,0.05],[7.316,0.05],[7.416,0.049],[7.935,0.049],[8.043,0.048],[8.607,0.048],[8.724,0.047],[9.989,0.047],[10.125,0.046],[200,0.046]]},
+            '131':{p:[[1,11.48],[1.628,7.824],[2.615,6.329],[4.088,5.738],[6.053,5.418],[10.263,5.243],[200,5.241]]},
+            '132':{p:[[1,21.86],[1.114,11.72],[1.161,9.292],[1.365,5.591],[1.384,5.36],[1.403,5.185],[1.696,3.462],[1.995,2.646],[2.022,2.573],[2.411,1.757],[2.994,1.031],[3.076,0.976],[3.718,0.673],[4.809,0.42],[5.359,0.338],[6.304,0.247],[7.121,0.198],[8.607,0.142],[8.724,0.138],[9.21,0.126],[9.722,0.117],[9.854,0.114],[10.688,0.102],[10.834,0.101],[11.283,0.095],[11.751,0.091],[11.911,0.089],[12.073,0.088],[12.238,0.086],[12.919,0.082],[13.095,0.08],[15.198,0.069],[15.405,0.069],[15.828,0.067],[16.043,0.067],[16.708,0.064],[16.936,0.064],[17.167,0.063],[17.401,0.063],[18.122,0.06],[18.369,0.06],[18.62,0.059],[18.873,0.059],[19.131,0.058],[19.656,0.058],[19.924,0.057],[20.195,0.057],[20.47,0.056],[21.032,0.056],[21.319,0.055],[21.904,0.055],[22.203,0.054],[23.438,0.054],[23.758,0.053],[25.421,0.053],[25.768,0.052],[200,0.052]]},
+            '133':{p:[[1,14.5],[1.293,7.916],[1.719,4.144],[2.65,1.741],[3.82,0.851],[5.506,0.466],[7.025,0.316],[9.462,0.206],[10.125,0.188],[10.834,0.175],[11.437,0.164],[11.751,0.16],[11.911,0.157],[12.405,0.151],[12.574,0.148],[13.824,0.134],[14.012,0.133],[14.593,0.127],[14.792,0.126],[15.198,0.122],[15.405,0.121],[15.828,0.117],[17.167,0.111],[17.401,0.109],[19.924,0.099],[20.195,0.099],[21.904,0.093],[22.203,0.093],[23.438,0.089],[24.081,0.089],[24.742,0.087],[25.08,0.087],[25.421,0.086],[26.119,0.086],[26.836,0.084],[27.948,0.083],[28.329,0.082],[29.107,0.082],[29.906,0.08],[30.726,0.08],[31.145,0.079],[200,0.079]]},
+            '134':{p:[[1,14.99],[1.384,5.936],[1.65,3.783],[1.79,3.077],[2.315,1.774],[2.994,1.113],[3.872,0.759],[4.555,0.643],[5.359,0.55],[7.121,0.475],[9.989,0.45],[200,0.45]]},
+            '135':{p:[[1,14.69],[1.311,8.366],[1.742,4.769],[2.193,3.139],[2.346,2.845],[3.035,1.971],[4.143,1.339],[5.657,0.975],[7.723,0.784],[11.437,0.642],[15.405,0.59],[22.812,0.566],[24.081,0.563],[200,0.563]]},
+            '136':{p:[[1,25.04],[1.192,9.973],[1.242,8.095],[1.521,4.496],[2.615,1.778],[3.247,1.184],[4.433,0.745],[5.734,0.445],[6.655,0.322],[7.121,0.28],[8.377,0.185],[9.086,0.148],[9.335,0.137],[9.462,0.131],[10.125,0.097],[10.403,0.084],[10.545,0.079],[10.688,0.076],[10.834,0.075],[11.283,0.069],[11.593,0.067],[11.751,0.065],[12.073,0.063],[12.238,0.063],[13.095,0.058],[13.273,0.058],[13.638,0.056],[14.012,0.056],[14.203,0.055],[14.397,0.055],[14.593,0.054],[14.993,0.054],[15.198,0.053],[15.405,0.053],[15.615,0.052],[16.484,0.052],[16.708,0.051],[17.638,0.051],[17.879,0.05],[200,0.05]]},
+            '137':{p:[[1,20.8],[1.365,11.86],[1.864,7.196],[2.687,4.329],[4.088,2.379],[5.076,1.683],[6.39,1.207],[6.565,1.165],[9.854,0.787],[13.273,0.687],[16.708,0.654],[21.032,0.637],[200,0.637]]},
+            '138':{p:[[1,20.53],[1.441,10.46],[1.995,5.961],[2.76,3.542],[3.619,2.413],[3.925,2.044],[4.617,1.547],[5.657,1.062],[7.218,0.7],[10.263,0.406],[11.911,0.334],[13.273,0.291],[17.401,0.225],[18.122,0.217],[21.032,0.195],[21.319,0.194],[22.505,0.186],[25.768,0.17],[31.57,0.16],[200,0.16]]},
+            '139':{p:[[1,22.85],[1.13,11.91],[1.145,11.19],[1.176,10.29],[1.441,5.509],[1.864,3.308],[2.65,1.787],[2.76,1.677],[3.522,1.162],[5.145,0.667],[6.745,0.432],[8.843,0.284],[12.574,0.169],[13.095,0.16],[13.273,0.156],[15.198,0.13],[15.615,0.124],[16.262,0.117],[16.484,0.114],[17.167,0.108],[17.401,0.105],[18.122,0.099],[18.369,0.098],[19.131,0.092],[19.391,0.091],[19.924,0.087],[20.195,0.086],[20.749,0.082],[21.032,0.081],[21.319,0.079],[21.609,0.078],[21.904,0.076],[22.505,0.074],[22.812,0.072],[25.08,0.065],[27.202,0.059],[27.572,0.059],[28.715,0.056],[29.503,0.056],[29.906,0.055],[30.726,0.055],[31.145,0.054],[200,0.054]]},
+            '140':{p:[[1,27.56],[1.293,14.17],[1.65,8.236],[1.696,7.789],[2.223,4.856],[2.994,3.277],[4.143,2.262],[5.657,1.683],[8.724,1.277],[12.238,1.101],[17.638,1.031],[26.475,1.019],[200,1.019]]},
+            '141':{p:[[1,21.61],[1.403,15.82],[2.106,12.85],[3.247,11.27],[5.076,10.49],[10.125,10.21],[200,10.21]]},
+            '142':{p:[[1,35.96],[1.347,20.87],[1.719,12.41],[2.477,6.055],[2.798,4.585],[2.836,4.439],[3.076,3.465],[3.522,2.414],[4.033,1.492],[5.008,0.874],[6.136,0.605],[8.043,0.377],[10.403,0.249],[11.751,0.207],[12.919,0.181],[13.273,0.173],[14.012,0.156],[14.203,0.153],[14.593,0.145],[14.993,0.139],[15.198,0.135],[15.615,0.129],[15.828,0.125],[17.401,0.105],[18.122,0.099],[18.369,0.098],[18.873,0.094],[19.656,0.09],[19.924,0.088],[20.195,0.087],[20.47,0.085],[21.032,0.083],[21.319,0.081],[21.904,0.079],[22.203,0.079],[23.438,0.075],[23.758,0.075],[25.08,0.071],[25.768,0.071],[26.475,0.069],[27.202,0.069],[27.572,0.068],[27.948,0.068],[28.329,0.067],[29.107,0.067],[29.503,0.066],[30.313,0.066],[30.726,0.065],[200,0.065]]},
+            '151':{p:[[1,50.38],[1.347,15.25],[1.365,14.69],[1.839,6.996],[2.378,4.119],[2.994,2.582],[3.82,1.632],[4.941,1.115],[6.565,0.852],[9.335,0.635],[11.593,0.57],[12.238,0.556],[14.792,0.531],[19.131,0.506],[20.47,0.502],[29.503,0.498],[200,0.498]]},
+            '152':{p:[[1,74.03],[1.099,59.81],[1.259,50.57],[1.521,44.72],[1.915,39.86],[2.444,36.6],[5.734,30.78],[8.964,29.04],[14.397,28.02],[32,27.73],[200,27.73]]},
+            '161':{p:[[1,59.96],[1.014,51.38],[1.027,44.02],[1.041,37.72],[1.056,32.33],[1.07,27.7],[1.085,23.74],[1.099,20.34],[1.114,17.43],[1.13,14.94],[1.176,10.79],[1.225,7.802],[1.242,7.276],[1.293,6.188],[1.384,4.725],[1.403,4.523],[1.79,2.256],[2.346,1.176],[4.033,0.399],[5.076,0.275],[5.734,0.228],[6.39,0.197],[6.837,0.181],[6.931,0.177],[7.829,0.152],[8.607,0.138],[8.724,0.137],[9.086,0.131],[9.21,0.13],[9.462,0.126],[9.591,0.125],[9.854,0.121],[10.403,0.116],[10.834,0.111],[11.131,0.109],[11.283,0.107],[13.638,0.093],[13.824,0.093],[14.593,0.089],[14.792,0.089],[15.405,0.086],[15.615,0.086],[16.484,0.082],[16.708,0.082],[17.167,0.08],[17.401,0.08],[17.638,0.079],[17.879,0.079],[18.122,0.078],[18.62,0.078],[19.131,0.076],[19.656,0.076],[19.924,0.075],[20.47,0.075],[21.032,0.073],[21.609,0.073],[21.904,0.072],[22.203,0.072],[22.505,0.071],[23.123,0.071],[23.438,0.07],[24.081,0.07],[24.41,0.069],[25.08,0.069],[25.421,0.068],[26.119,0.068],[26.475,0.067],[27.948,0.067],[28.329,0.066],[29.107,0.066],[29.503,0.065],[200,0.065]]},
+            '162':{p:[[1,36.16],[1.192,17.34],[1.225,15.75],[1.441,9.116],[1.839,4.597],[2.378,2.629],[2.954,1.663],[3.718,1.013],[4.555,0.633],[5.506,0.428],[6.745,0.286],[8.043,0.215],[8.264,0.207],[9.335,0.169],[9.854,0.156],[9.989,0.152],[11.437,0.124],[11.751,0.12],[11.911,0.117],[12.405,0.111],[12.919,0.107],[13.454,0.102],[13.824,0.1],[14.012,0.098],[14.397,0.096],[14.593,0.094],[14.993,0.092],[15.198,0.09],[15.615,0.088],[15.828,0.086],[16.708,0.082],[16.936,0.08],[18.873,0.072],[20.749,0.065],[21.032,0.065],[21.319,0.064],[21.609,0.064],[21.904,0.063],[22.203,0.063],[22.812,0.061],[23.123,0.061],[23.438,0.06],[23.758,0.06],[24.081,0.059],[24.41,0.059],[24.742,0.058],[25.421,0.058],[25.768,0.057],[26.475,0.057],[26.836,0.056],[27.948,0.056],[28.329,0.055],[29.107,0.055],[29.503,0.054],[200,0.054]]},
+            '163':{p:[[1,58.54],[1.07,39.77],[1.114,28.68],[1.161,20.68],[1.192,16.63],[1.276,9.718],[1.441,4.381],[1.461,4.097],[1.742,2.143],[2.193,1.046],[2.65,0.655],[3.292,0.434],[3.925,0.321],[4.494,0.257],[5.287,0.206],[6.304,0.164],[6.39,0.162],[6.565,0.156],[7.025,0.144],[7.517,0.131],[8.153,0.119],[8.724,0.109],[8.843,0.108],[9.21,0.102],[9.591,0.098],[9.989,0.093],[10.263,0.091],[10.403,0.089],[10.834,0.086],[10.982,0.084],[13.095,0.071],[13.273,0.071],[13.824,0.068],[14.012,0.068],[14.593,0.065],[14.792,0.065],[14.993,0.064],[15.198,0.064],[15.405,0.063],[15.615,0.063],[16.262,0.06],[16.708,0.06],[16.936,0.059],[17.167,0.059],[17.401,0.058],[17.879,0.058],[18.122,0.057],[18.369,0.057],[18.62,0.056],[19.131,0.056],[19.391,0.055],[19.656,0.055],[19.924,0.054],[20.749,0.054],[21.032,0.053],[21.609,0.053],[21.904,0.052],[23.123,0.052],[23.438,0.051],[24.742,0.051],[25.08,0.05],[26.836,0.05],[27.202,0.049],[29.503,0.049],[29.906,0.048],[200,0.048]]},
+            '164':{p:[[1,60.02],[1.276,29.36],[1.585,16.03],[1.941,8.676],[2.444,4.731],[2.875,3.012],[3.475,1.874],[4.033,1.244],[4.555,0.862],[5.216,0.591],[5.657,0.493],[6.219,0.406],[7.218,0.317],[8.043,0.277],[9.086,0.242],[11.131,0.2],[11.751,0.192],[13.454,0.176],[17.638,0.155],[17.879,0.155],[18.62,0.152],[18.873,0.152],[19.656,0.149],[20.749,0.147],[21.319,0.145],[22.203,0.144],[22.812,0.142],[23.758,0.141],[24.41,0.139],[25.768,0.137],[26.475,0.137],[27.572,0.135],[30.726,0.133],[31.145,0.132],[200,0.132]]},
+            '165':{p:[[1,90.03],[1.161,62.52],[1.209,56.33],[1.542,29.53],[1.585,27.22],[1.864,16.49],[3.161,2.713],[3.978,1.515],[4.941,0.918],[6.477,0.553],[8.377,0.359],[10.834,0.244],[12.238,0.206],[13.454,0.182],[16.043,0.137],[16.262,0.135],[17.638,0.119],[18.122,0.115],[18.369,0.112],[19.924,0.1],[20.195,0.099],[21.032,0.093],[22.203,0.089],[22.505,0.087],[26.119,0.076],[26.475,0.076],[26.836,0.075],[27.572,0.075],[27.948,0.074],[28.329,0.074],[28.715,0.073],[29.503,0.073],[29.906,0.072],[30.313,0.072],[30.726,0.071],[200,0.071]]},
+            '200':{p:[[1,143.4],[1.056,136.7],[1.085,107.5],[1.099,95.33],[1.13,74.96],[1.161,58.94],[1.176,52.26],[1.242,32.31],[1.461,18.46],[1.521,16.8],[1.742,12.55],[2.049,9.69],[2.444,7.771],[2.875,6.56],[3.428,5.614],[3.978,5.001],[4.744,4.426],[5.657,3.97],[6.565,3.651],[8.043,3.289],[10.982,2.852],[15.405,2.49],[21.032,2.229],[29.906,1.991],[200,1.989]]},
+            '201':{p:[[1,200.0],[1.085,199.2],[1.099,175.4],[1.13,136.1],[1.161,105.5],[1.176,92.96],[1.242,55.94],[1.461,29.39],[1.521,26.18],[1.742,18.2],[2.049,12.87],[2.411,9.58],[2.875,7.203],[3.336,5.782],[3.978,4.534],[4.744,3.606],[5.657,2.899],[7.935,1.946],[10.834,1.373],[15.828,0.91],[29.906,0.468],[30.313,0.466],[200,0.466]]},
+            '202':{p:[[1,200.0],[1.192,197.9],[1.242,147.8],[1.461,70.76],[1.521,61.49],[1.719,41.07],[1.742,39.34],[2.049,25.01],[2.411,16.64],[2.875,11.02],[3.382,7.664],[3.978,5.397],[4.744,3.719],[6.565,1.9],[10.834,0.687],[20.195,0.197],[21.609,0.171],[23.438,0.146],[24.742,0.13],[25.421,0.124],[25.768,0.12],[27.948,0.102],[28.329,0.1],[29.107,0.094],[29.906,0.09],[30.313,0.089],[200,0.089]]}
+        };
+
+        function tempoTabelado(tab, M) {
+            const p = tab.p, n = p.length - 1;
+            if (M < p[0][0]) return null;   // abaixo da faixa digitalizada: tempo muito alto, fora do gráfico
+            if (M >= p[n][0]) return p[n][1];   // acima do último ponto: o PCP mantém o último tempo
+            for (let j = 1; j <= n; j++) {
+                if (M <= p[j][0]) {
+                    const f = (Math.log(M) - Math.log(p[j-1][0])) / (Math.log(p[j][0]) - Math.log(p[j-1][0]));
+                    return Math.exp(Math.log(p[j-1][1]) + f * (Math.log(p[j][1]) - Math.log(p[j-1][1])));
+                }
+            }
+            return p[n][1];
+        }
+
+        let tccChart = null;
+        let regioesViolacao = [];
+        const ocultos = new Set();   // curvas desligadas na legenda (mantidas entre atualizações)
+
+        const MRG_INRUSH_PCT = 0;     // % acima de 0,1 s exigido do relé no ponto de inrush
+
+        // Critérios de coordenação para consumidor (PCP: Critérios > de Coordenação p/ Consumidor)
+        const CRIT = {
+            K: 1.33,             // Elo × Disj:  T.Elo(tmf) > K × T.Disj + 0,20   (consumidor)
+            ADD_ELO_DISJ: 0.20,  // s
+            DISJ_DISJ: 0.40,     // s | Disj × Disj: T.Disj.MO > T.Disj.JU + 0,40 (consumidor)
+            RA_ELO: 1.00         // RA × Elo (lenta): T.Religador > 1,00 × T.Elo(tmi)  (critérios de coordenação da concessionária)
+        };
+
+        const num = (id, def = 0) => { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? def : v; };
+        const chk = id => !!document.getElementById(id)?.checked;
+        const sel = id => document.getElementById(id)?.value;
+        const fatorTC = () => { const [p, s] = (sel('modalRelacaoTC') || '1:1').split(':').map(Number); return p / s; };
+
+        function lerRele(N) {
+            const f = chk('modalSecundario') ? fatorTC() : 1;
+            return {
+                Ip: num(N ? 'modalIatn' : 'modalIatf') * f,
+                curva: sel(N ? 'modalTipoCurvaNeutro' : 'modalTipoCurva'),
+                tms: num(N ? 'modalTmsNeutro' : 'modalTmsFase'),
+                inst: num(N ? 'modalIain' : 'modalIaif') * f,
+                blq: chk(N ? 'modalBloqueadoInstNeutro' : 'modalBloqueadoInst'),
+                tInst: num(N ? 'modalTempInstNeutro' : 'modalTempInst'),
+                defOn: chk(N ? 'modalChkTempDefNeutro' : 'modalChkTempDef'),
+                defI: num(N ? 'modalIdefNeutro' : 'modalIdef') * f,
+                defT: num(N ? 'modalTdefNeutro' : 'modalTdef')
+            };
+        }
+        function lerReligador(N) {
+            return {
+                Ip: num(N ? 'religadorIatn' : 'religadorIatf'),
+                curva: sel(N ? 'religadorCurvaNeutro' : 'religadorCurvaFase'),
+                fm: num(N ? 'religadorFmultNeutro' : 'religadorFmultFase'),
+                add: num(N ? 'religadorAddNeutro' : 'religadorAddFase')
+            };
+        }
+
+        // Tempo de atuação do relé: curva inversa + instantâneo + (opcional) estágio de tempo definido
+        function tRele(I, c) {
+            if (c.Ip <= 0) return null;
+            let t = calcTempoTCC(I, c.Ip, c.tms, c.curva, c.inst, c.blq, c.tInst, 0);
+            if (c.defOn && c.defI > 0 && I >= c.defI) {
+                const td = Math.max(c.defT, 0.01);
+                t = (t === null) ? td : Math.min(t, td);
+            }
+            return t;
+        }
+        function tRelig(I, c) {
+            if (c.Ip <= 0) return null;
+            const tab = dbCurvasTCC[c.curva];
+            if (!tab) return calcTempoTCC(I, c.Ip, c.fm, c.curva, 0, true, 0, c.add);   // NI / MI / EI (IEC)
+            const M = I / c.Ip;
+            if (M < 1) return null;
+            const t = tempoTabelado(tab, M);
+            if (t === null) return null;
+            const r = c.fm * t + c.add;
+            return r < 0.01 ? 0.01 : r;
+        }
+
+        // Interpolação log-log nos pontos do elo; null = abaixo da faixa (elo não atua)
+        function interpLog(pts, I) {
+            if (I < pts[0].x) return null;
+            const last = pts[pts.length - 1];
+            if (I >= last.x) return last.y;
+            for (let k = 0; k < pts.length - 1; k++) {
+                const a = pts[k], b = pts[k + 1];
+                if (I >= a.x && I <= b.x) {
+                    const f = (Math.log(I) - Math.log(a.x)) / (Math.log(b.x) - Math.log(a.x));
+                    return Math.exp(Math.log(a.y) + f * (Math.log(b.y) - Math.log(a.y)));
+                }
+            }
+            return null;
+        }
+
+        // Varre i0..i1 (escala log) avaliando um critério: avalia(I) devolve { m, a, b }
+        //   m = folga em segundos (m < 0 viola o critério); a e b = curva inferior e superior (para destacar no gráfico)
+        function varrer(i0, i1, avalia) {
+            const r = { ok: true, minM: Infinity, iMin: null, segs: [], aplic: i0 > 0 && i1 > i0 };
+            if (!r.aplic) return r;
+            let seg = null;
+            for (let I = i0; ; I *= 1.02) {
+                if (I > i1) I = i1;
+                const { m, a, b } = avalia(I);
+                if (m < r.minM) { r.minM = m; r.iMin = I; }
+                if (m < 0) {
+                    r.ok = false;
+                    if (isFinite(a) && isFinite(b)) { if (!seg) seg = []; seg.push({ x: I, a, b }); }
+                    else if (seg) { r.segs.push(seg); seg = null; }
+                } else if (seg) { r.segs.push(seg); seg = null; }
+                if (I >= i1) break;
+            }
+            if (seg) r.segs.push(seg);
+            return r;
+        }
+
+        function verificar(N, R, G, fuse, iMax) {
+            const out = [];
+            regioesViolacao = [];
+            const tr = I => tRele(I, R), tg = I => tRelig(I, G);
+            const status = r => !r.aplic ? 'na' : (r.ok ? 'ok' : 'falha');
+
+            // 1. Inrush × Relé (apenas fase): o relé não pode atuar no ponto (I_inrush, 0,1 s)
+            const inrush = num('inrushVal');
+            if (N || inrush <= 0) out.push({ nome: 'Inrush × Relé', status: 'na' });
+            else {
+                const t = tr(inrush);
+                out.push({ nome: 'Inrush × Relé', status: (t === null || t >= 0.1 * (1 + MRG_INRUSH_PCT / 100)) ? 'ok' : 'falha' });
+            }
+
+            // 2. Elo × Disj: T.Elo(tmf) > K × T.Disj + 0,20   (relé a jusante do elo; tmf = MMT)
+            const r2 = varrer(fuse.mmt[0].x, iMax, I => {
+                const t = tr(I), mmt = interpLog(fuse.mmt, I);
+                if (t === null) return { m: -Infinity, a: Infinity, b: mmt };
+                return { m: mmt - (CRIT.K * t + CRIT.ADD_ELO_DISJ), a: t, b: mmt };
+            });
+            // 3. RA × Elo (lenta): T.Religador > 1,00 × T.Elo(tmi)   (religador a montante do elo; tmi = MCT)
+            //    Abaixo do início da curva do elo o elo não atua (tempo infinito): o religador atua antes e a faixa é marcada, como no PCP.
+            const r3 = varrer(G.Ip, iMax, I => {
+                const t = tg(I);
+                if (t === null) return { m: Infinity, a: Infinity, b: Infinity };
+                const mct = interpLog(fuse.mct, I);
+                if (mct === null) return { m: -Infinity, a: 1000, b: t };
+                return { m: t - CRIT.RA_ELO * mct, a: mct, b: t };
+            });
+            // 4. Disj × Disj: T.Disj.MO > T.Disj.JU + 0,40   (religador a montante do relé)
+            const r4 = varrer(G.Ip, iMax, I => {
+                const t = tr(I), tm = tg(I);
+                if (t === null || tm === null) return { m: Infinity, a: t === null ? Infinity : t, b: tm === null ? Infinity : tm };
+                return { m: tm - (t + CRIT.DISJ_DISJ), a: t, b: tm };
+            });
+
+            [['Relé × Elo', r2, 'rgba(239,68,68,0.28)'], ['Elo × Religador', r3, 'rgba(245,158,11,0.32)'], ['Relé × Religador', r4, 'rgba(217,70,239,0.25)']].forEach(([nome, r, cor]) => {
+                out.push({ nome, status: status(r), minM: r.minM, iMin: r.iMin });
+                if (r.aplic) regioesViolacao.push({ nome, segs: r.segs, cor });
+            });
+            return out;
+        }
+
+        // Gera pontos da curva com degraus explícitos nas correntes especiais (instantâneo, tempo definido)
+        function curva(fn, extras) {
+            const Is = new Set();
+            for (let I = 5; I <= 10000; I *= 1.01) Is.add(I);
+            extras.forEach(e => { if (e > 0) { Is.add(e); Is.add(e * 0.9999); } });
+            return [...Is].sort((a, b) => a - b)
+                .map(I => ({ x: I, y: fn(I) }))
+                .filter(p => p.y !== null && p.y >= 0.01 && p.y <= 1000);
+        }
+
+        // Curva do religador: curvas tabeladas são desenhadas pelos próprios pontos da tabela (sem reamostragem);
+        // NI / MI / EI (fórmula IEC) seguem pela amostragem contínua.
+        function curvaReligador(G) {
+            const tab = dbCurvasTCC[G.curva];
+            if (!tab || G.Ip <= 0) return curva(I => tRelig(I, G), []);
+            const pts = [];
+            const add = (I, t) => {
+                const y = Math.max(G.fm * t + G.add, 0.01);
+                if (I >= 5 && I <= 10000 && y <= 1000) pts.push({ x: I, y });
+            };
+            tab.p.forEach(([M, t]) => add(M * G.Ip, t));
+            // fecha a curva em 10 kA: patamar (101–202) ou prolongamento (C1–C4)
+            if (!pts.length || pts[pts.length - 1].x < 10000) {
+                const tEnd = tempoTabelado(tab, 10000 / G.Ip);
+                if (tEnd !== null) add(10000, tEnd);
+            }
+            return pts;
+        }
+
+        // Mira: linhas x,y acompanham o mouse e mostram corrente (A) e tempo (s) da posição apontada
+        const fmtI = I => (I < 100 ? I.toFixed(1) : I.toFixed(0)) + ' A';
+        const fmtS = t => (t < 0.1 ? t.toFixed(3) : t < 10 ? t.toFixed(2) : t.toFixed(1)) + ' s';
+        const pluginCruz = {
+            id: 'cruz',
+            afterEvent(chart, args) {
+                const e = args.event, a = chart.chartArea;
+                if (!a) return;
+                if (e.type === 'mouseout') { if (chart.$cur) { chart.$cur = null; args.changed = true; } return; }
+                const dentro = e.x >= a.left && e.x <= a.right && e.y >= a.top && e.y <= a.bottom;
+                if (dentro || chart.$cur) { chart.$cur = dentro ? { x: e.x, y: e.y } : null; args.changed = true; }
+            },
+            afterDraw(chart) {
+                const c = chart.$cur;
+                if (!c) return;
+                const { ctx, chartArea: a, scales: { x, y } } = chart;
+                const I = x.getValueForPixel(c.x), t = y.getValueForPixel(c.y);
+                if (!(I > 0) || !(t > 0)) return;
+                const tag = (txt, cx, cy, alinhar) => {
+                    ctx.font = 'bold 11px sans-serif';
+                    const w = ctx.measureText(txt).width + 10, hgt = 18;
+                    let px = alinhar === 'esq' ? cx - w : cx - w / 2;
+                    px = Math.max(2, Math.min(px, chart.width - w - 2));
+                    ctx.fillStyle = 'rgba(15,23,42,0.92)';
+                    ctx.fillRect(px, cy - hgt / 2, w, hgt);
+                    ctx.fillStyle = '#fff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+                    ctx.fillText(txt, px + 5, cy);
+                };
+                ctx.save();
+                ctx.beginPath(); ctx.rect(a.left, a.top, a.width, a.height); ctx.clip();
+                ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(15,23,42,0.6)'; ctx.setLineDash([5, 3]);
+                ctx.beginPath();
+                ctx.moveTo(c.x, a.top); ctx.lineTo(c.x, a.bottom);
+                ctx.moveTo(a.left, c.y); ctx.lineTo(a.right, c.y);
+                ctx.stroke();
+                ctx.restore();
+                ctx.save();
+                tag(fmtI(I), c.x, a.bottom + 11, 'centro');      // corrente sobre o eixo X
+                tag(fmtS(t), a.left - 2, c.y, 'esq');            // tempo sobre o eixo Y
+                ctx.restore();
+            }
+        };
+
+        const pluginViolacao = {
+            id: 'violacao',
+            beforeDatasetsDraw(chart) {
+                if (!chk('chkShowArea')) return;
+                const { ctx, chartArea, scales: { x, y } } = chart;
+                ctx.save();
+                ctx.beginPath(); ctx.rect(chartArea.left, chartArea.top, chartArea.width, chartArea.height); ctx.clip();
+                regioesViolacao.forEach(rg => rg.segs.forEach(seg => {
+                    if (seg.length < 2) return;
+                    ctx.beginPath();
+                    seg.forEach((p, i) => { const px = x.getPixelForValue(p.x), py = y.getPixelForValue(p.a); i ? ctx.lineTo(px, py) : ctx.moveTo(px, py); });
+                    for (let i = seg.length - 1; i >= 0; i--) ctx.lineTo(x.getPixelForValue(seg[i].x), y.getPixelForValue(seg[i].b));
+                    ctx.closePath(); ctx.fillStyle = rg.cor; ctx.fill();
+                }));
+                ctx.restore();
+            }
+        };
+
+        function renderizarGrafico() {
+            const canvas = document.getElementById('tccCanvas');
+            const ctx = canvas?.getContext('2d');
+            if (!ctx) return;
+
+            const N = sel('modoFN') === 'N';
+            const R = lerRele(N), G = lerReligador(N);
+            const icc3f = num('icc3fSim'), iccftMax = num('iccftMax'), iccftMin = num('iccftMin'), inrush = num('inrushVal');
+            const eloKey = sel('eloFusivelSel');
+            const fuse = dbElos[eloKey] || dbElos['65K'];
+            const iMax = N ? iccftMax : icc3f;
+
+            const res = verificar(N, R, G, fuse, iMax);
+
+            const extrasRele = [(!R.blq ? R.inst : 0), (R.defOn ? R.defI : 0)];
+            const sufixo = N ? 'Neutro' : 'Fase';
+            const datasets = [
+                { key: 'relig', label: `1. Religador COPEL (${sufixo})`, data: curvaReligador(G), borderColor: '#1d4ed8', borderWidth: 2.5, showLine: true, pointRadius: 0 },
+                { key: 'rele', label: `2. Relé Entrada UC (${sufixo})`, data: curva(I => { const t = tRele(I, R); return t === null ? null : Math.max(t, 0.01); }, extrasRele), borderColor: '#06b6d4', borderWidth: 2.5, showLine: true, pointRadius: 0 }
+            ];
+            datasets.push(
+                { key: 'elo', legend: `3. Elo Fusível ${eloKey}`, label: `3. Elo Fusível ${eloKey} (MCT)`, data: fuse.mct, borderColor: '#059669', borderWidth: 2, showLine: true, pointRadius: 1.5 },
+                { key: 'elo', label: `Elo Fusível ${eloKey} (MMT)`, data: fuse.mmt, borderColor: '#10b981', borderWidth: 1.5, borderDash: [3, 3], showLine: true, pointRadius: 0 }
+            );
+
+            const vline = (key, lab, I, cor, dash) => ({ key, label: `${lab} (${I.toFixed(0)} A)`, data: [{ x: I, y: 0.01 }, { x: I, y: 1000 }], borderColor: cor, borderWidth: 1.5, borderDash: dash, showLine: true, pointRadius: 0 });
+            if (!N && icc3f > 0) datasets.push(vline('icc', 'Icc 3Ф Máx', icc3f, '#dc2626', [4, 4]));
+            if (N && iccftMax > 0) datasets.push(vline('icc', 'Icc FT Máx', iccftMax, '#dc2626', [4, 4]));
+            if (iccftMin > 0) datasets.push(vline('iccmin', 'Icc FT Mín', iccftMin, '#eab308', [2, 2]));
+
+            if (!N && inrush > 0) {
+                const falhou = res[0].status === 'falha';
+                datasets.push({
+                    key: 'inrush',
+                    label: `Inrush Trafo (${inrush.toFixed(0)} A / 0,1 s)`,
+                    data: [{ x: inrush, y: 0.1 }],
+                    borderColor: falhou ? '#dc2626' : '#a855f7', backgroundColor: falhou ? '#dc2626' : '#a855f7',
+                    pointStyle: 'rectRot', pointRadius: 8, showLine: false
+                });
+            }
+
+            datasets.forEach(d => { d.hidden = ocultos.has(d.key); });
+            canvas.style.cursor = 'crosshair';
+            if (tccChart) tccChart.destroy();
+            tccChart = new Chart(ctx, {
+                type: 'scatter',
+                data: { datasets },
+                plugins: [pluginViolacao, pluginCruz],
+                options: {
+                    responsive: true, maintainAspectRatio: false, animation: false,
+                    scales: {
+                        x: { type: 'logarithmic', min: 5, max: 10000,
+                             title: { display: true, text: 'CORRENTE EM AMPERES (A)', font: { weight: 'bold', size: 11 } },
+                             ticks: { maxRotation: 0, autoSkip: false, callback: v => [10, 100, 1000, 10000].includes(v) ? v : '' }, grid: { color: '#cbd5e1' } },
+                        y: { type: 'logarithmic', min: 0.01, max: 1000,
+                             title: { display: true, text: 'TEMPO EM SEGUNDOS (s)', font: { weight: 'bold', size: 11 } },
+                             ticks: { callback: v => [0.01, 0.1, 1, 10, 100, 1000].includes(v) ? v : '' }, grid: { color: '#cbd5e1' } }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    }
+                }
+            });
+            montarLegenda(datasets);
+        }
+
+        // Legenda própria (alinhada, com liga/desliga por curva)
+        function montarLegenda(datasets) {
+            const el = document.getElementById('legendaTCC');
+            if (!el) return;
+            // agrupa datasets de mesma chave (ex.: MCT e MMT do elo) num único item
+            const grupos = [], porChave = new Map();
+            datasets.forEach((d, i) => {
+                if (!porChave.has(d.key)) { porChave.set(d.key, grupos.length); grupos.push({ key: d.key, idx: [i] }); }
+                else grupos[porChave.get(d.key)].idx.push(i);
+            });
+            const faixas = chk('chkShowArea')
+                ? regioesViolacao.filter(r => r.segs.some(s => s.length > 1))
+                    .map(r => `<span class="leg-faixa"><i style="background:${r.cor.replace(/[\d.]+\)$/, '0.6)')}"></i>${r.nome}</span>`).join('')
+                : '';
+            el.innerHTML = grupos.map((g, gi) => {
+                const ds = g.idx.map(i => datasets[i]), d0 = ds[0];
+                let sw;
+                if (d0.showLine === false) {
+                    sw = `<svg width="26" height="12"><rect x="9" y="1" width="8" height="8" transform="rotate(45 13 5)" fill="${d0.borderColor}"/></svg>`;
+                } else {
+                    const linhas = ds.map((d, k) => {
+                        const y = ds.length > 1 ? 3 + 6 * k : 6;
+                        const dash = (d.borderDash || []).map(v => v * 2).join(' ');
+                        return `<line x1="1" y1="${y}" x2="25" y2="${y}" stroke="${d.borderColor}" stroke-width="${Math.max(2, d.borderWidth || 2)}" stroke-dasharray="${dash}"/>`;
+                    }).join('');
+                    sw = `<svg width="26" height="12">${linhas}</svg>`;
+                }
+                return `<button type="button" data-g="${gi}" class="leg-item${d0.hidden ? ' off' : ''}">${sw}<span>${d0.legend || d0.label}</span></button>`;
+            }).join('') + faixas;
+            el.querySelectorAll('button').forEach(btn => {
+                btn.onclick = () => {
+                    const g = grupos[+btn.dataset.g];
+                    const visivel = tccChart.isDatasetVisible(g.idx[0]);
+                    g.idx.forEach(i => tccChart.setDatasetVisibility(i, !visivel));
+                    if (visivel) ocultos.add(g.key); else ocultos.delete(g.key);
+                    btn.classList.toggle('off', visivel);
+                    tccChart.update();
+                };
+            });
+        }
+
+
+        // --- SELEÇÃO DE CURVA COM PRÉVIA (estilo PCP) ---
+        let pickerCtx = null;
+        const CORES_EQ = {
+            religador: { id: '#1d4ed8', txt: '#1d4ed8', bg: '#EFF4FF', bd: '#BFD1FF', nome: 'Religador' },
+            rele:      { id: '#06b6d4', txt: '#0E7490', bg: '#ECFEFF', bd: '#A5F3FC', nome: 'Relé Entrada UC' }
+        };
+
+        function atualizarRotuloCurva(id) {
+            const sel = document.getElementById(id), lbl = document.getElementById('lblCurva_' + id);
+            if (sel && lbl && sel.selectedIndex >= 0) lbl.textContent = sel.options[sel.selectedIndex].text;
+        }
+
+        function desenharPrevia(canvas, valor, cor) {
+            const dpr = window.devicePixelRatio || 1;
+            const W = canvas.clientWidth || 380, H = Math.round(W * 0.75);
+            canvas.width = W * dpr; canvas.height = H * dpr;
+            const g = canvas.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+            const L = 44, R = 12, T = 12, B = 32, x0 = 1, x1 = 200, y0 = 0.01, y1 = 1000;
+            const X = m => L + (Math.log10(m) - Math.log10(x0)) / (Math.log10(x1) - Math.log10(x0)) * (W - L - R);
+            const Y = t => T + (Math.log10(y1) - Math.log10(t)) / (Math.log10(y1) - Math.log10(y0)) * (H - T - B);
+            g.clearRect(0, 0, W, H);
+            g.lineWidth = 1;
+            for (let d = 0; d <= 2; d++) for (let k = 1; k <= 9; k++) {
+                const m = k * Math.pow(10, d); if (m < x0 || m > x1) continue;
+                g.strokeStyle = k === 1 ? '#CBD5E1' : '#EEF1F5'; g.beginPath(); g.moveTo(X(m), T); g.lineTo(X(m), H - B); g.stroke();
+            }
+            for (let d = -2; d <= 3; d++) for (let k = 1; k <= 9; k++) {
+                const t = k * Math.pow(10, d); if (t < y0 || t > y1) continue;
+                g.strokeStyle = k === 1 ? '#CBD5E1' : '#EEF1F5'; g.beginPath(); g.moveTo(L, Y(t)); g.lineTo(W - R, Y(t)); g.stroke();
+            }
+            g.font = '10px sans-serif'; g.fillStyle = '#64748B'; g.textBaseline = 'middle';
+            g.textAlign = 'center'; [1, 10, 100].forEach(m => g.fillText(String(m), X(m), H - B + 12));
+            g.fillText('I (múltiplo do pickup)', (L + W - R) / 2, H - 6);
+            g.textAlign = 'right'; [0.01, 0.1, 1, 10, 100, 1000].forEach(t => g.fillText(String(t), L - 6, Y(t)));
+            g.save(); g.translate(10, (T + H - B) / 2); g.rotate(-Math.PI / 2); g.textAlign = 'center'; g.fillText('T (s)', 0, 0); g.restore();
+
+            const tab = dbCurvasTCC[valor];
+            let pts = [];
+            if (tab) pts = tab.p.map(([m, t]) => ({ m, t }));
+            else for (let m = 1.02; m <= x1; m *= 1.02) { const t = calcTempoTCC(m * 100, 100, 1, valor, 0, true, 0, 0); if (t !== null) pts.push({ m, t }); }
+            pts = pts.filter(q => q.m >= x0 && q.m <= x1 && q.t >= y0 && q.t <= y1);
+            g.strokeStyle = cor; g.lineWidth = 2.5; g.lineJoin = 'round'; g.beginPath();
+            pts.forEach((q, i) => i ? g.lineTo(X(q.m), Y(q.t)) : g.moveTo(X(q.m), Y(q.t)));
+            g.stroke();
+        }
+
+        function abrirPickerCurva(id) {
+            const sel = document.getElementById(id);
+            const c = id.indexOf('religador') === 0 ? CORES_EQ.religador : CORES_EQ.rele;
+            pickerCtx = { id, sel, valor: sel.value, cor: c };
+            const box = document.getElementById('boxCurvas');
+            box.style.setProperty('--id', c.id); box.style.setProperty('--id-txt', c.txt);
+            box.style.setProperty('--id-bg', c.bg); box.style.setProperty('--id-bd', c.bd);
+            document.getElementById('tituloPicker').textContent = 'Visualização e Seleção de Curvas — ' + c.nome;
+            const item = o => `<button type="button" class="curva-item" data-v="${o.value}" onclick="escolherCurva('${o.value}')" ondblclick="confirmarCurva()">${o.text}</button>`;
+            document.getElementById('listaCurvas').innerHTML = [...sel.children].map(n =>
+                n.tagName === 'OPTGROUP' ? `<div class="curva-grp">${n.label}</div>` + [...n.children].map(item).join('') : item(n)).join('');
+            document.getElementById('modalCurvas').classList.remove('hidden');
+            escolherCurva(sel.value);
+        }
+
+        function escolherCurva(v) {
+            pickerCtx.valor = v;
+            document.querySelectorAll('#listaCurvas .curva-item').forEach(b => {
+                const on = b.dataset.v === v; b.classList.toggle('sel', on);
+                if (on) b.scrollIntoView({ block: 'nearest' });
+            });
+            const op = [...pickerCtx.sel.options].find(o => o.value === v);
+            document.getElementById('nomePrevia').textContent = op ? op.text : v;
+            const tab = dbCurvasTCC[v];
+            let info = tab
+                ? `Curva tabelada: ${tab.p.length} pontos, faixa de M = ${tab.p[0][0]} a ${tab.p[tab.p.length - 1][0]}.`
+                : 'Curva definida por fórmula IEC.';
+            info += ' Desenho com Fmult/TMS = 1; o ajuste multiplica o tempo.';
+            document.getElementById('infoPrevia').innerHTML = info;
+            desenharPrevia(document.getElementById('canvasPrevia'), v, pickerCtx.cor.id);
+        }
+
+        function confirmarCurva() {
+            pickerCtx.sel.value = pickerCtx.valor;
+            atualizarRotuloCurva(pickerCtx.id);
+            fecharPickerCurva();
+        }
+        function fecharPickerCurva() { document.getElementById('modalCurvas').classList.add('hidden'); }
+
+        function atualizarEstudo() {
+            renderizarGrafico();
         }
 
         window.onload = function() {
             renderizarEntradas();
             recalcular();
+            ['modalTipoCurva', 'modalTipoCurvaNeutro', 'religadorCurvaFase', 'religadorCurvaNeutro'].forEach(atualizarRotuloCurva);
+            lucide.createIcons();
+            ['icc3fSim', 'iccftMax', 'iccftMin', 'inrushVal', 'modalIatf'].forEach(id =>
+                document.getElementById(id)?.addEventListener('input', () => editados.add(id)));
         };
     </script>
 </body>
