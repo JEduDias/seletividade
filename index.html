@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coordenação e Seletividade</title>
     
-    <!-- Fontes, Tailwind CSS CDN, Chart.js & Lucide Icons para a Aba 3 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Recursos externos opcionais (não bloqueiam a página; se a rede os bloquear, o sistema usa versões embutidas):
+         fonte Open Sans (senão usa a fonte do sistema) e Chart.js (senão usa o gráfico embutido MiniChart).
+         Tailwind (CSS) e ícones já estão embutidos neste arquivo. -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
+    <script async src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -257,6 +255,8 @@
         .curva-item:hover { background:var(--id-bg); }
         .curva-item.sel { background:var(--id); color:#fff; font-weight:700; }
     </style>
+    <!-- Tailwind CSS (v3.4) gerado a partir das classes usadas neste arquivo: dispensa o CDN -->
+    <style id="tailwind-embutido">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.collapse{visibility:collapse}.fixed{position:fixed}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.mb-0\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mr-1{margin-right:.25rem}.mr-1\.5{margin-right:.375rem}.mt-2{margin-top:.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-2\.5{height:.625rem}.h-3{height:.75rem}.h-4{height:1rem}.h-\[calc\(100vh-140px\)\]{height:calc(100vh - 140px)}.min-h-0{min-height:0}.min-h-\[650px\]{min-height:650px}.w-16{width:4rem}.w-2\.5{width:.625rem}.w-20{width:5rem}.w-24{width:6rem}.w-3{width:.75rem}.w-4{width:1rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-4{gap:1rem}.gap-x-1{-moz-column-gap:.25rem;column-gap:.25rem}.gap-y-1{row-gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-4>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem*var(--tw-space-x-reverse));margin-left:calc(1rem*(1 - var(--tw-space-x-reverse)))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.rounded-t-md{border-top-left-radius:.375rem;border-top-right-radius:.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-900\/50{background-color:rgba(15,23,42,.5)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-2{padding-bottom:.5rem}.pb-2\.5{padding-bottom:.625rem}.pt-1{padding-top:.25rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.outline{outline-style:solid}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-0:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}@media (min-width:768px){.md\:w-1\/2{width:50%}.md\:flex-row{flex-direction:row}}@media (min-width:1024px){.lg\:w-96{width:24rem}.lg\:flex-row{flex-direction:row}}</style>
 </head>
 <body>
 
@@ -561,7 +561,7 @@
                     <!-- Níveis de Curto-Circuito -->
                     <div class="p-3 border-b border-slate-200 bg-slate-50">
                         <h2 class="font-bold text-slate-700 mb-2 flex items-center text-xs uppercase tracking-wider">
-                            <i data-lucide="zap" class="w-4 h-4 mr-1 text-amber-500"></i> Níveis de Curto-Circuito (A)
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-4 h-4 mr-1 text-amber-500"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Níveis de Curto-Circuito (A)
                         </h2>
                         <div class="grid grid-cols-2 gap-2 text-xs">
                             <div >
@@ -589,7 +589,7 @@
                     <div class="p-3">
                         <div class="flex justify-between items-center mb-2">
                             <h2 class="font-bold text-slate-700 text-xs uppercase tracking-wider flex items-center">
-                                <i data-lucide="layers" class="w-4 h-4 mr-1 text-blue-500"></i> Equipamentos de Proteção
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layers w-4 h-4 mr-1 text-blue-500"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg> Equipamentos de Proteção
                             </h2>
                         </div>
 
@@ -600,7 +600,7 @@
                                     <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Religador
                                 </span>
                                 <button type="button" onclick="abrirModalReligador()" class="eq-btn flex items-center gap-1">
-                                    <i data-lucide="sliders" class="w-3 h-3"></i> Ajustes do Religador
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders w-3 h-3"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/></svg> Ajustes do Religador
                                 </button>
                             </div>
                         </div>
@@ -612,7 +612,7 @@
                                     <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Relé Entrada UC
                                 </span>
                                 <button type="button" onclick="abrirModalAjustes()" class="eq-btn flex items-center gap-1">
-                                    <i data-lucide="sliders" class="w-3 h-3"></i> Ajustes do Relé
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders w-3 h-3"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/></svg> Ajustes do Relé
                                 </button>
                             </div>
                         </div>
@@ -672,7 +672,7 @@
         <div class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-xl text-slate-800 font-sans text-xs overflow-hidden flex flex-col" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC;max-height:calc(100vh - 2rem)">
             <div class="m-head shrink-0 px-4 py-3 flex justify-between items-center">
                 <span class="font-extrabold id-txt text-sm tracking-wide flex items-center gap-2">
-                    <i data-lucide="sliders" class="w-4 h-4 id-txt"></i> Ajustes do Relé Entrada UC
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders w-4 h-4 id-txt"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/></svg> Ajustes do Relé Entrada UC
                 </span>
                 <button type="button" onclick="fecharModalAjustes()" class="text-slate-400 hover:text-slate-700 font-bold text-lg px-2 rounded leading-none transition">&times;</button>
             </div>
@@ -849,7 +849,7 @@
 
             <div class="shrink-0 bg-slate-50 px-4 py-3 border-t border-slate-200 flex justify-end">
                 <button type="button" onclick="aplicarAjustesRele()" class="m-apply text-white font-bold px-5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-1 text-xs">
-                    <i data-lucide="check" class="w-4 h-4 text-white"></i> Aplicar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-4 h-4 text-white"><path d="M20 6 9 17l-5-5"/></svg> Aplicar
                 </button>
             </div>
         </div>
@@ -860,7 +860,7 @@
         <div class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-xl text-slate-800 font-sans text-xs overflow-hidden flex flex-col" style="--id:#1d4ed8;--id-txt:#1d4ed8;--id-bg:#EFF4FF;--id-bd:#BFD1FF;max-height:calc(100vh - 2rem)">
             <div class="m-head shrink-0 px-4 py-3 flex justify-between items-center">
                 <span class="font-extrabold id-txt text-sm tracking-wide flex items-center gap-2">
-                    <i data-lucide="sliders" class="w-4 h-4 id-txt"></i> Ajustes do Religador
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sliders w-4 h-4 id-txt"><line x1="4" x2="4" y1="21" y2="14"/><line x1="4" x2="4" y1="10" y2="3"/><line x1="12" x2="12" y1="21" y2="12"/><line x1="12" x2="12" y1="8" y2="3"/><line x1="20" x2="20" y1="21" y2="16"/><line x1="20" x2="20" y1="12" y2="3"/><line x1="2" x2="6" y1="14" y2="14"/><line x1="10" x2="14" y1="8" y2="8"/><line x1="18" x2="22" y1="16" y2="16"/></svg> Ajustes do Religador
                 </span>
                 <button type="button" onclick="fecharModalReligador()" class="text-slate-400 hover:text-slate-700 font-bold text-lg px-2 rounded leading-none transition">&times;</button>
             </div>
@@ -955,7 +955,7 @@
 
             <div class="shrink-0 bg-slate-50 px-4 py-3 border-t border-slate-200 flex justify-end">
                 <button type="button" onclick="aplicarAjustesReligador()" class="m-apply text-white font-bold px-5 py-1.5 rounded-lg shadow-sm transition flex items-center gap-1 text-xs">
-                    <i data-lucide="check" class="w-4 h-4 text-white"></i> Aplicar
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check w-4 h-4 text-white"><path d="M20 6 9 17l-5-5"/></svg> Aplicar
                 </button>
             </div>
         </div>
@@ -1786,6 +1786,135 @@
             return p[n][1];
         }
 
+
+        // ===== Gráfico embutido (alternativa ao Chart.js) =====
+        // Usado automaticamente quando o Chart.js não carrega (ex.: rede corporativa que bloqueia o CDN).
+        // Implementa só o que o coordenograma usa: eixos logarítmicos, curvas, pontos, plugins e eventos do mouse.
+        class MiniChart {
+            constructor(ctx, cfg) {
+                this.ctx = ctx; this.canvas = ctx.canvas; this.config = cfg;
+                this.data = cfg.data; this.options = cfg.options || {}; this.plugins = cfg.plugins || [];
+                this._oculto = this.data.datasets.map(d => !!d.hidden);
+                this.chartArea = { left: 0, right: 0, top: 0, bottom: 0, width: 0, height: 0 };
+                this.scales = {};
+                this._ev = e => this._evento(e);
+                ['mousemove', 'mouseout', 'touchstart', 'touchmove'].forEach(t => this.canvas.addEventListener(t, this._ev, { passive: true }));
+                this._ro = (typeof ResizeObserver !== 'undefined') ? new ResizeObserver(() => this._redimensionar()) : null;
+                if (this._ro) this._ro.observe(this.canvas.parentNode);
+                this._redimensionar();
+            }
+            _redimensionar() {
+                const p = this.canvas.parentNode, dpr = window.devicePixelRatio || 1;
+                const w = Math.max(100, Math.floor(p.clientWidth)), h = Math.max(100, Math.floor(p.clientHeight));
+                if (w === this.width && h === this.height && dpr === this.dpr) return;
+                this.width = w; this.height = h; this.dpr = dpr;
+                this.canvas.style.width = w + 'px'; this.canvas.style.height = h + 'px';
+                this.canvas.width = Math.round(w * dpr); this.canvas.height = Math.round(h * dpr);
+                this.draw();
+            }
+            _ticks(min, max) {
+                const t = [];
+                for (let e = Math.floor(Math.log10(min)); e <= Math.ceil(Math.log10(max)); e++)
+                    for (let k = 1; k <= 9; k++) {
+                        const v = Number((k * Math.pow(10, e)).toPrecision(12));
+                        if (v >= min * (1 - 1e-12) && v <= max * (1 + 1e-12)) t.push(v);
+                    }
+                return t;
+            }
+            _layout() {
+                const g = this.ctx, ox = this.options.scales.x, oy = this.options.scales.y;
+                this._xt = this._ticks(ox.min, ox.max); this._yt = this._ticks(oy.min, oy.max);
+                const rot = (o, ts) => ts.map((v, i) => { const r = (o.ticks && o.ticks.callback) ? o.ticks.callback(v, i, ts) : v; return (r === undefined || r === null) ? '' : String(r); });
+                this._xl = rot(ox, this._xt); this._yl = rot(oy, this._yt);
+                g.font = '12px ' + MiniChart.FONTE;
+                const maxW = Math.max(0, ...this._yl.map(s => g.measureText(s).width));
+                const a = this.chartArea;
+                a.left = 10 + 14 + 8 + maxW + 11; a.right = this.width - 16; a.top = 8; a.bottom = this.height - (8 + 13 + 6 + 14 + 11);
+                a.width = a.right - a.left; a.height = a.bottom - a.top;
+                const lx0 = Math.log10(ox.min), lx1 = Math.log10(ox.max), ly0 = Math.log10(oy.min), ly1 = Math.log10(oy.max);
+                this.scales.x = { min: ox.min, max: ox.max,
+                    getPixelForValue: v => a.left + (Math.log10(v) - lx0) / (lx1 - lx0) * a.width,
+                    getValueForPixel: p => Math.pow(10, lx0 + (p - a.left) / a.width * (lx1 - lx0)) };
+                this.scales.y = { min: oy.min, max: oy.max,
+                    getPixelForValue: v => a.bottom - (Math.log10(v) - ly0) / (ly1 - ly0) * a.height,
+                    getValueForPixel: p => Math.pow(10, ly0 + (a.bottom - p) / a.height * (ly1 - ly0)) };
+            }
+            draw() {
+                if (!this.width) return;
+                const g = this.ctx, a = this.chartArea, ox = this.options.scales.x, oy = this.options.scales.y;
+                g.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); g.clearRect(0, 0, this.width, this.height);
+                this._layout();
+                const X = this.scales.x.getPixelForValue, Y = this.scales.y.getPixelForValue;
+                // grade (um traço por tick, como no Chart.js) e moldura
+                g.lineWidth = 1; g.setLineDash([]);
+                g.strokeStyle = (ox.grid && ox.grid.color) || 'rgba(0,0,0,0.1)'; g.beginPath();
+                this._xt.forEach(v => { const x = Math.round(X(v)) + 0.5; g.moveTo(x, a.top); g.lineTo(x, a.bottom + 6); }); g.stroke();
+                g.strokeStyle = (oy.grid && oy.grid.color) || 'rgba(0,0,0,0.1)'; g.beginPath();
+                this._yt.forEach(v => { const y = Math.round(Y(v)) + 0.5; g.moveTo(a.left - 6, y); g.lineTo(a.right, y); }); g.stroke();
+                g.strokeStyle = 'rgba(0,0,0,0.1)'; g.strokeRect(a.left + 0.5, a.top + 0.5, a.width, a.height);
+
+                this.plugins.forEach(p => p.beforeDatasetsDraw && p.beforeDatasetsDraw(this));
+
+                g.save(); g.beginPath(); g.rect(a.left, a.top, a.width, a.height); g.clip();
+                this.data.datasets.forEach((d, i) => {
+                    if (this._oculto[i]) return;
+                    const pts = d.data.map(p => [X(p.x), Y(p.y)]);
+                    if (d.showLine !== false && d.borderWidth !== 0 && pts.length > 1) {
+                        g.beginPath(); pts.forEach((p, k) => k ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]));
+                        g.lineWidth = d.borderWidth || 3; g.strokeStyle = d.borderColor || 'rgba(0,0,0,0.1)';
+                        g.setLineDash(d.borderDash || []); g.lineJoin = 'round'; g.stroke(); g.setLineDash([]);
+                    }
+                    const r = d.pointRadius === undefined ? 3 : d.pointRadius;
+                    if (r > 0) pts.forEach(p => {
+                        g.beginPath();
+                        if (d.pointStyle === 'rectRot') { g.moveTo(p[0], p[1] - r); g.lineTo(p[0] + r, p[1]); g.lineTo(p[0], p[1] + r); g.lineTo(p[0] - r, p[1]); g.closePath(); }
+                        else g.arc(p[0], p[1], r, 0, 2 * Math.PI);
+                        g.fillStyle = d.backgroundColor || 'rgba(0,0,0,0.1)'; g.fill();
+                        g.lineWidth = 1; g.strokeStyle = d.borderColor || 'rgba(0,0,0,0.1)'; g.stroke();
+                    });
+                });
+                g.restore();
+
+                // números e títulos dos eixos
+                g.fillStyle = '#666'; g.font = '12px ' + MiniChart.FONTE;
+                g.textAlign = 'center'; g.textBaseline = 'top';
+                this._xt.forEach((v, i) => { if (this._xl[i]) g.fillText(this._xl[i], X(v), a.bottom + 11); });
+                g.textAlign = 'right'; g.textBaseline = 'middle';
+                this._yt.forEach((v, i) => { if (this._yl[i]) g.fillText(this._yl[i], a.left - 11, Y(v)); });
+                const fonte = o => { const f = (o.title && o.title.font) || {}; return (f.weight || 'normal') + ' ' + (f.size || 12) + 'px ' + MiniChart.FONTE; };
+                if (ox.title && ox.title.display) { g.font = fonte(ox); g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText(ox.title.text, a.left + a.width / 2, this.height - 8); }
+                if (oy.title && oy.title.display) { g.save(); g.font = fonte(oy); g.translate(17, a.top + a.height / 2); g.rotate(-Math.PI / 2); g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(oy.title.text, 0, 0); g.restore(); }
+
+                this.plugins.forEach(p => p.afterDraw && p.afterDraw(this));
+            }
+            _evento(e) {
+                const r = this.canvas.getBoundingClientRect();
+                let tipo = e.type, cx, cy;
+                if (tipo.indexOf('touch') === 0) { const t = e.touches && e.touches[0]; if (!t) return; cx = t.clientX; cy = t.clientY; tipo = 'mousemove'; }
+                else { cx = e.clientX; cy = e.clientY; }
+                const ev = { type: tipo, x: cx - r.left, y: cy - r.top };
+                let mudou = false;
+                this.plugins.forEach(p => { if (p.afterEvent) { const args = { event: ev, changed: false }; p.afterEvent(this, args); mudou = mudou || args.changed; } });
+                if (mudou) this.draw();
+            }
+            isDatasetVisible(i) { return !this._oculto[i]; }
+            setDatasetVisibility(i, v) { this._oculto[i] = !v; }
+            update() { this.draw(); }
+            destroy() {
+                ['mousemove', 'mouseout', 'touchstart', 'touchmove'].forEach(t => this.canvas.removeEventListener(t, this._ev));
+                if (this._ro) this._ro.disconnect();
+                this.ctx.setTransform(1, 0, 0, 1, 0, 0); this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+        MiniChart.FONTE = '"Helvetica Neue", Helvetica, Arial, sans-serif';
+
+        // Escolhe o Chart.js (se carregou) ou o gráfico embutido; a escolha vale para toda a sessão
+        let ChartLib = null;
+        function escolherChartLib() {
+            if (!ChartLib) ChartLib = (typeof window.Chart === 'function') ? window.Chart : MiniChart;
+            return ChartLib;
+        }
+
         let tccChart = null;
         let regioesViolacao = [];
         const ocultos = new Set();   // curvas desligadas na legenda (mantidas entre atualizações)
@@ -2063,7 +2192,7 @@
             datasets.forEach(d => { d.hidden = ocultos.has(d.key); });
             canvas.style.cursor = 'crosshair';
             if (tccChart) tccChart.destroy();
-            tccChart = new Chart(ctx, {
+            tccChart = new (escolherChartLib())(ctx, {
                 type: 'scatter',
                 data: { datasets },
                 plugins: [pluginViolacao, pluginCruz],
@@ -2221,7 +2350,6 @@
             renderizarEntradas();
             recalcular();
             ['modalTipoCurva', 'modalTipoCurvaNeutro', 'religadorCurvaFase', 'religadorCurvaNeutro'].forEach(atualizarRotuloCurva);
-            lucide.createIcons();
             ['icc3fSim', 'iccftMax', 'iccftMin', 'inrushVal', 'modalIatf'].forEach(id =>
                 document.getElementById(id)?.addEventListener('input', () => editados.add(id)));
         };
