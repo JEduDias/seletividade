@@ -71,6 +71,12 @@
         .tbl-clean td { padding: 5px 8px; border-bottom: 1px solid #F1F5F9; color: var(--text-main); }
         .tbl-clean td.val { text-align: right; font-weight: 700; font-family: monospace; color: #0F172A; }
 
+        /* FORÇAR ALINHAMENTO À DIREITA NOS INPUTS DA TABELA SUPERIOR */
+        .tbl-clean td input, .tbl-clean td select { 
+            text-align: right !important; 
+            padding-right: 10px !important; 
+        }
+
         input.in-yellow, select.in-yellow { width: 100%; padding: 4px 8px; border: 1px solid var(--yellow-border); border-radius: 4px; font-size: 0.82rem; background-color: var(--yellow-input); font-weight: 700; text-align: right; font-family: monospace; transition: all 0.2s; }
         input.in-yellow:focus, select.in-yellow:focus { outline: none; border-color: var(--copel-orange); background-color: #FFFFFF; }
 
@@ -79,7 +85,7 @@
         table.tbl-dados th { background: #F1F5F9; padding: 8px 6px; font-weight: 700; border: 1px solid var(--border-color); color: #334155; }
         table.tbl-dados td { border: 1px solid var(--border-color); padding: 6px; }
 
-        .read-only-val { background-color: #F8FAFC !important; color: #334155 !important; font-weight: 700; font-family: monospace; text-align: center; border: 1px solid var(--border-color) !important; cursor: default; }
+        .read-only-val { background-color: #F8FAFC !important; color: #334155 !important; font-weight: 700; font-family: monospace; text-align: right !important; border: 1px solid var(--border-color) !important; cursor: default; padding-right: 10px !important; }
 
         /* SUMMARY BOX & RASTREAMENTO VISUAL */
         .card-summary-box {
@@ -254,12 +260,29 @@
         .curva-item { display:block; width:100%; text-align:left; padding:6px 12px; font-size:12px; color:#334155; border:none; border-bottom:1px solid #F1F3F7; background:#fff; cursor:pointer; }
         .curva-item:hover { background:var(--id-bg); }
         .curva-item.sel { background:var(--id); color:#fff; font-weight:700; }
+    
+        /* ===== card Validação dos Critérios COPEL ===== */
+        .val-card { background:#fff; border:1px solid var(--border-color); border-radius:12px; box-shadow:0 1px 2px rgba(16,24,40,.04); overflow:hidden; }
+        .val-head { display:flex; align-items:center; gap:8px; padding:10px 12px; border-bottom:1px solid #F1F3F7; font-weight:800; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:#334155; }
+        .val-head > svg { width:16px; height:16px; flex:none; color:#94A3B8; }
+        .val-card.verde .val-head > svg { color:#16A34A; } .val-card.amarelo .val-head > svg { color:#D97706; } .val-card.vermelho .val-head > svg { color:#DC2626; }
+        .val-badge { margin-left:auto; font-size:10px; font-weight:800; padding:2px 9px; border-radius:999px; text-transform:none; letter-spacing:0; background:#F1F5F9; color:#64748B; white-space:nowrap; }
+        .val-badge.verde { background:#DCFCE7; color:#15803D; } .val-badge.amarelo { background:#FEF3C7; color:#B45309; } .val-badge.vermelho { background:#FEE2E2; color:#B91C1C; }
+        .val-corpo { padding:8px; display:flex; flex-direction:column; gap:6px; }
+        .val-vazio { padding:8px 4px; font-size:11.5px; color:#94A3B8; }
+        .val-ok { padding:10px 12px; border-radius:8px; background:#F0FDF4; border:1px solid #BBF7D0; color:#166534; font-size:12px; font-weight:600; line-height:1.35; }
+        .val-item { display:flex; gap:8px; padding:8px 10px; border-radius:8px; border:1px solid; font-size:11.5px; line-height:1.35; }
+        .val-item.vermelho { background:#FEF2F2; border-color:#FECACA; color:#7F1D1D; }
+        .val-item.amarelo { background:#FFFBEB; border-color:#FDE68A; color:#78350F; }
+        .val-dot { width:8px; height:8px; border-radius:50%; margin-top:5px; flex:none; }
+        .val-item.vermelho .val-dot { background:#DC2626; } .val-item.amarelo .val-dot { background:#F59E0B; }
+        .val-reg { font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; opacity:.65; }
+        .val-item b { display:block; font-size:12px; margin:1px 0 2px; }
+        .val-item p { margin:0; }
     </style>
-    <!-- Tailwind CSS (v3.4) gerado a partir das classes usadas neste arquivo: dispensa o CDN -->
-    <style id="tailwind-embutido">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.collapse{visibility:collapse}.fixed{position:fixed}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.mb-0\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mr-1{margin-right:.25rem}.mr-1\.5{margin-right:.375rem}.mt-2{margin-top:.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-2\.5{height:.625rem}.h-3{height:.75rem}.h-4{height:1rem}.h-\[calc\(100vh-140px\)\]{height:calc(100vh - 140px)}.min-h-0{min-height:0}.min-h-\[650px\]{min-height:650px}.w-16{width:4rem}.w-2\.5{width:.625rem}.w-20{width:5rem}.w-24{width:6rem}.w-3{width:.75rem}.w-4{width:1rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-4{gap:1rem}.gap-x-1{-moz-column-gap:.25rem;column-gap:.25rem}.gap-y-1{row-gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-4>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem*var(--tw-space-x-reverse));margin-left:calc(1rem*(1 - var(--tw-space-x-reverse)))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.rounded-t-md{border-top-left-radius:.375rem;border-top-right-radius:.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-900\/50{background-color:rgba(15,23,42,.5)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-2{padding-bottom:.5rem}.pb-2\.5{padding-bottom:.625rem}.pt-1{padding-top:.25rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.outline{outline-style:solid}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-0:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}@media (min-width:768px){.md\:w-1\/2{width:50%}.md\:flex-row{flex-direction:row}}@media (min-width:1024px){.lg\:w-96{width:24rem}.lg\:flex-row{flex-direction:row}}</style>
+    <style id="tailwind-embutido">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.19 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.collapse{visibility:collapse}.fixed{position:fixed}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0}.mb-0{margin-bottom:0}.mb-0\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-3{margin-bottom:.75rem}.mr-1{margin-right:.25rem}.mr-1\.5{margin-right:.375rem}.mt-2{margin-top:.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-2{height:.5rem}.h-2\.5{height:.625rem}.h-3{height:.75rem}.h-4{height:1rem}.h-\[calc\(100vh-140px\)\]{height:calc(100vh - 140px)}.min-h-0{min-height:0}.min-h-\[650px\]{min-height:650px}.w-1{width:.25rem}.w-16{width:4rem}.w-2{width:.5rem}.w-2\.5{width:.625rem}.w-20{width:5rem}.w-24{width:6rem}.w-3{width:.75rem}.w-4{width:1rem}.w-full{width:100%}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.gap-1\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-4{gap:1rem}.gap-x-1{-moz-column-gap:.25rem;column-gap:.25rem}.gap-y-1{row-gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-4>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem*var(--tw-space-x-reverse));margin-left:calc(1rem*(1 - var(--tw-space-x-reverse)))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.space-y-4>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.rounded{border-radius:.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.rounded-t-md{border-top-left-radius:.375rem;border-top-right-radius:.375rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-r{border-right-width:1px}.border-t{border-top-width:1px}.border-slate-200{--tw-border-opacity:1;border-color:rgb(226 232 240/var(--tw-border-opacity,1))}.border-slate-300{--tw-border-opacity:1;border-color:rgb(203 213 225/var(--tw-border-opacity,1))}.bg-amber-50{--tw-bg-opacity:1;background-color:rgb(255 251 235/var(--tw-bg-opacity,1))}.bg-slate-100{--tw-bg-opacity:1;background-color:rgb(241 245 249/var(--tw-bg-opacity,1))}.bg-slate-50{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/50{background-color:rgba(15,23,42,.5)}.bg-transparent{background-color:transparent}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255/var(--tw-bg-opacity,1))}.p-2{padding:.5rem}.p-2\.5{padding:.625rem}.p-3{padding:.75rem}.p-4{padding:1rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.pb-2{padding-bottom:.5rem}.pb-2\.5{padding-bottom:.625rem}.pb-3{padding-bottom:.75rem}.pt-1{padding-top:.25rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.font-sans{font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.text-amber-500{--tw-text-opacity:1;color:rgb(245 158 11/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-red-600{--tw-text-opacity:1;color:rgb(220 38 38/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105/var(--tw-text-opacity,1))}.text-slate-700{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.text-slate-800{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-2xl,.shadow-sm{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgba(0,0,0,.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color)}.outline-none{outline:2px solid transparent;outline-offset:2px}.outline{outline-style:solid}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.hover\:bg-slate-50:hover{--tw-bg-opacity:1;background-color:rgb(248 250 252/var(--tw-bg-opacity,1))}.hover\:text-slate-700:hover{--tw-text-opacity:1;color:rgb(51 65 85/var(--tw-text-opacity,1))}.hover\:text-slate-800:hover{--tw-text-opacity:1;color:rgb(30 41 59/var(--tw-text-opacity,1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-0:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)}.disabled\:opacity-50:disabled{opacity:.5}@media (min-width:768px){.md\:w-1\/2{width:50%}.md\:flex-row{flex-direction:row}}@media (min-width:1024px){.lg\:w-96{width:24rem}.lg\:flex-row{flex-direction:row}}</style>
 </head>
 <body>
-
     <header>
         <div class="header-brand">
             <img src="logo.png" alt="Logo" class="header-logo">
@@ -299,7 +322,7 @@
                             </tr>
                             <tr><td>I. Base (A) =</td><td class="val" id="outIBase">4183,70</td></tr>
                             <tr><td>Z. Base (Ohms) =</td><td class="val" id="outZBase">1,9044</td></tr>
-                            <tr><td>Resist. terra (ohms) =</td><td><input type="number" class="read-only-val" id="rTerra" value="13.33" step="0.01" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
+                            <tr><td>Resist. terra (ohms) =</td><td><input type="number" class="read-only-val" id="rTerra" value="13.33" step="0.01" readonly style="width: 100%; padding: 4px 8px;"></td></tr>
                             <tr><td>3 x Resist. terra (pu) =</td><td class="val" id="out3RTerra">21,0000</td></tr>
                         </tbody>
                     </table>
@@ -355,7 +378,7 @@
                     </table>
                 </div>
 
-                <!-- Bloco 3: Cargas e Demandas (Com marcadores de origem) -->
+                <!-- Bloco 3: Cargas e Demandas -->
                 <div class="card" style="margin-bottom:0;">
                     <div class="card-header">
                         <div class="category-accent"></div>
@@ -363,8 +386,8 @@
                     </div>
                     <table class="tbl-clean">
                         <tbody>
-                            <tr><td>MAIOR TR (kVA)</td><td><input type="number" class="read-only-val" id="maiorTR" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
-                            <tr><td>OUTROS TRS (kVA)</td><td><input type="number" class="read-only-val" id="outrosTRS" value="0" readonly style="width: 100%; text-align: right; padding: 4px 8px;"></td></tr>
+                            <tr><td>MAIOR TR (kVA)</td><td><input type="number" class="read-only-val" id="maiorTR" value="0" readonly style="width: 100%; padding: 4px 8px;"></td></tr>
+                            <tr><td>OUTROS TRS (kVA)</td><td><input type="number" class="read-only-val" id="outrosTRS" value="0" readonly style="width: 100%; padding: 4px 8px;"></td></tr>
                             <tr><td>DEMANDA CONTRATO (kW)</td><td><input type="number" class="in-yellow" id="demandaContratada" value="0" oninput="recalcular()"></td></tr>
                             <tr>
                                 <td>In Total (A)</td>
@@ -452,9 +475,7 @@
         <!-- ABA 2: MEMÓRIA DE CÁLCULO -->
         <div id="tabSaida" class="tab-content">
             <div class="avisos-pontos"></div>
-            <!-- CARDS DE RESUMO DESTAQUE COM RASTREAMENTO VISUAL DE ORIGEM -->
             <div class="card-summary-box">
-                <!-- Linha 1 -->
                 <div class="summary-item item-demanda" title="Retirado da tabela 'Cargas e Demandas' (Aba 1)">
                     <span class="summary-label">Demanda Corrigida (1,3·I / 0,92) <span class="track-badge" style="background:var(--c-demanda);">Aba 1</span></span>
                     <span id="sum13IDemanda" class="summary-val">- A</span>
@@ -468,7 +489,6 @@
                     <span id="sumInrush" class="summary-val">- A</span>
                 </div>
 
-                <!-- Linha 2 -->
                 <div class="summary-item item-tc" title="Calculado por: max(I_nom, Icc_3f_PontoA / 20)">
                     <span class="summary-label">Mínimo Relação TC Proteção <span class="track-badge" style="background:var(--c-tc);">Fórmula</span></span>
                     <span id="sumMinRelacaoTC" class="summary-val">-</span>
@@ -482,7 +502,6 @@
                     <span id="sumIccftSimetrico" class="summary-val">- A</span>
                 </div>
 
-                <!-- Linha 3 -->
                 <div class="summary-item item-iccftmin" title="Retirado de: Circuito Primário (Fim de Linha - Icc FT Mínimo)">
                     <span class="summary-label">Icc FT Min (Fim de Linha) <span class="track-badge" style="background:var(--c-iccftmin);">Fim Linha</span></span>
                     <span id="sumIccftMin" class="summary-val">- A</span>
@@ -497,7 +516,6 @@
                 </div>
             </div>
 
-            <!-- Tabela Primária -->
             <div class="card">
                 <div class="card-header">
                     <div class="category-accent"></div>
@@ -520,7 +538,6 @@
                 </div>
             </div>
 
-            <!-- Tabela Secundária (Baixa Tensão) -->
             <div class="card">
                 <div class="card-header">
                     <div class="category-accent"></div>
@@ -556,31 +573,29 @@
         <!-- ABA 3: COORDENOGRAMA TCC -->
         <div id="tabGrafico" class="tab-content">
             <div class="flex flex-col lg:flex-row gap-4 h-[calc(100vh-140px)] min-h-[650px]">
-                <!-- Barra Lateral Esquerda -->
                 <aside class="w-full lg:w-96 bg-white border border-slate-200 rounded-lg flex flex-col shrink-0 overflow-y-auto shadow-sm">
-                    <!-- Níveis de Curto-Circuito -->
                     <div class="p-3 border-b border-slate-200 bg-slate-50">
                         <h2 class="font-bold text-slate-700 mb-2 flex items-center text-xs uppercase tracking-wider">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap w-4 h-4 mr-1 text-amber-500"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg> Níveis de Curto-Circuito (A)
                         </h2>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <div >
+                            <div>
                                 <label class="block text-slate-500 mb-0.5">Icc 3Ф Máx (A)</label>
                                 <input type="number" id="icc3fSim" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
                             </div>
-                            <div >
+                            <div>
                                 <label class="block text-slate-500 mb-0.5">Icc FT Máx (A)</label>
                                 <input type="number" id="iccftMax" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
                             </div>
-                            <div >
+                            <div>
                                 <label class="block text-slate-500 mb-0.5">Icc FT Mín (A)</label>
                                 <input type="number" id="iccftMin" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
                             </div>
-                            <div >
+                            <div>
                                 <label class="block text-slate-500 mb-0.5">I_Inrush Trafo (A)</label>
                                 <input type="number" id="inrushVal" value="0" step="any" onchange="atualizarEstudo()" class="w-full border border-slate-300 rounded px-2 py-1 font-mono text-slate-700">
                             </div>
-                            </div>
+                        </div>
                         <p class="text-[10px] text-slate-500 mt-2">Icc 3Φ e FT máximas: Ponto A. Icc FT mín.: menor valor do alimentador. Inrush: da aba 2. Se o relé/elo estiver em outro ponto, edite os campos.</p>
                         <button type="button" onclick="carregarDadosParaGrafico(true)" class="btn-importar" title="Atualiza os níveis de curto-circuito e o inrush com os valores calculados na aba 2 (substitui o que foi digitado)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>Importar da aba 2</button>
                     </div>
@@ -605,7 +620,27 @@
                             </div>
                         </div>
 
-                        <!-- 2. Relé Consumidor -->
+                        <!-- 2. Elo Fusível -->
+                        <div class="eq-card" style="--id:#059669;--id-txt:#047857;--id-bg:#ECFDF5;--id-bd:#A7F3D0">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="eq-nome text-xs flex items-center">
+                                    <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Elo Fusível
+                                </span>
+                            </div>
+                            <div class="text-xs">
+                                <select id="eloFusivelSel" onchange="atualizarEstudo()" class="eq-select w-full text-xs font-semibold">
+                                    <option value="6K">6 K</option>
+                                    <option value="10K">10 K</option>
+                                    <option value="15K">15 K</option>
+                                    <option value="25K">25 K</option>
+                                    <option value="40K">40 K</option>
+                                    <option value="65K" selected>65 K</option>
+                                    <option value="100K">100 K</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 3. Relé Consumidor -->
                         <div class="eq-card" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC">
                             <div class="flex items-center justify-between">
                                 <span class="eq-nome text-xs flex items-center">
@@ -616,25 +651,16 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- 3. Elo Fusível -->
-                        <div class="eq-card" style="--id:#059669;--id-txt:#047857;--id-bg:#ECFDF5;--id-bd:#A7F3D0">
-                            <div class="flex items-center justify-between mb-1">
-                                <span class="eq-nome text-xs flex items-center">
-                                    <span class="eq-dot w-2.5 h-2.5 rounded-full inline-block mr-1.5"></span> Elo Fusível
-                                </span>
+                    <div class="px-3 pb-3">
+                        <div id="valCopel" class="val-card">
+                            <div class="val-head">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+                                <span>Validação dos Critérios COPEL</span>
+                                <span id="valBadge" class="val-badge">&mdash;</span>
                             </div>
-                            <div class="text-xs">
-                                <label class="text-slate-500 block mb-0.5">Elo Fusível</label>
-                                <select id="eloFusivelSel" onchange="atualizarEstudo()" class="eq-select w-full text-xs font-semibold">
-                                    <option value="10K">10 K</option>
-                                    <option value="15K">15 K</option>
-                                    <option value="25K">25 K</option>
-                                    <option value="40K">40 K</option>
-                                    <option value="65K" selected>65 K</option>
-                                    <option value="100K">100 K</option>
-                                </select>
-                            </div>
+                            <div id="valCorpo" class="val-corpo"><div class="val-vazio">Aguardando os dados da aba 3&hellip;</div></div>
                         </div>
                     </div>
 
@@ -666,7 +692,6 @@
             </div>
         </div>
     </main>
-
     <!-- MODAL / JANELA AJUSTES DO RELÉ ENTRADA UC -->
     <div id="modalAjustesRele" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center hidden p-4" style="z-index:1000">
         <div class="modal-id bg-white rounded-2xl shadow-2xl w-full max-w-xl text-slate-800 font-sans text-xs overflow-hidden flex flex-col" style="--id:#06b6d4;--id-txt:#0E7490;--id-bg:#ECFEFF;--id-bd:#A5F3FC;max-height:calc(100vh - 2rem)">
@@ -678,30 +703,19 @@
             </div>
 
             <div class="p-4 space-y-4 overflow-y-auto flex-1 min-h-0">
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Modelo de Relé</label>
-                    <select id="modalModeloRele" class="w-full border-2 id-border bg-white font-bold id-txt text-sm px-3 py-1.5 rounded-lg shadow-sm text-center uppercase tracking-wide focus:outline-none">
-                        <option value="GENERICO_50_51" selected>GENÉRICO 50/51</option>
-                    </select>
-                </div>
-
                 <div class="flex items-center justify-between bg-slate-50 p-2.5 rounded-lg border border-slate-200">
                     <label class="font-bold text-slate-700">Relação do TC</label>
                     <select id="modalRelacaoTC" class="border border-slate-300 rounded-md px-3 py-1 bg-white font-mono font-bold text-slate-800 focus:outline-none">
                         <option value="50:5">50:5</option>
                         <option value="100:5">100:5</option>
                         <option value="150:5">150:5</option>
-                        <option value="200:5">200:5</option>
-                        <option value="250:5" selected>250:5</option>
+                        <option value="200:5" selected>200:5</option>
+                        <option value="250:5">250:5</option>
                         <option value="300:5">300:5</option>
                         <option value="400:5">400:5</option>
                         <option value="500:5">500:5</option>
                     </select>
                 </div>
-
-                <label class="flex items-center gap-1.5 font-bold text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer">
-                    <input type="checkbox" id="modalSecundario" class="rounded id-txt"> Ajustes de corrente informados no secundário do TC (converte para primário no gráfico)
-                </label>
 
                 <div class="border border-slate-200 rounded-lg p-3 bg-slate-50">
                     <div class="flex border-b border-slate-300 gap-2 mb-3">
@@ -714,14 +728,14 @@
                             <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T F)</label>
                             <div class="flex flex-col items-end">
                                 <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
-                                <input type="number" id="modalIatf" value="68.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
+                                <input type="number" id="modalIatf" value="60" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
                             </div>
                         </div>
 
                         <div class="border border-slate-200 p-2.5 rounded-lg bg-white space-y-2">
                             <div class="flex justify-between items-center">
                                 <label class="font-bold text-slate-700">Corrente de Atuação Instantânea (I A I F)</label>
-                                <input type="number" id="modalIaif" value="640.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
+                                <input type="number" id="modalIaif" value="600" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
                             </div>
                             <div class="flex justify-between items-center text-slate-700 pt-1">
                                 <label class="flex items-center gap-1.5 cursor-pointer font-bold text-slate-700">
@@ -743,7 +757,7 @@
                                 <div>
                                     <span class="block text-[10px] text-slate-500 font-bold mb-0.5">I Def</span>
                                     <div class="flex items-center justify-center gap-1">
-                                        <input type="number" id="modalIdef" value="12.50" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono bg-white">
+                                        <input type="number" id="modalIdef" value="10" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono bg-white">
                                         <span class="font-bold text-slate-600">A</span>
                                     </div>
                                 </div>
@@ -771,7 +785,7 @@
                                 </div>
                                 <div>
                                     <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Curva (TMS)</span>
-                                    <input type="number" id="modalTmsFase" value="0.13" step="0.01" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
+                                    <input type="number" id="modalTmsFase" value="0.13" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
                                 </div>
                             </div>
                         </div>
@@ -782,14 +796,14 @@
                             <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T N)</label>
                             <div class="flex flex-col items-end">
                                 <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
-                                <input type="number" id="modalIatn" value="20.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
+                                <input type="number" id="modalIatn" value="12.5" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none">
                             </div>
                         </div>
 
                         <div class="border border-slate-200 p-2.5 rounded-lg bg-white space-y-2">
                             <div class="flex justify-between items-center">
                                 <label class="font-bold text-slate-700">Corrente de Atuação Instantânea (I A I N)</label>
-                                <input type="number" id="modalIain" value="200.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
+                                <input type="number" id="modalIain" value="120.00" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white focus:outline-none">
                             </div>
                             <div class="flex justify-between items-center text-slate-700 pt-1">
                                 <label class="flex items-center gap-1.5 cursor-pointer font-bold text-slate-700">
@@ -832,14 +846,14 @@
                                 <div class="flex-1">
                                     <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Tipo de Curva</span>
                                     <select id="modalTipoCurvaNeutro" class="hidden">
-                                        <option value="EI" selected>EI / EI (Extremely Inverse)</option>
+                                        <option value="EI">EI / EI (Extremely Inverse)</option>
                                         <option value="MI">MI / VI (Very Inverse)</option>
-                                        <option value="NI">NI / SI (Normal Inverse)</option>
+                                        <option value="NI" selected>NI / SI (Normal Inverse)</option>
                                     </select><button type="button" onclick="abrirPickerCurva('modalTipoCurvaNeutro')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_modalTipoCurvaNeutro" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
                                 </div>
                                 <div>
                                     <span class="block text-[10px] text-slate-500 font-bold mb-0.5">Curva (TMS)</span>
-                                    <input type="number" id="modalTmsNeutro" value="0.10" step="0.01" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
+                                    <input type="number" id="modalTmsNeutro" value="0.10" step="0.1" class="border border-slate-300 rounded-md w-20 text-right px-2 py-1 font-mono font-bold bg-white">
                                 </div>
                             </div>
                         </div>
@@ -866,13 +880,6 @@
             </div>
 
             <div class="p-4 space-y-4 overflow-y-auto flex-1 min-h-0">
-                <div>
-                    <label class="block font-bold text-slate-700 mb-1">Modelo de Religador</label>
-                    <select id="modalModeloReligador" class="w-full border-2 id-border bg-white font-extrabold id-txt text-sm px-3 py-1.5 rounded-lg shadow-sm text-center uppercase tracking-wide focus:outline-none">
-                        <option value="RELIGADOR_COPEL" selected>RELIGADOR COPEL</option>
-                    </select>
-                </div>
-
                 <div class="border border-slate-200 rounded-lg p-3 bg-slate-50">
                     <div class="flex border-b border-slate-300 gap-2 mb-3">
                         <button type="button" id="btnTabReligadorFase" onclick="alternarAbaReligador('fase')" class="px-4 py-1.5 font-bold id-txt border-b-2 id-border bg-white rounded-t-md">Ajustes de FASE</button>
@@ -901,13 +908,13 @@
                                 <tbody>
                                     <tr>
                                         <td class="border-r border-slate-200 px-2 py-1">
-                                            <select id="religadorCurvaFase" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1">C1</option><option value="C2" selected>C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–107"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option></optgroup><optgroup label="Curvas 111–122"><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option></optgroup><optgroup label="Curvas 131–142"><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option></optgroup><optgroup label="Curvas 151–165"><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option></optgroup><optgroup label="Curvas 200–202"><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaFase')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaFase" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                            <select id="religadorCurvaFase" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1">C1</option><option value="C2" selected>C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–202"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaFase')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaFase" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
                                         </td>
                                         <td class="border-r border-slate-200 px-2 py-1 id-txt font-mono">
-                                            <input type="number" step="0.01" id="religadorFmultFase" value="0.28" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                            <input type="number" step="0.1" id="religadorFmultFase" value="0.28" class="w-16 text-center id-txt font-bold font-mono outline-none">
                                         </td>
                                         <td class="px-2 py-1 id-txt font-mono">
-                                            <input type="number" step="0.001" id="religadorAddFase" value="0.000" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                            <input type="number" step="0.1" id="religadorAddFase" value="0.000" class="w-16 text-center id-txt font-bold font-mono outline-none">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -920,7 +927,24 @@
                             <label class="font-bold text-slate-700">Corrente de Atuação Temporizada (I A T N)</label>
                             <div class="flex flex-col items-end">
                                 <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido</span>
-                                <input type="number" id="religadorIatn" value="100" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800">
+                                <input type="number" id="religadorIatn" value="25" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-between items-center border-b border-slate-200 pb-2.5 px-2 gap-3">
+                            <label class="flex items-center gap-1.5 font-bold text-slate-700 cursor-pointer">
+                                <input type="checkbox" id="religadorSefAtivo" checked class="rounded" onchange="document.getElementById('religadorSef').disabled = !this.checked; document.getElementById('religadorSefT').disabled = !this.checked"> SEF &mdash; Habilitado
+                            </label>
+                            <div class="flex items-end gap-3">
+                                <div class="flex flex-col items-end">
+                                    <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Escolhido (A)</span>
+                                    <input type="number" id="religadorSef" value="25" step="0.1" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800 disabled:opacity-50">
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span class="text-[10px] font-semibold text-slate-500 mb-0.5">Tempo de atraso (s)</span>
+                                    <input type="number" id="religadorSefT" value="7.0" list="listaAtrasoSef" min="0" step="0.1" placeholder="0" class="border border-slate-300 rounded-md w-24 text-center px-2 py-1 font-mono font-bold bg-amber-50 focus:outline-none text-slate-800 disabled:opacity-50">
+                                    <datalist id="listaAtrasoSef"><option value="0.1"><option value="0.2"><option value="0.5"><option value="1"><option value="2"><option value="3"><option value="5"><option value="7"><option value="10"><option value="15"><option value="20"><option value="30"><option value="60"></datalist>
+                                </div>
                             </div>
                         </div>
 
@@ -937,13 +961,13 @@
                                 <tbody>
                                     <tr>
                                         <td class="border-r border-slate-200 px-2 py-1">
-                                            <select id="religadorCurvaNeutro" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1">C1</option><option value="C2" selected>C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–107"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option></optgroup><optgroup label="Curvas 111–122"><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option></optgroup><optgroup label="Curvas 131–142"><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option></optgroup><optgroup label="Curvas 151–165"><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option></optgroup><optgroup label="Curvas 200–202"><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaNeutro')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaNeutro" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
+                                            <select id="religadorCurvaNeutro" class="hidden"><optgroup label="Curvas C1–C4 (tabeladas)"><option value="C1" selected>C1</option><option value="C2">C2</option><option value="C3">C3</option><option value="C4">C4</option></optgroup><optgroup label="IEC"><option value="NI">NI (Normal Inversa)</option><option value="MI">MI (Muito Inversa)</option><option value="EI">EI (Extremamente Inversa)</option></optgroup><optgroup label="Curvas 101–202"><option value="101">Curva 101</option><option value="102">Curva 102</option><option value="103">Curva 103</option><option value="104">Curva 104</option><option value="105">Curva 105</option><option value="106">Curva 106</option><option value="107">Curva 107</option><option value="111">Curva 111</option><option value="112">Curva 112</option><option value="113">Curva 113</option><option value="114">Curva 114</option><option value="115">Curva 115</option><option value="116">Curva 116</option><option value="117">Curva 117</option><option value="118">Curva 118</option><option value="119">Curva 119</option><option value="120">Curva 120</option><option value="121">Curva 121</option><option value="122">Curva 122</option><option value="131">Curva 131</option><option value="132">Curva 132</option><option value="133">Curva 133</option><option value="134">Curva 134</option><option value="135">Curva 135</option><option value="136">Curva 136</option><option value="137">Curva 137</option><option value="138">Curva 138</option><option value="139">Curva 139</option><option value="140">Curva 140</option><option value="141">Curva 141</option><option value="142">Curva 142</option><option value="151">Curva 151</option><option value="152">Curva 152</option><option value="161">Curva 161</option><option value="162">Curva 162</option><option value="163">Curva 163</option><option value="164">Curva 164</option><option value="165">Curva 165</option><option value="200">Curva 200</option><option value="201">Curva 201</option><option value="202">Curva 202</option></optgroup></select><button type="button" onclick="abrirPickerCurva('religadorCurvaNeutro')" class="curva-btn"><svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1 C 3 9, 7 10, 15 10"/></svg><span id="lblCurva_religadorCurvaNeutro" class="curva-lbl"></span><span class="curva-ver">Ver curvas</span></button>
                                         </td>
                                         <td class="border-r border-slate-200 px-2 py-1 id-txt font-mono">
-                                            <input type="number" step="0.01" id="religadorFmultNeutro" value="0.20" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                            <input type="number" step="0.1" id="religadorFmultNeutro" value="0.10" class="w-16 text-center id-txt font-bold font-mono outline-none">
                                         </td>
                                         <td class="px-2 py-1 id-txt font-mono">
-                                            <input type="number" step="0.001" id="religadorAddNeutro" value="0.000" class="w-16 text-center id-txt font-bold font-mono outline-none">
+                                            <input type="number" step="0.1" id="religadorAddNeutro" value="0.300" class="w-16 text-center id-txt font-bold font-mono outline-none">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -960,7 +984,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- SELEÇÃO DE CURVA COM PRÉVIA -->
     <div id="modalCurvas" class="hidden fixed inset-0 flex items-center justify-center p-4" style="z-index:1100;background:rgba(15,23,42,.55);backdrop-filter:blur(3px)">
@@ -986,7 +1009,6 @@
             </div>
         </div>
     </div>
-
     <footer>
         <p>COPEL — Análise de Projetos da Medição | Módulo de Cálculo de Curto-Circuito & Coordenograma TCC</p>
     </footer>
@@ -1090,6 +1112,10 @@
 
         // Banco de Dados de Elos Fusíveis (MMT e MCT)
         const dbElos = {
+            '6K': {
+                mmt: [{x: 9, y: 300}, {x: 15, y: 10}, {x: 31, y: 1}, {x: 78, y: 0.1}, {x: 228, y: 0.01}],
+                mct: [{x: 11, y: 300}, {x: 18, y: 10}, {x: 39, y: 1}, {x: 96, y: 0.1}, {x: 276, y: 0.01}]
+            },
             '10K': {
                 mmt: [{x: 15, y: 300}, {x: 25, y: 10}, {x: 52, y: 1}, {x: 130, y: 0.1}, {x: 380, y: 0.01}],
                 mct: [{x: 18, y: 300}, {x: 30, y: 10}, {x: 65, y: 1}, {x: 160, y: 0.1}, {x: 460, y: 0.01}]
@@ -1255,6 +1281,32 @@
             atualizarPotenciasTransformadores();
         }
 
+        // --- NOVA LÓGICA: PRÉ-SELEÇÃO DO ELO FUSÍVEL ---
+        function sugerirEloFusivel(pTot) {
+            const vBase = getVal('tBase') || 13.8;
+            let elo = '6K';
+
+            if (vBase === 13.8) {
+                if (pTot <= 149) elo = '6K';
+                else if (pTot <= 299) elo = '10K';
+                else if (pTot <= 499) elo = '15K';
+                else if (pTot <= 749) elo = '25K';
+                else if (pTot <= 1499) elo = '40K';
+                else if (pTot <= 2324) elo = '65K';
+                else elo = '100K';
+            } else {
+                if (pTot <= 150) elo = '6K'; // Fallback para 5H que não está no banco
+                else if (pTot <= 500) elo = '6K';
+                else if (pTot <= 900) elo = '10K';
+                else if (pTot <= 1350) elo = '15K';
+                else if (pTot <= 2200) elo = '25K';
+                else if (pTot <= 3500) elo = '40K';
+                else if (pTot <= 5800) elo = '65K';
+                else elo = '100K';
+            }
+            return elo;
+        }
+
         function atualizarPotenciasTransformadores() {
             if (trafosPadrao.length === 0) {
                 document.getElementById('maiorTR').value = 0;
@@ -1266,11 +1318,22 @@
             let maiorPot = Math.max(...potencias);
             let idxMaior = potencias.indexOf(maiorPot);
             let somaOutros = potencias.reduce((acc, curr, idx) => idx === idxMaior ? acc : acc + curr, 0);
+            let pTot = potencias.reduce((a, b) => a + b, 0);
 
             document.getElementById('maiorTR').value = maiorPot;
             document.getElementById('outrosTRS').value = somaOutros;
 
             trafosPadrao.forEach((tr, i) => { tr.kva = potencias[i]; });
+
+            // Auto seleciona o elo fusível baseado na soma total
+            const eloSel = document.getElementById('eloFusivelSel');
+            if (eloSel) {
+                const sugestao = sugerirEloFusivel(pTot);
+                if (Array.from(eloSel.options).some(o => o.value === sugestao)) {
+                    eloSel.value = sugestao;
+                }
+                if (typeof atualizarEstudo === 'function') atualizarEstudo();
+            }
         }
 
         function adicionarTrecho() {
@@ -1343,7 +1406,6 @@
             return iSim * fator;
         }
 
-        // Normaliza nome de ponto: ignora espaços nas pontas e diferença entre maiúsculas/minúsculas
         const normPonto = s => String(s ?? '').trim().toUpperCase();
 
         function renderAvisosPontos(avisos) {
@@ -1415,7 +1477,6 @@
             const avisos = [];
             mapImpedanciasPontos[keyA] = { r1: rA_pos, x1: xA_pos, r0: rA_zero, x0: xA_zero };
 
-            // Ponto A (Subestação) com Destaques Visuais de Origem
             tbSaidaP.innerHTML += `
                 <tr style="background:#F8FAFC; font-weight:bold;">
                     <td>Ponto ${pInicialA} (Subestação)</td>
@@ -1442,7 +1503,6 @@
                 const kIni = normPonto(t.ini), kFin = normPonto(t.fin);
                 const nome = `Trecho ${i + 1} (${String(t.ini ?? '').trim()} → ${String(t.fin ?? '').trim()})`;
 
-                // O trecho parte do ponto inicial informado (permite ramais/derivações)
                 let base = mapImpedanciasPontos[kIni];
                 if (!base) {
                     avisos.push(`${nome}: o ponto inicial "${t.ini}" não é o fim de nenhum trecho anterior. Foi usado o fim do trecho anterior.`);
@@ -1476,7 +1536,6 @@
                 linhasTrecho.push({ fin: t.fin, ic3f, ic3f_ass, icft, icft_ass, icftmin });
             });
 
-            // Icc FT mínima = menor valor entre todos os pontos do alimentador (em empate, o último)
             let idxMin = -1, minVal = Infinity;
             linhasTrecho.forEach((l, i) => { if (l.icftmin <= minVal) { minVal = l.icftmin; idxMin = i; } });
             if (idxMin >= 0) ultIccftMin = minVal;
@@ -1607,22 +1666,44 @@
                 document.getElementById(id).value = v.toFixed(1);
                 if (forcar) editados.delete(id);
             };
-            put('icc3fSim', txt('sumIcc3fMax'));          // Icc 3Φ máx. no Ponto A (cartão da aba 2)
-            put('iccftMax', txt('sumIccftSimetrico'));    // Icc FT simétrica no Ponto A (cartão da aba 2)
+            put('icc3fSim', txt('sumIcc3fMax'));
+            put('iccftMax', txt('sumIccftSimetrico'));
             put('iccftMin', txt('sumIccftMin'));
             put('inrushVal', txt('sumInrush'));
-            const inom = txt('sumInTotal');
-            if (inom > 0) put('modalIatf', inom * 1.1);
             atualizarEstudo();
         }
 
         // --- LÓGICA DO MODAL DE AJUSTES DO RELÉ ENTRADA UC ---
+        let modalBackup = null;
+        function backupModal() {
+            modalBackup = {};
+            document.querySelectorAll('#modalAjustesRele input, #modalAjustesRele select, #modalAjustesReligador input, #modalAjustesReligador select').forEach(el => {
+                if (el.id) {
+                    if (el.type === 'checkbox') modalBackup[el.id] = el.checked;
+                    else modalBackup[el.id] = el.value;
+                }
+            });
+        }
+        function restoreModal() {
+            if (!modalBackup) return;
+            for (const id in modalBackup) {
+                const el = document.getElementById(id);
+                if (!el) continue;
+                if (el.type === 'checkbox') el.checked = modalBackup[id];
+                else el.value = modalBackup[id];
+            }
+            atualizarEstudo();
+        }
+
         function abrirModalAjustes() {
+            backupModal();
+            alternarAbaModal('fase');
             document.getElementById('modalAjustesRele').classList.remove('hidden');
         }
 
         function fecharModalAjustes() {
             document.getElementById('modalAjustesRele').classList.add('hidden');
+            restoreModal();
         }
 
         function alternarAbaModal(aba) {
@@ -1645,17 +1726,20 @@
         }
 
         function aplicarAjustesRele() {
-            fecharModalAjustes();
+            document.getElementById('modalAjustesRele').classList.add('hidden');
             atualizarEstudo();
         }
 
         // --- LÓGICA DO MODAL DE AJUSTES DO RELIGADOR COPEL ---
         function abrirModalReligador() {
+            backupModal();
+            alternarAbaReligador('fase');
             document.getElementById('modalAjustesReligador').classList.remove('hidden');
         }
 
         function fecharModalReligador() {
             document.getElementById('modalAjustesReligador').classList.add('hidden');
+            restoreModal();
         }
 
         function alternarAbaReligador(aba) {
@@ -1678,38 +1762,32 @@
         }
 
         function aplicarAjustesReligador() {
-            fecharModalReligador();
+            document.getElementById('modalAjustesReligador').classList.add('hidden');
             atualizarEstudo();
         }
 
-        // --- FORMULAÇÃO MATEMÁTICA PRECISA DAS 7 CURVAS TCC DO RELIGADOR ---
         function calcTempoTCC(I, Ip, TMS, tipoCurva, Iinst, isBlockedInst, tempInst, addOffset = 0.0) {
             if (I < Ip) return null;
             
             // Atuação Instantânea de Estágio Alto (50/50N)
             if (!isBlockedInst && Iinst > 0 && I >= Iinst) {
-                return tempInst > 0 ? tempInst : 0.001;   // sem temporização: 0,001 s, como no PCP
+                return tempInst > 0 ? tempInst : 0.001;
             }
 
             const M = I / Ip;
             if (M <= 1.0) return null;
 
             let t = null;
-
-            // Coeficientes específicos para as 7 curvas permitidas: C1, C2, C3, C4, NI/SI, MI/VI, EI/EI
             let alpha = 0.02, beta = 0.14;
 
             switch (tipoCurva) {
                 case 'MI':
-                    // Inversa / Very Inverse / MI/VI
                     alpha = 1.0; beta = 13.5;
                     break;
                 case 'EI':
-                    // TEI / Extremely Inverse / EI/EI
                     alpha = 2.0; beta = 80.0;
                     break;
                 case 'NI':
-                    // Standard Inverse / Normal Inverse / NI/SI
                     alpha = 0.02; beta = 0.14;
                     break;
                 default:
@@ -1721,10 +1799,6 @@
             if (t === null || isNaN(t)) return null;
             return t < 0.01 ? 0.01 : t;
         }
-
-        // Curvas tabeladas do religador (tabelas do PCP; C1–C4 a partir do desenho do PCP): p = [[múltiplo da corrente de pickup, tempo (s) com Fmult = 1]].
-        // Curvas C1–C4 e 101–202. Tempo real = Fmult × tempo tabelado + Add. NI/MI/EI seguem a fórmula IEC.
-        // Acima do último ponto da tabela a curva mantém o último tempo (comportamento do PCP).
         const dbCurvasTCC = {
             'C1':{p:[[1.303,54.83],[1.351,52.15],[1.371,45.16],[1.383,41.06],[1.4,34.89],[1.403,34.23],[1.427,32.05],[1.458,28.73],[1.662,17.2],[1.828,13.43],[1.868,12.38],[1.94,11.23],[1.978,10.95],[2.05,9.968],[2.134,9.447],[2.175,9.0],[2.217,8.984],[2.26,8.559],[2.481,7.581],[2.534,7.568],[2.835,6.543],[2.902,6.509],[3.008,6.211],[3.072,6.201],[3.178,5.928],[3.26,5.887],[3.38,5.618],[3.445,5.618],[3.647,5.223],[3.718,5.214],[3.789,5.089],[3.862,5.089],[3.936,4.967],[4.012,4.967],[4.089,4.848],[4.168,4.848],[4.33,4.611],[4.498,4.611],[4.683,4.385],[4.865,4.385],[4.959,4.28],[5.054,4.28],[5.151,4.177],[5.251,4.177],[5.352,4.077],[5.443,4.077],[5.56,3.972],[5.667,3.972],[5.776,3.877],[6.0,3.877],[6.116,3.784],[6.233,3.784],[6.367,3.687],[6.475,3.687],[6.614,3.599],[6.727,3.599],[6.871,3.513],[7.018,3.5],[7.138,3.428],[7.4,3.428],[7.558,3.341],[7.72,3.335],[7.852,3.26],[8.157,3.26],[8.297,3.188],[8.474,3.182],[8.637,3.106],[8.973,3.106],[9.165,3.026],[9.501,3.026],[9.704,2.954],[10.06,2.954],[10.276,2.883],[10.473,2.878],[10.675,2.814],[11.279,2.814],[11.521,2.742],[11.767,2.737],[11.969,2.676],[12.434,2.676],[12.673,2.612],[13.165,2.612],[13.419,2.549],[13.94,2.549],[14.239,2.484],[14.792,2.484],[15.077,2.424],[15.663,2.424],[15.964,2.366],[16.904,2.366],[17.229,2.31],[17.899,2.31],[18.282,2.25],[18.952,2.25],[19.358,2.196],[20.454,2.196],[20.892,2.144],[21.658,2.144],[22.121,2.092],[23.423,2.092],[23.874,2.042],[25.766,2.039],[26.317,1.99],[27.807,1.99],[28.402,1.942],[30.653,1.942],[31.243,1.896],[32.457,1.896]]},
             'C2':{p:[[1.303,87.24],[1.328,75.95],[1.351,65.66],[1.377,63.98],[1.403,59.49],[1.406,54.55],[1.458,47.57],[1.486,43.1],[1.518,40.7],[1.694,26.49],[1.764,23.83],[1.798,22.12],[1.828,21.18],[1.868,19.56],[2.125,14.02],[2.139,13.76],[2.175,12.88],[2.217,12.55],[2.303,11.39],[2.353,11.06],[2.393,10.57],[2.439,10.32],[2.486,9.831],[2.582,9.366],[2.632,8.922],[2.689,8.663],[2.74,8.253],[2.787,8.083],[2.841,7.7],[2.951,7.336],[3.008,6.988],[3.072,6.785],[3.138,6.453],[3.192,6.32],[3.253,6.309],[3.309,6.042],[3.33,5.979],[4.081,4.619],[4.168,4.611],[4.321,4.408],[4.413,4.184],[4.673,3.891],[4.763,3.891],[4.855,3.804],[4.959,3.618],[5.054,3.611],[5.151,3.446],[5.251,3.446],[6.0,2.913],[6.128,2.908],[6.842,2.532],[6.989,2.527],[7.671,2.25],[7.852,2.239],[7.986,2.144],[8.157,2.085],[8.456,1.997],[8.637,1.99],[8.803,1.902],[9.011,1.892],[10.039,1.656],[10.276,1.65],[11.255,1.477],[11.545,1.467],[12.835,1.29],[13.193,1.279],[14.451,1.147],[14.792,1.143],[16.514,1.004],[16.904,1.0],[18.204,0.9172],[18.555,0.9172],[19.317,0.8768],[19.689,0.8768],[21.204,0.8054],[21.658,0.804],[23.275,0.7412],[23.823,0.7386],[24.749,0.7073],[25.226,0.7073],[26.654,0.6657],[27.224,0.6645],[28.282,0.6375],[28.827,0.6375],[31.177,0.5866],[31.777,0.5866],[33.012,0.5637],[33.647,0.5637]]},
@@ -1775,8 +1849,8 @@
 
         function tempoTabelado(tab, M) {
             const p = tab.p, n = p.length - 1;
-            if (M < p[0][0]) return null;   // abaixo da faixa digitalizada: tempo muito alto, fora do gráfico
-            if (M >= p[n][0]) return p[n][1];   // acima do último ponto: o PCP mantém o último tempo
+            if (M < p[0][0]) return null;
+            if (M >= p[n][0]) return p[n][1];
             for (let j = 1; j <= n; j++) {
                 if (M <= p[j][0]) {
                     const f = (Math.log(M) - Math.log(p[j-1][0])) / (Math.log(p[j][0]) - Math.log(p[j-1][0]));
@@ -1785,11 +1859,7 @@
             }
             return p[n][1];
         }
-
-
         // ===== Gráfico embutido (alternativa ao Chart.js) =====
-        // Usado automaticamente quando o Chart.js não carrega (ex.: rede corporativa que bloqueia o CDN).
-        // Implementa só o que o coordenograma usa: eixos logarítmicos, curvas, pontos, plugins e eventos do mouse.
         class MiniChart {
             constructor(ctx, cfg) {
                 this.ctx = ctx; this.canvas = ctx.canvas; this.config = cfg;
@@ -1845,7 +1915,6 @@
                 g.setTransform(this.dpr, 0, 0, this.dpr, 0, 0); g.clearRect(0, 0, this.width, this.height);
                 this._layout();
                 const X = this.scales.x.getPixelForValue, Y = this.scales.y.getPixelForValue;
-                // grade (um traço por tick, como no Chart.js) e moldura
                 g.lineWidth = 1; g.setLineDash([]);
                 g.strokeStyle = (ox.grid && ox.grid.color) || 'rgba(0,0,0,0.1)'; g.beginPath();
                 this._xt.forEach(v => { const x = Math.round(X(v)) + 0.5; g.moveTo(x, a.top); g.lineTo(x, a.bottom + 6); }); g.stroke();
@@ -1875,7 +1944,6 @@
                 });
                 g.restore();
 
-                // números e títulos dos eixos
                 g.fillStyle = '#666'; g.font = '12px ' + MiniChart.FONTE;
                 g.textAlign = 'center'; g.textBaseline = 'top';
                 this._xt.forEach((v, i) => { if (this._xl[i]) g.fillText(this._xl[i], X(v), a.bottom + 11); });
@@ -1908,7 +1976,6 @@
         }
         MiniChart.FONTE = '"Helvetica Neue", Helvetica, Arial, sans-serif';
 
-        // Escolhe o Chart.js (se carregou) ou o gráfico embutido; a escolha vale para toda a sessão
         let ChartLib = null;
         function escolherChartLib() {
             if (!ChartLib) ChartLib = (typeof window.Chart === 'function') ? window.Chart : MiniChart;
@@ -1917,16 +1984,12 @@
 
         let tccChart = null;
         let regioesViolacao = [];
-        const ocultos = new Set();   // curvas desligadas na legenda (mantidas entre atualizações)
+        const ocultos = new Set();
+        const MRG_INRUSH_PCT = 0;
 
-        const MRG_INRUSH_PCT = 0;     // % acima de 0,1 s exigido do relé no ponto de inrush
-
-        // Critérios de coordenação para consumidor (PCP: Critérios > de Coordenação p/ Consumidor)
         const CRIT = {
-            K: 1.33,             // Elo × Disj:  T.Elo(tmf) > K × T.Disj + 0,20   (consumidor)
-            ADD_ELO_DISJ: 0.20,  // s
-            DISJ_DISJ: 0.40,     // s | Disj × Disj: T.Disj.MO > T.Disj.JU + 0,40 (consumidor)
-            RA_ELO: 1.00         // RA × Elo (lenta): T.Religador > 1,00 × T.Elo(tmi)  (critérios de coordenação da concessionária)
+            DISJ_DISJ: 0.40,
+            RA_ELO: 1.00
         };
 
         const num = (id, def = 0) => { const v = parseFloat(document.getElementById(id)?.value); return isNaN(v) ? def : v; };
@@ -1953,11 +2016,13 @@
                 Ip: num(N ? 'religadorIatn' : 'religadorIatf'),
                 curva: sel(N ? 'religadorCurvaNeutro' : 'religadorCurvaFase'),
                 fm: num(N ? 'religadorFmultNeutro' : 'religadorFmultFase'),
-                add: num(N ? 'religadorAddNeutro' : 'religadorAddFase')
+                add: num(N ? 'religadorAddNeutro' : 'religadorAddFase'),
+                sefOn: N ? chk('religadorSefAtivo') : false,
+                sef: N ? num('religadorSef') : 0,
+                sefT: N ? num('religadorSefT') : 0
             };
         }
 
-        // Tempo de atuação do relé: curva inversa + instantâneo + (opcional) estágio de tempo definido
         function tRele(I, c) {
             if (c.Ip <= 0) return null;
             let t = calcTempoTCC(I, c.Ip, c.tms, c.curva, c.inst, c.blq, c.tInst, 0);
@@ -1967,10 +2032,10 @@
             }
             return t;
         }
-        function tRelig(I, c) {
+        function tReligCurva(I, c) {
             if (c.Ip <= 0) return null;
             const tab = dbCurvasTCC[c.curva];
-            if (!tab) return calcTempoTCC(I, c.Ip, c.fm, c.curva, 0, true, 0, c.add);   // NI / MI / EI (IEC)
+            if (!tab) return calcTempoTCC(I, c.Ip, c.fm, c.curva, 0, true, 0, c.add);
             const M = I / c.Ip;
             if (M < 1) return null;
             const t = tempoTabelado(tab, M);
@@ -1978,8 +2043,12 @@
             const r = c.fm * t + c.add;
             return r < 0.01 ? 0.01 : r;
         }
+        function tRelig(I, c) {
+            const t = tReligCurva(I, c);
+            if (c.sefOn && c.sef > 0 && c.sefT > 0 && I >= c.sef) return t === null ? c.sefT : Math.min(t, c.sefT);
+            return t;
+        }
 
-        // Interpolação log-log nos pontos do elo; null = abaixo da faixa (elo não atua)
         function interpLog(pts, I) {
             if (I < pts[0].x) return null;
             const last = pts[pts.length - 1];
@@ -1994,8 +2063,6 @@
             return null;
         }
 
-        // Varre i0..i1 (escala log) avaliando um critério: avalia(I) devolve { m, a, b }
-        //   m = folga em segundos (m < 0 viola o critério); a e b = curva inferior e superior (para destacar no gráfico)
         function varrer(i0, i1, avalia) {
             const r = { ok: true, minM: Infinity, iMin: null, segs: [], aplic: i0 > 0 && i1 > i0 };
             if (!r.aplic) return r;
@@ -2014,7 +2081,6 @@
             if (seg) r.segs.push(seg);
             return r;
         }
-
         function verificar(N, R, G, fuse, iMax) {
             const out = [];
             regioesViolacao = [];
@@ -2029,36 +2095,58 @@
                 out.push({ nome: 'Inrush × Relé', status: (t === null || t >= 0.1 * (1 + MRG_INRUSH_PCT / 100)) ? 'ok' : 'falha' });
             }
 
-            // 2. Elo × Disj: T.Elo(tmf) > K × T.Disj + 0,20   (relé a jusante do elo; tmf = MMT)
-            const r2 = varrer(fuse.mmt[0].x, iMax, I => {
+            // 2. Relé × Elo (Apenas FASE)
+            // Regra: Curva do Relé deve estar ABAIXO da MMT do Elo.
+            // Se em Instantâneo (ANSI 50): basta t_relé < t_elo.
+            // Se em Temporizado (ANSI 51): t_elo - t_relé >= 0,15 s.
+            const r2 = !N ? varrer(fuse.mmt[0].x, iMax, I => {
                 const t = tr(I), mmt = interpLog(fuse.mmt, I);
                 if (t === null) return { m: -Infinity, a: Infinity, b: mmt };
-                return { m: mmt - (CRIT.K * t + CRIT.ADD_ELO_DISJ), a: t, b: mmt };
-            });
-            // 3. RA × Elo (lenta): T.Religador > 1,00 × T.Elo(tmi)   (religador a montante do elo; tmi = MCT)
-            //    Abaixo do início da curva do elo o elo não atua (tempo infinito): o religador atua antes e a faixa é marcada, como no PCP.
-            const r3 = varrer(G.Ip, iMax, I => {
+                if (mmt === null) return { m: Infinity, a: t, b: Infinity };
+
+                const emInstantaneo = (!R.blq && R.inst > 0 && I >= R.inst);
+                if (emInstantaneo) {
+                    return { m: mmt > t ? 1 : -1, a: t, b: mmt };
+                } else {
+                    return { m: mmt - (t + 0.15), a: t, b: mmt };
+                }
+            }) : { aplic: false, ok: true, minM: Infinity, iMin: null, segs: [] };
+
+            // 3. RA × Elo (Apenas FASE): T.Religador > 1,00 × T.Elo(tmi)
+            const r3 = !N ? varrer(G.Ip, iMax, I => {
                 const t = tg(I);
                 if (t === null) return { m: Infinity, a: Infinity, b: Infinity };
                 const mct = interpLog(fuse.mct, I);
                 if (mct === null) return { m: -Infinity, a: 1000, b: t };
                 return { m: t - CRIT.RA_ELO * mct, a: mct, b: t };
-            });
-            // 4. Disj × Disj: T.Disj.MO > T.Disj.JU + 0,40   (religador a montante do relé)
+            }) : { aplic: false, ok: true, minM: Infinity, iMin: null, segs: [] };
+
+            // 4. Disj × Disj: T.Disj.MO > T.Disj.JU + margem
             const r4 = varrer(G.Ip, iMax, I => {
                 const t = tr(I), tm = tg(I);
                 if (t === null || tm === null) return { m: Infinity, a: t === null ? Infinity : t, b: tm === null ? Infinity : tm };
-                return { m: tm - (t + CRIT.DISJ_DISJ), a: t, b: tm };
+                const emInstantaneo = (!R.blq && R.inst > 0 && I >= R.inst);
+                const margem = emInstantaneo ? 0.15 : CRIT.DISJ_DISJ;
+                return { m: tm - (t + margem), a: t, b: tm };
             });
 
-            [['Relé × Elo', r2, 'rgba(239,68,68,0.28)'], ['Elo × Religador', r3, 'rgba(245,158,11,0.32)'], ['Relé × Religador', r4, 'rgba(217,70,239,0.25)']].forEach(([nome, r, cor]) => {
-                out.push({ nome, status: status(r), minM: r.minM, iMin: r.iMin });
-                if (r.aplic) regioesViolacao.push({ nome, segs: r.segs, cor });
-            });
+            if (!N) {
+                out.push({ nome: 'Relé × Elo', status: status(r2), minM: r2.minM, iMin: r2.iMin });
+                if (r2.aplic) regioesViolacao.push({ nome: 'Relé × Elo', segs: r2.segs, cor: 'rgba(239,68,68,0.28)' });
+
+                out.push({ nome: 'Elo × Religador', status: status(r3), minM: r3.minM, iMin: r3.iMin });
+                if (r3.aplic) regioesViolacao.push({ nome: 'Elo × Religador', segs: r3.segs, cor: 'rgba(245,158,11,0.32)' });
+            } else {
+                out.push({ nome: 'Relé × Elo', status: 'na' });
+                out.push({ nome: 'Elo × Religador', status: 'na' });
+            }
+
+            out.push({ nome: 'Relé × Religador', status: status(r4), minM: r4.minM, iMin: r4.iMin });
+            if (r4.aplic) regioesViolacao.push({ nome: 'Relé × Religador', segs: r4.segs, cor: 'rgba(217,70,239,0.25)' });
+
             return out;
         }
 
-        // Gera pontos da curva com degraus explícitos nas correntes especiais (instantâneo, tempo definido)
         function curva(fn, extras) {
             const Is = new Set();
             for (let I = 5; I <= 10000; I *= 1.01) Is.add(I);
@@ -2068,18 +2156,19 @@
                 .filter(p => p.y !== null && p.y >= 0.01 && p.y <= 1000);
         }
 
-        // Curva do religador: curvas tabeladas são desenhadas pelos próprios pontos da tabela (sem reamostragem);
-        // NI / MI / EI (fórmula IEC) seguem pela amostragem contínua.
         function curvaReligador(G) {
             const tab = dbCurvasTCC[G.curva];
-            if (!tab || G.Ip <= 0) return curva(I => tRelig(I, G), []);
+            const sefAtivo = G.sefOn && G.sef > 0 && G.sefT > 0;
+            if (!tab || G.Ip <= 0 || sefAtivo) {
+                const extras = (tab && G.Ip > 0 ? tab.p.map(p => p[0] * G.Ip) : []).concat(sefAtivo ? [G.sef] : []);
+                return curva(I => tRelig(I, G), extras);
+            }
             const pts = [];
             const add = (I, t) => {
                 const y = Math.max(G.fm * t + G.add, 0.01);
                 if (I >= 5 && I <= 10000 && y <= 1000) pts.push({ x: I, y });
             };
             tab.p.forEach(([M, t]) => add(M * G.Ip, t));
-            // fecha a curva em 10 kA: patamar (101–202) ou prolongamento (C1–C4)
             if (!pts.length || pts[pts.length - 1].x < 10000) {
                 const tEnd = tempoTabelado(tab, 10000 / G.Ip);
                 if (tEnd !== null) add(10000, tEnd);
@@ -2087,7 +2176,6 @@
             return pts;
         }
 
-        // Mira: linhas x,y acompanham o mouse e mostram corrente (A) e tempo (s) da posição apontada
         const fmtI = I => (I < 100 ? I.toFixed(1) : I.toFixed(0)) + ' A';
         const fmtS = t => (t < 0.1 ? t.toFixed(3) : t < 10 ? t.toFixed(2) : t.toFixed(1)) + ' s';
         const pluginCruz = {
@@ -2124,8 +2212,8 @@
                 ctx.stroke();
                 ctx.restore();
                 ctx.save();
-                tag(fmtI(I), c.x, a.bottom + 11, 'centro');      // corrente sobre o eixo X
-                tag(fmtS(t), a.left - 2, c.y, 'esq');            // tempo sobre o eixo Y
+                tag(fmtI(I), c.x, a.bottom + 11, 'centro');
+                tag(fmtS(t), a.left - 2, c.y, 'esq');
                 ctx.restore();
             }
         };
@@ -2168,10 +2256,12 @@
                 { key: 'relig', label: `1. Religador COPEL (${sufixo})`, data: curvaReligador(G), borderColor: '#1d4ed8', borderWidth: 2.5, showLine: true, pointRadius: 0 },
                 { key: 'rele', label: `2. Relé Entrada UC (${sufixo})`, data: curva(I => { const t = tRele(I, R); return t === null ? null : Math.max(t, 0.01); }, extrasRele), borderColor: '#06b6d4', borderWidth: 2.5, showLine: true, pointRadius: 0 }
             ];
-            datasets.push(
-                { key: 'elo', legend: `3. Elo Fusível ${eloKey}`, label: `3. Elo Fusível ${eloKey} (MCT)`, data: fuse.mct, borderColor: '#059669', borderWidth: 2, showLine: true, pointRadius: 1.5 },
-                { key: 'elo', label: `Elo Fusível ${eloKey} (MMT)`, data: fuse.mmt, borderColor: '#10b981', borderWidth: 1.5, borderDash: [3, 3], showLine: true, pointRadius: 0 }
-            );
+            if (!N) {
+                datasets.push(
+                    { key: 'elo', legend: `3. Elo Fusível ${eloKey}`, label: `3. Elo Fusível ${eloKey} (MCT)`, data: fuse.mct, borderColor: '#059669', borderWidth: 2, showLine: true, pointRadius: 1.5 },
+                    { key: 'elo', label: `Elo Fusível ${eloKey} (MMT)`, data: fuse.mmt, borderColor: '#10b981', borderWidth: 1.5, borderDash: [3, 3], showLine: true, pointRadius: 0 }
+                );
+            }
 
             const vline = (key, lab, I, cor, dash) => ({ key, label: `${lab} (${I.toFixed(0)} A)`, data: [{ x: I, y: 0.01 }, { x: I, y: 1000 }], borderColor: cor, borderWidth: 1.5, borderDash: dash, showLine: true, pointRadius: 0 });
             if (!N && icc3f > 0) datasets.push(vline('icc', 'Icc 3Ф Máx', icc3f, '#dc2626', [4, 4]));
@@ -2215,11 +2305,9 @@
             montarLegenda(datasets);
         }
 
-        // Legenda própria (alinhada, com liga/desliga por curva)
         function montarLegenda(datasets) {
             const el = document.getElementById('legendaTCC');
             if (!el) return;
-            // agrupa datasets de mesma chave (ex.: MCT e MMT do elo) num único item
             const grupos = [], porChave = new Map();
             datasets.forEach((d, i) => {
                 if (!porChave.has(d.key)) { porChave.set(d.key, grupos.length); grupos.push({ key: d.key, idx: [i] }); }
@@ -2255,8 +2343,6 @@
                 };
             });
         }
-
-
         // --- SELEÇÃO DE CURVA COM PRÉVIA (estilo PCP) ---
         let pickerCtx = null;
         const CORES_EQ = {
@@ -2342,16 +2428,178 @@
         }
         function fecharPickerCurva() { document.getElementById('modalCurvas').classList.add('hidden'); }
 
+        // ===== Validação dos Critérios COPEL (card da aba 3) =====
+        const TMS_MIN_RELE = 0.04;
+        const TOL_20PCT = 0.15;
+
+        function validarCriteriosCopel() {
+            const corpo = document.getElementById('valCorpo');
+            if (!corpo) return;
+            const av = [];
+            const add = (nivel, regra, titulo, texto) => av.push({ nivel, regra, titulo, texto });
+            const f = (v, d = 1) => (isFinite(v) ? v.toFixed(d) : '—').replace('.', ',');
+            const ft = t => f(t, t < 1 ? 3 : 2) + ' s';
+            const lerTxt = id => { const v = parseFloat((document.getElementById(id)?.innerText || '').replace(',', '.')); return isNaN(v) ? 0 : v; };
+
+            const vBase = parseFloat(sel('tBase')) || 13.8, v345 = vBase > 20;
+            const vOp = v345 ? 33.0 : 13.2, k3 = vOp * Math.sqrt(3);
+            const trafos = (typeof trafosPadrao !== 'undefined' ? trafosPadrao : []);
+            const pTot = trafos.reduce((s, t) => s + (+t.kva || 0), 0);
+            const nTr = trafos.filter(t => (+t.kva) > 0).length;
+            const inTot = pTot / k3;
+            const dem = num('demandaContratada'), iDem = dem > 0 ? (dem / k3) * 1.3 / 0.92 : 0;
+            const lim = v345 ? 2500 : 1000, iLim = lim / k3;
+            const R = lerRele(false), Rn = lerRele(true), Gn = lerReligador(true);
+            const iAtf = R.Ip, iAif = R.inst, iAtn = Rn.Ip, iAin = Rn.inst;
+            const inrush = num('inrushVal'), iccFTmin = num('iccftMin');
+            const iBT3 = lerTxt('sumMaxIc3fTrafo'), iBT1 = lerTxt('sumMaxIcftTrafo');
+            const tcPrim = parseFloat((sel('modalRelacaoTC') || '0').split(':')[0]) || 0;
+            const unico = nTr === 1;
+            const REGRA = { 1: '1 · Temporizada de fase (51)', 2: '2 · Instantânea de fase (50)', 3: '3 · Curva de fase', 4: '4 · Temporizada de neutro (51N)', 5: '5 · Instantânea de neutro (50N)', 6: '6 · Curva de neutro', 7: '7 · Coordenação e curva de dano' };
+
+            if (pTot <= 0) {
+                add('amarelo', REGRA[1], 'Transformadores não informados', 'Informe os transformadores na aba 1 para validar os ajustes.');
+            } else {
+                // 1. Unidade temporizada de fase
+                if (pTot <= lim) {
+                    if (iAtf < inTot) add('vermelho', REGRA[1], 'Iatf não libera a potência instalada', 'Iatf = ' + f(iAtf) + ' A; a potência total (' + f(pTot, 0) + ' kVA) exige ao menos ' + f(inTot) + ' A (até ' + lim + ' kVA liberar a potência em transformação).');
+                } else {
+                    // Maior que 1000 kVA (ou 2500 kVA em 34,5 kV): Faixa regulamentar Copel
+                    if (iAtf < iLim) {
+                        add('vermelho', REGRA[1], 'Iatf abaixo do mínimo regulamentar', 'Iatf = ' + f(iAtf) + ' A; o mínimo regulatório é ' + f(iLim) + ' A (corrente de ' + lim + ' kVA).');
+                    }
+                    if (iAtf > inTot) {
+                        add('vermelho', REGRA[1], 'Iatf acima da potência em transformação', 'Iatf = ' + f(iAtf) + ' A; o máximo é ' + f(inTot) + ' A (potência total de ' + f(pTot, 0) + ' kVA).');
+                    }
+                    if (dem <= 0) add('amarelo', REGRA[1], 'Demanda contratada não informada', 'Informe a demanda na aba 1 para validar 1,3 × demanda ÷ 0,92.');
+                }
+
+                // NOVO: Verificação de liberação de Inrush (Magnetização) pela curva temporizada de fase
+                if (inrush > 0 && iAtf > 0 && inrush >= iAtf) {
+                    const t_inrush = tRele(inrush, R);
+                    if (t_inrush !== null && t_inrush < 0.1 * (1 + MRG_INRUSH_PCT / 100)) {
+                        add('vermelho', REGRA[1], 'Iatf não libera a magnetização (Inrush)', 'A curva temporizada de fase atua em ' + ft(t_inrush) + ' na corrente de inrush (' + f(inrush) + ' A), abaixo do mínimo de 0,1 s. Ajuste o TMS ou a corrente (Iatf).');
+                    }
+                }
+            }
+
+            // 2. Unidade instantânea de fase
+            if (R.blq) add('amarelo', REGRA[2], 'Instantâneo de fase bloqueado', 'A unidade instantânea de fase está bloqueada; o critério de Iaif não pôde ser verificado.');
+            else {
+                if (inrush > 0 && iAif <= inrush) add('vermelho', REGRA[2], 'Iaif não libera o inrush', 'Iaif = ' + f(iAif) + ' A ≤ Iinrush total = ' + f(inrush) + ' A.');
+                if (iBT3 > 0 && iAif <= iBT3) add('vermelho', REGRA[2], 'Iaif abaixo da Icc3φ da baixa tensão', 'Iaif = ' + f(iAif) + ' A ≤ maior Icc3φ simétrica na BT (refletida ao primário) = ' + f(iBT3) + ' A.');
+            }
+
+            // 3. Curva temporizada de fase
+            if (iBT3 > 0) {
+                const t = tRele(iBT3, R);
+                if (t === null) add('vermelho', REGRA[3], 'Relé não atua na Icc3φ da baixa tensão', 'Iatf = ' + f(iAtf) + ' A está acima da Icc3φ da BT (' + f(iBT3) + ' A).');
+                else if (t > 0.3) add('vermelho', REGRA[3], 'Tempo acima de 0,3 s na Icc3φ da BT', 'Em ' + f(iBT3) + ' A o relé de fase atua em ' + ft(t) + '; o máximo é 0,3 s.');
+            }
+            if (unico && !R.blq !== undefined) {
+                const IEC = { EI: [80, 2], MI: [13.5, 1], NI: [0.14, 0.02] }[R.curva];
+                if (IEC && inrush > 0 && iAtf > 0) {
+                    const M = inrush / iAtf, tMin = 0.1 * (1 + MRG_INRUSH_PCT / 100);
+                    const tmsReq = M <= 1 ? TMS_MIN_RELE : Math.max(TMS_MIN_RELE, tMin * (Math.pow(M, IEC[1]) - 1) / IEC[0]);
+                    if (R.tms > tmsReq * 1.25 + 1e-9) add('amarelo', REGRA[3], 'Transformador único: adotar a menor curva', 'TMS atual ' + f(R.tms, 2) + '; a menor curva que ainda libera o inrush é TMS ≈ ' + f(tmsReq, 2) + '.');
+                }
+            }
+
+            // 4. Unidade temporizada de neutro
+            if (iAtn > 0 && iAtf > 0) {
+                // Obrigatório Copel: Iatn deve estar abaixo do neutro do religador
+                if (Gn.Ip > 0 && iAtn >= Gn.Ip) {
+                    add('vermelho', REGRA[4], 'Iatn não está abaixo do neutro do religador', 'Iatn = ' + f(iAtn) + ' A; o neutro do religador está em ' + f(Gn.Ip) + ' A (o relé deve ficar abaixo).');
+                }
+                // Alerta de precisão extrema do TC somente se for inferior a 5% da corrente nominal
+                else if (tcPrim > 0 && iAtn < 0.05 * tcPrim) {
+                    add('amarelo', REGRA[4], 'Iatn muito baixo em relação ao TC', 'Iatn = ' + f(iAtn) + ' A está abaixo de 5 % do TC de ' + f(tcPrim, 0) + ' A. Pode comprometer a precisão da medição.');
+                }
+                // Alerta de desproporção com a fase somente se for muito discrepante (> 35% de Iatf sem justificativa)
+                else if (iAtn > 0.35 * iAtf && tcPrim > 0 && iAtn > 0.12 * tcPrim) {
+                    add('amarelo', REGRA[4], 'Iatn elevado em relação à fase', 'Iatn = ' + f(iAtn) + ' A excede 35 % de Iatf (' + f(iAtf) + ' A). A recomendação da Copel é ajustar em torno de 20 % da fase.');
+                }
+            }
+
+            // 5. Unidade instantânea de neutro
+            if (Rn.blq) add('amarelo', REGRA[5], 'Instantâneo de neutro bloqueado', 'A unidade instantânea de neutro está bloqueada; o critério de Iain não pôde ser verificado.');
+            else if (iAin > 0) {
+                if (!R.blq && iAif > 0 && Math.abs(iAin - 0.2 * iAif) > 0.2 * iAif * TOL_20PCT) add('amarelo', REGRA[5], 'Iain diferente de 20 % da fase (Recomendação)', 'Iain = ' + f(iAin) + ' A; o recomendado é 20 % de Iaif = ' + f(0.2 * iAif) + ' A.');
+                if (iccFTmin > 0 && iAin >= iccFTmin) add('vermelho', REGRA[5], 'Iain não está abaixo da Icc1φ mínima', 'Iain = ' + f(iAin) + ' A ≥ Icc1φ mínima simétrica no primário = ' + f(iccFTmin) + ' A.');
+                if (v345) {
+                    if (iBT1 > 0 && iAin <= iBT1) add('vermelho', REGRA[5], 'Iain abaixo da Icc1φ da baixa tensão', 'Iain = ' + f(iAin) + ' A ≤ Icc1φ simétrica na BT (parcela da Copel) = ' + f(iBT1) + ' A.');
+                    add('amarelo', REGRA[5], 'Contribuição do cliente', 'Avalie também Iain > Icc1φ no ponto de instalação (parcela do cliente); o sistema não calcula essa parcela.');
+                }
+            }
+
+            // 6. Curva temporizada de neutro
+            if (v345) {
+                if (iBT1 > 0) {
+                    const t = tRele(iBT1, Rn);
+                    if (t === null) add('vermelho', REGRA[6], 'Relé de neutro não atua na Icc1φ da BT', 'Iatn = ' + f(iAtn) + ' A está acima da Icc1φ da BT (' + f(iBT1) + ' A).');
+                    else if (t > 0.3) add('vermelho', REGRA[6], 'Tempo acima de 0,3 s na Icc1φ da BT', 'Em ' + f(iBT1) + ' A o relé de neutro atua em ' + ft(t) + '; o máximo é 0,3 s.');
+                }
+                if (unico && Rn.tms > TMS_MIN_RELE + 1e-9) add('amarelo', REGRA[6], 'Transformador único: adotar a menor curva', 'TMS de neutro atual ' + f(Rn.tms, 2) + '; menor curva disponível: ' + f(TMS_MIN_RELE, 2) + '.');
+            } else if (Rn.tms > TMS_MIN_RELE + 1e-9) {
+                add('amarelo', REGRA[6], 'Adotar a menor curva do relé no neutro', 'TMS de neutro atual ' + f(Rn.tms, 2) + '; menor curva disponível: ' + f(TMS_MIN_RELE, 2) + ' (não há outra proteção a coordenar no secundário).');
+            }
+
+            // 7. Coordenação com o religador e elo fusível
+            const fuse = dbElos[sel('eloFusivelSel')] || dbElos['65K'];
+            const salvo = regioesViolacao;
+            try {
+                [['fase', false, R, lerReligador(false), num('icc3fSim')], ['neutro', true, Rn, Gn, num('iccftMax')]].forEach(([nome, N, Rr, Gg, iMax]) => {
+                    if (!(iMax > 0) || !(Gg.Ip > 0) || !(Rr.Ip > 0)) return;
+                    const st = verificar(N, Rr, Gg, fuse, iMax);
+                    
+                    // Adicionado o par 'Relé × Elo' para a visão de fase
+                    const pares = N 
+                        ? [['Relé × Religador', 'o relé', 'o religador']] 
+                        : [['Elo × Religador', 'o elo', 'o religador'], ['Relé × Religador', 'o relé', 'o religador'], ['Relé × Elo', 'o relé', 'o elo fusível']];
+                        
+                    pares.forEach(([rot, eqJus, eqMont]) => {
+                        const s = st.find(x => x.nome === rot); if (!s || s.status !== 'falha') return;
+                        const reg = regioesViolacao.find(x => x.nome === rot);
+                        const segs = reg ? reg.segs.filter(g => g.length > 1) : [];
+                        const faixa = segs.length ? 'entre ' + f(segs[0][0].x, 0) + ' e ' + f(segs[segs.length - 1].at(-1).x, 0) + ' A' : 'em torno de ' + f(s.iMin, 0) + ' A';
+                        
+                        // Mensagem dinâmica indicando quem invade quem
+                        add('vermelho', REGRA[7], 'Falta de coordenação (' + nome + ')', 'A curva do ' + eqJus + ' invade a do ' + eqMont + ' ' + faixa + '.');
+                    });
+                });
+            } finally { regioesViolacao = salvo; }
+
+            renderValidacao(av);
+        }
+
+        function renderValidacao(av) {
+            const ord = { vermelho: 0, amarelo: 1 };
+            av.sort((a, b) => ord[a.nivel] - ord[b.nivel]);
+            const nV = av.filter(a => a.nivel === 'vermelho').length, nA = av.length - nV;
+            const estado = nV ? 'vermelho' : (nA ? 'amarelo' : 'verde');
+            const card = document.getElementById('valCopel'), badge = document.getElementById('valBadge'), corpo = document.getElementById('valCorpo');
+            card.className = 'val-card ' + estado;
+            badge.className = 'val-badge ' + estado;
+            badge.textContent = nV ? nV + (nV > 1 ? ' violações' : ' violação') + (nA ? ' · ' + nA + (nA > 1 ? ' alertas' : ' alerta') : '') : (nA ? nA + (nA > 1 ? ' alertas' : ' alerta') : 'Conforme');
+            corpo.innerHTML = av.length
+                ? av.map(a => '<div class="val-item ' + a.nivel + '"><span class="val-dot"></span><div><span class="val-reg">' + a.regra + '</span><b>' + a.titulo + '</b><p>' + a.texto + '</p></div></div>').join('')
+                : '<div class="val-ok">Todos os ajustes atendem aos critérios técnicos da COPEL.</div>';
+        }
+
         function atualizarEstudo() {
             renderizarGrafico();
+            try { validarCriteriosCopel(); } catch (e) { console.error(e); }
         }
 
         window.onload = function() {
             renderizarEntradas();
             recalcular();
             ['modalTipoCurva', 'modalTipoCurvaNeutro', 'religadorCurvaFase', 'religadorCurvaNeutro'].forEach(atualizarRotuloCurva);
-            ['icc3fSim', 'iccftMax', 'iccftMin', 'inrushVal', 'modalIatf'].forEach(id =>
+            ['icc3fSim', 'iccftMax', 'iccftMin', 'inrushVal'].forEach(id =>
                 document.getElementById(id)?.addEventListener('input', () => editados.add(id)));
+            const revalidar = () => { try { validarCriteriosCopel(); } catch (e) { console.error(e); } };
+            ['#tabGrafico', '#modalAjustesRele', '#modalAjustesReligador'].forEach(s =>
+                document.querySelectorAll(s + ' input, ' + s + ' select').forEach(el => { el.addEventListener('input', revalidar); el.addEventListener('change', revalidar); }));
         };
     </script>
 </body>
