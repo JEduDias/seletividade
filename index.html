@@ -38,7 +38,7 @@
             --c-icfttrafo: #4F46E5;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+- { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Open Sans', sans-serif; background-color: var(--bg-gray); color: var(--text-main); line-height: 1.35; padding-bottom: 30px; }
 
         header { background-color: var(--copel-orange); color: white; padding: 0 2rem; height: 55px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 2px 8px rgba(0,0,0,0.15); position: sticky; top: 0; z-index: 100; }
@@ -202,6 +202,8 @@
         .badge-sistema { background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35); }
         .nav-tabs { background:transparent; border:none; box-shadow:none; max-width:1450px; margin:0 auto; padding:14px 1rem 0; gap:8px; }
         .tab-btn { padding:9px 18px; border-radius:999px; background:#fff; border:1px solid var(--border-color); color:#64748B; font-size:.82rem; }
+		.btn-reset-top { margin-left:auto; display:inline-flex; align-items:center; gap:6px; color:#DC2626; border-color:#FECACA; }
+        .btn-reset-top:hover { background:#FEF2F2; color:#B91C1C; border-color:#FCA5A5; }
         .tab-btn:hover { color:var(--copel-orange); border-color:#FFC9A1; }
         .tab-btn.active { background:var(--copel-orange); color:#fff; border-color:var(--copel-orange); box-shadow:0 4px 12px rgba(255,107,0,.3); }
         .card { border-radius:var(--radius); border:1px solid var(--border-color); box-shadow:var(--shadow-sm); padding:1.1rem 1.2rem; }
@@ -291,6 +293,10 @@
         <button class="tab-btn active" onclick="trocarAba('tabEntrada', this)">1. Rede e Curto-Circuito</button>
         <button class="tab-btn" onclick="trocarAba('tabSaida', this)">2. Memória de Cálculo</button>
         <button class="tab-btn" onclick="trocarAba('tabGrafico', this); carregarDadosParaGrafico();">3. Coordenograma TCC</button>
+        <button type="button" class="tab-btn btn-reset-top" onclick="resetarTudo()" title="Limpar todos os dados e voltar aos valores iniciais">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+            Resetar
+        </button>
     </div>
 
     <main>
@@ -463,14 +469,7 @@
                 <button type="button" class="btn-add" style="margin-top: 10px;" onclick="adicionarTrafo()">+ Adicionar Novo Trafo</button>
             </div>
 
-            <div class="btn-group" style="justify-content: space-between;">
-                <div style="display:flex; gap:10px;">
-                    <button type="button" class="btn" onclick="trocarAba('tabSaida', document.querySelectorAll('.tab-btn')[1])">Ver Memória de Cálculo &rarr;</button>
-                </div>
-                <button type="button" class="btn btn-secondary" onclick="resetarTudo()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block; vertical-align:text-bottom; margin-right:4px;"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg> Resetar
-                </button>
-            </div>
+            
         </div>
 
         <!-- ABA 2: MEMÓRIA DE CÁLCULO -->
@@ -564,11 +563,7 @@
                     </table>
                 </div>
             </div>
-
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary" onclick="trocarAba('tabEntrada', document.querySelectorAll('.tab-btn')[0])">&larr; Ajustar Rede</button>
-                <button type="button" class="btn" onclick="trocarAba('tabGrafico', document.querySelectorAll('.tab-btn')[2]); carregarDadosParaGrafico();">Ir para Coordenograma TCC &rarr;</button>
-            </div>
+            
         </div>
 
         <!-- ABA 3: COORDENOGRAMA TCC -->
